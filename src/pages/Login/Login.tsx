@@ -1,12 +1,7 @@
-import { useEffect } from 'react'
-import getGithubAuthUrl from './utils/getGithubAuthUrl'
-import getGoogleAuthUrl from './utils/getGoogleAuthUrl'
+import getGithubAuthUrl from '../../utils/getGithubAuthUrl'
+import getGoogleAuthUrl from '../../utils/getGoogleAuthUrl'
 
-function App() {
-  useEffect(() => {
-    console.log('UseEffect Called', Date.now())
-  }, [])
-
+const Login = () => {
   return (
     <div className="dark:bg-black min-h-screen flex flex-col justify-center items-center gap-5">
       <div className="dark:text-white space-x-5">
@@ -32,5 +27,4 @@ function App() {
     </div>
   )
 }
-
-export default App
+export default Login
