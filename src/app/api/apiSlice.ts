@@ -6,7 +6,7 @@ import {
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react'
 import env from '../../utils/cleanEnv'
-import { logout, setUser } from './authSlice'
+import { logout, setUser } from '../slices/authSlice'
 
 const baseQuery = fetchBaseQuery({
   baseUrl: env.VITE_BACKEND_SERVER_URL,
@@ -19,7 +19,7 @@ const baseQueryWithReauth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions)
-  if (result.error && result.error.status === 401) {
+  if (result.error && result.error.status === 403) {
     const refreshResult = await baseQuery(
       `${env.VITE_BACKEND_SERVER_URL}/auth/refresh`,
       api,

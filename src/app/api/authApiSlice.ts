@@ -1,3 +1,4 @@
+import { setUser } from '../slices/authSlice'
 import { api } from './apiSlice'
 
 export const authApiSlice = api.injectEndpoints({
@@ -9,7 +10,21 @@ export const authApiSlice = api.injectEndpoints({
         body: { email, password },
       }),
     }),
+    refresh: build.mutation<string, void>({
+      query: () => ({
+        url: '/auth/refresh',
+        method: 'GET',
+      }),
+      async onQueryStarted(args, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled
+          dispatch(setUser({ accessToken: data }))
+        } catch (error) {
+          console.log(error)
+        }
+      },
+    }),
   }),
 })
 
-export const { useLoginMutation } = authApiSlice
+export const { useLoginMutation, useRefreshMutation } = authApiSlice
