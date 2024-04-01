@@ -1,13 +1,15 @@
 import { ChangeEvent, FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { useLoginMutation } from '../../app/api/authApiSlice'
-import { setUser } from '../../app/api/authSlice'
+import { setUser } from '../../app/slices/authSlice'
 import getGithubAuthUrl from '../../utils/getGithubAuthUrl'
 import getGoogleAuthUrl from '../../utils/getGoogleAuthUrl'
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [pwd, setPwd] = useState('')
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const [login, { isLoading }] = useLoginMutation()
@@ -21,6 +23,7 @@ const Login = () => {
     try {
       const accessToken = await login({ email: email, password: pwd }).unwrap()
       dispatch(setUser({ accessToken: accessToken }))
+      navigate('/')
     } catch (error) {
       console.log(error)
     }
@@ -32,7 +35,7 @@ const Login = () => {
     setPwd(e.target.value)
 
   return (
-    <div className="dark:bg-black min-h-screen flex flex-col justify-center items-center gap-5">
+    <div className="dark:bg-black min-h-screen flex flex-col justify-center items-center gap-5 w-full">
       <div className="dark:text-white space-x-5">
         <a href={getGoogleAuthUrl()}>Log in by Google</a>
         <a href={getGithubAuthUrl()}>Log in by GitHub</a>
