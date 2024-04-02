@@ -1,10 +1,14 @@
 type SubmitButton = {
   text: string
+  disabled: boolean
 }
 
-const SubmitButton = ({ text }: SubmitButton) => {
+const SubmitButton = ({ text, disabled }: SubmitButton) => {
   return (
-    <button className="bg-green-500 uppercase w-full py-2 rounded text-white hover:bg-green-400 transition-all duration-300">
+    <button
+      className="bg-green-500 uppercase w-full py-2 rounded text-white hover:bg-green-400 transition-all duration-300"
+      disabled={disabled}
+    >
       {text}
     </button>
   )
