@@ -1,12 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
-import AuthLayout from './layout/AuthLayout'
-import Dash from './pages/Dash/Dash'
-import ForgotPassword from './pages/ForgotPassword/ForgotPassword'
-import Login from './pages/Login/Login'
-import NotFound from './pages/NotFound/NotFound'
-import SignUp from './pages/SignUp/SignUp'
 import AnonymousRoute from './helpers/AnonymousRoute'
 import ProtectedRoute from './helpers/ProtectedRoute'
+import Dash from './pages/Dash/Dash'
+import ForgotPasswordPage from './pages/ForgotPassword/ForgotPasswordPage'
+import LoginPage from './pages/Login/LoginPage'
+import NotFound from './pages/NotFound/NotFound'
+import SignUpPage from './pages/SignUp/SignUpPage'
 
 export const router = createBrowserRouter([
   {
@@ -16,32 +15,28 @@ export const router = createBrowserRouter([
         element: <AnonymousRoute />,
         children: [
           {
-            element: <AuthLayout />,
-            children: [
-              {
-                path: '/login',
-                element: <Login />,
-              },
-              {
-                path: '/sign-up',
-                element: <SignUp />,
-              },
-              {
-                path: '/forgot-password',
-                element: <ForgotPassword />,
-              },
-            ],
+            path: '/login',
+
+            element: <LoginPage />,
+          },
+          {
+            path: '/sign-up',
+            element: <SignUpPage />,
+          },
+          {
+            path: '/forgot-password',
+            element: <ForgotPasswordPage />,
           },
         ],
       },
+    ],
+  },
+  {
+    element: <ProtectedRoute />,
+    children: [
       {
-        element: <ProtectedRoute />,
-        children: [
-          {
-            path: '/',
-            element: <Dash />,
-          },
-        ],
+        path: '/',
+        element: <Dash />,
       },
     ],
   },
