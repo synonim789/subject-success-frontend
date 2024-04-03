@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { MdAlternateEmail } from 'react-icons/md'
@@ -21,10 +22,6 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginFields>({ resolver: zodResolver(loginSchema) })
 
-  if (isLoading) {
-    return <p>Loding...</p>
-  }
-
   const submitHandler: SubmitHandler<LoginFields> = async (data) => {
     try {
       const accessToken = await login({
@@ -41,11 +38,18 @@ const LoginForm = () => {
     }
   }
 
+  useEffect(() => {
+    if (isLoading) {
+      const loadingToast = toast.loading('Loading...', { id: 'loading' })
+      return () => toast.dismiss(loadingToast)
+    }
+  }, [isLoading])
+
   return (
     <>
       <form onSubmit={handleSubmit(submitHandler)} className="w-full px-5">
         <Input
-          type="email"
+          type="text"
           placeholder="Enter your email..."
           label="Email adress"
           name="email"
