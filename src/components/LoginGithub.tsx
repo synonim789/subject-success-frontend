@@ -7,9 +7,9 @@ const LoginGithub = () => {
   return (
     <a
       href={githubLink}
-      className="font-semibold text-text-gray border py-2.5 px-2.5 rounded-full border-[#CDD6E1] flex items-center justify-center gap-2"
+      className="font-semibold text-text-gray border py-2.5 px-2.5 rounded-full border-[#CDD6E1] flex items-center justify-center gap-2 hover:scale-110 transition hover:border-green-900"
     >
-      <FaGithub />
+      <FaGithub className="text-blue-800" />
       Login with Github
     </a>
   )

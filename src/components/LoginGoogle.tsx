@@ -7,9 +7,9 @@ const LoginGoogle = () => {
   return (
     <a
       href={googleLink}
-      className="font-semibold text-text-gray border py-2.5 px-2.5 rounded-full border-[#CDD6E1] flex items-center justify-center gap-2"
+      className="font-semibold text-text-gray border py-2.5 px-2.5 rounded-full border-[#CDD6E1] flex items-center justify-center gap-2 hover:scale-110 transition hover:border-green-900"
     >
-      <FaGoogle />
+      <FaGoogle className="text-red-500" />
       Log in with Google
     </a>
   )
