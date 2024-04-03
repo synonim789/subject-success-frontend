@@ -72,7 +72,10 @@ const Input = ({
         )}
       </div>
       {error?.message && (
-        <div className="text-red-500 my-2 text-justify font-semibold">
+        <div
+          className="text-red-500 my-2 text-justify font-semibold"
+          role="alert"
+        >
           {error.message}
         </div>
       )}
