@@ -9,7 +9,7 @@ import env from '../../utils/cleanEnv'
 import { logout, setUser } from '../slices/authSlice'
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: env.VITE_BACKEND_SERVER_URL,
+  baseUrl: new URL(env.VITE_SERVER_ENDPOINT).href,
   credentials: 'include',
 })
 
