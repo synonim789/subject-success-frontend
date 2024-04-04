@@ -1,8 +1,10 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdAlternateEmail, MdDriveFileRenameOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useSignUpMutation } from '../../app/api/authApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { SignUpFields, signUpSchema } from '../../types/signUpSchema';
@@ -10,6 +12,7 @@ import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const SignUpForm = () => {
    const navigate = useNavigate();
+   const [signUp, { isLoading, error }] = useSignUpMutation();
    //const [login, { isLoading, error }] = useLoginMutation()
    const {
       register,
@@ -23,12 +26,9 @@ const SignUpForm = () => {
 
    const submitHandler: SubmitHandler<SignUpFields> = async (data) => {
       try {
-         // const accessToken = await login({
-         //   email: data.email,
-         //   password: data.password,
-         // }).unwrap()
+         const { message } = await signUp(data).unwrap();
          navigate('/login');
-         toast.success('Now you have to log in!');
+         toast.success(message);
          reset();
       } catch (err) {
          if (isFetchBaseQueryError(err)) {
@@ -38,6 +38,13 @@ const SignUpForm = () => {
          console.log(err);
       }
    };
+
+   useEffect(() => {
+      if (isLoading) {
+         const loadingToast = toast.loading('Loading...', { id: 'loading' });
+         return () => toast.dismiss(loadingToast);
+      }
+   }, [isLoading]);
 
    return (
       <>
@@ -55,7 +62,7 @@ const SignUpForm = () => {
             <Input
                type="text"
                placeholder="Enter your username..."
-               label="username"
+               label="Username"
                name="username"
                id="username"
                icon={<MdDriveFileRenameOutline size={20} />}
@@ -72,14 +79,14 @@ const SignUpForm = () => {
                register={{ ...register('password') }}
                error={errors.password}
             />
-            <SubmitButton text="login" disabled={isSubmitting} />
-            {/* {error && (
-          <p className="text-left text-red-500 font-semibold mt-2">
-            {'status' in error
-              ? (error as { data: { message: string } }).data.message
-              : error.message}
-          </p>
-        )} */}
+            <SubmitButton text="Sign Up" disabled={isSubmitting} />
+            {error && (
+               <p className="mt-2 text-left font-semibold text-red-500">
+                  {'status' in error
+                     ? (error as { data: { message: string } }).data.message
+                     : error.message}
+               </p>
+            )}
          </form>
       </>
    );
