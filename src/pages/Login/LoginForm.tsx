@@ -20,7 +20,11 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<LoginFields>({ resolver: zodResolver(loginSchema) })
+    reset,
+  } = useForm<LoginFields>({
+    resolver: zodResolver(loginSchema),
+    mode: 'onBlur',
+  })
 
   const submitHandler: SubmitHandler<LoginFields> = async (data) => {
     try {
@@ -30,11 +34,13 @@ const LoginForm = () => {
       }).unwrap()
       dispatch(setUser({ accessToken: accessToken }))
       navigate('/')
+      reset()
     } catch (err) {
       if (isFetchBaseQueryError(err)) {
         const errMsg = (err as { data: { message: string } }).data.message
         toast.error(errMsg)
       }
+      console.log(err)
     }
   }
 
