@@ -9,9 +9,16 @@ export const handlers = [
   http.post<
     PathParams,
     LoginRequestBody,
-    string,
+    string | { message: string },
     'http://localhost:3000/auth/login'
-  >('http://localhost:3000/auth/login', ({ params, request }) => {
-    return HttpResponse.json('yctycytcy', { status: 201 })
+  >('http://localhost:3000/auth/login', async ({ params, request }) => {
+    const { email } = await request.json()
+    if (email === 'test2@gmail.com') {
+      return HttpResponse.json(
+        { message: 'Invalid credentials' },
+        { status: 401 }
+      )
+    }
+    return HttpResponse.json('yctycytcy', { status: 200 })
   }),
 ]

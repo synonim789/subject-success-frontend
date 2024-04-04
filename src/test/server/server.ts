@@ -1,10 +1,14 @@
 import { setupServer } from 'msw/node'
 import { handlers } from './serverHandlers'
 
-export const server = setupServer(...handlers)
+export const mockServer = () => {
+  const server = setupServer(...handlers)
 
-beforeAll(() => server.listen())
+  beforeAll(() => server.listen({ onUnhandledRequest: 'error' }))
 
-afterEach(() => server.resetHandlers())
+  afterAll(() => server.close())
 
-afterAll(() => server.close())
+  afterEach(() => server.resetHandlers())
+
+  return server
+}
