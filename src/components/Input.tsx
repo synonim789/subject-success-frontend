@@ -40,7 +40,9 @@ const Input = ({
          >
             {label}
          </label>
-         <div className={'relative mb-4 mt-1 flex w-full flex-col text-left'}>
+         <div
+            className={` ${error ? 'mb-0.5' : 'mb-4'} relative mt-1 flex w-full flex-col text-left`}
+         >
             <input
                type={
                   isPassword ? (isPasswordVisible ? 'text' : 'password') : type
@@ -75,7 +77,7 @@ const Input = ({
          </div>
          {error?.message && (
             <div
-               className="mb-1 text-justify font-semibold text-red-500"
+               className="mb-1.5 text-justify font-semibold text-red-500"
                role="alert"
             >
                {error.message}
