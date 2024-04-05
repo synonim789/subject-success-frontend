@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdAlternateEmail } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../app/api/authApiSlice';
 import { setUser } from '../../app/slices/authSlice';
 import Input from '../../components/Input';
@@ -40,7 +40,6 @@ const LoginForm = () => {
             const errMsg = (err as { data: { message: string } }).data.message;
             toast.error(errMsg);
          }
-         console.log(err);
       }
    };
 
@@ -74,6 +73,15 @@ const LoginForm = () => {
                register={{ ...register('password') }}
                error={errors.password}
             />
+            <div className="mb-2 w-full text-right">
+               <Link
+                  to="/forgot-password"
+                  className="text-right text-sm text-gray-400 underline transition hover:text-green-600"
+               >
+                  Forgot Password?
+               </Link>
+            </div>
+
             <SubmitButton text="login" disabled={isSubmitting} />
             {error && (
                <p className="mt-2 text-left font-semibold text-red-500">
