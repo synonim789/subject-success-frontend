@@ -1,7 +1,7 @@
 import { setUser } from '../slices/authSlice';
 import { api } from './apiSlice';
 
-export const authApiSlice = api.injectEndpoints({
+const authApiSlice = api.injectEndpoints({
    endpoints: (build) => ({
       login: build.mutation<string, { email: string; password: string }>({
          query: ({ email, password }) => ({
@@ -24,18 +24,7 @@ export const authApiSlice = api.injectEndpoints({
             }
          },
       }),
-      signUp: build.mutation<
-         { message: string },
-         { email: string; username: string; password: string }
-      >({
-         query: ({ email, username, password }) => ({
-            url: '/user/sign-up',
-            method: 'POST',
-            body: { email, username, password },
-         }),
-      }),
    }),
 });
 
-export const { useLoginMutation, useRefreshMutation, useSignUpMutation } =
-   authApiSlice;
+export const { useLoginMutation, useRefreshMutation } = authApiSlice;

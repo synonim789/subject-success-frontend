@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdAlternateEmail, MdDriveFileRenameOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
-import { useSignUpMutation } from '../../app/api/authApiSlice';
+import { useSignUpMutation } from '../../app/api/userApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { SignUpFields, signUpSchema } from '../../types/signUpSchema';
@@ -13,7 +13,7 @@ import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 const SignUpForm = () => {
    const navigate = useNavigate();
    const [signUp, { isLoading, error }] = useSignUpMutation();
-   //const [login, { isLoading, error }] = useLoginMutation()
+   
    const {
       register,
       handleSubmit,
