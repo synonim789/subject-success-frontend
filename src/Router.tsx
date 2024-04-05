@@ -5,6 +5,7 @@ import Dash from './pages/Dash/Dash';
 import ForgotPasswordPage from './pages/ForgotPassword/ForgotPasswordPage';
 import LoginPage from './pages/Login/LoginPage';
 import NotFound from './pages/NotFound/NotFound';
+import OtpPage from './pages/OTP/OtpPage';
 import SignUpPage from './pages/SignUp/SignUpPage';
 
 export const router = createBrowserRouter([
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
                {
                   path: '/forgot-password',
                   element: <ForgotPasswordPage />,
+               },
+               {
+                  path: '/otp',
+                  element: <OtpPage />,
                },
             ],
          },
