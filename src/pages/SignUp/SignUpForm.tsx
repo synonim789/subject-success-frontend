@@ -13,7 +13,7 @@ import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 const SignUpForm = () => {
    const navigate = useNavigate();
    const [signUp, { isLoading, error }] = useSignUpMutation();
-   
+
    const {
       register,
       handleSubmit,
