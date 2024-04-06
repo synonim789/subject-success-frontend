@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '../../test/test-utils';
+import { render, screen } from '../../test/test-utils';
 import SignUpPage from './SignUpPage';
 
 describe('Sign Up Test', () => {
@@ -25,9 +25,9 @@ describe('Sign Up Test', () => {
 
          await user.click(signupButton);
 
-         await waitFor(() => {
-            expect(screen.getByText(/sign up success/i)).toBeInTheDocument();
-         });
+         expect(
+            await screen.findByText(/sign up success/i),
+         ).toBeInTheDocument();
       });
    });
    describe('with invalid email', () => {
