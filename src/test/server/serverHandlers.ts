@@ -11,6 +11,10 @@ type SignUpRequestBody = {
    password: string;
 };
 
+type ForgotPasswordBody = {
+   email: string;
+};
+
 export const handlers = [
    http.post<
       PathParams,
@@ -41,5 +45,23 @@ export const handlers = [
          );
       }
       return HttpResponse.json({ message: 'Sign up success' }, { status: 200 });
+   }),
+   http.post<
+      PathParams,
+      ForgotPasswordBody,
+      { message: string },
+      'http://localhost:3000/user/forgot-password'
+   >('http://localhost:3000/user/forgot-password', async ({ request }) => {
+      const { email } = await request.json();
+      if (email === 'test2@gmail.com') {
+         return HttpResponse.json(
+            { message: 'email dont exist' },
+            { status: 401 },
+         );
+      }
+      return HttpResponse.json(
+         { message: 'forgot password success' },
+         { status: 200 },
+      );
    }),
 ];
