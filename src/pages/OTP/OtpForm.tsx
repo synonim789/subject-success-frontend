@@ -10,6 +10,7 @@ const OtpForm = () => {
    const [otp, setOtp] = useState<string[]>(new Array(4).fill(''));
    const [activeOtpIndex, setActiveOtpIndex] = useState<number>(0);
    const inputRef = useRef<HTMLInputElement>(null);
+   const [errMsg, setErrMsg] = useState('');
    const dispatch = useDispatch();
    const navigate = useNavigate();
 
@@ -40,9 +41,13 @@ const OtpForm = () => {
 
    const submitHandler = (e: SyntheticEvent) => {
       e.preventDefault();
-      const otpString = parseInt(otp.join(''));
-      dispatch(setOtpDispatch({ otp: otpString }));
-      navigate('/reset-password');
+      if (otp.some((num) => num === '')) {
+         setErrMsg('Please fill in all OTP numbers.');
+      } else {
+         const otpNumber = parseInt(otp.join(''));
+         dispatch(setOtpDispatch({ otp: otpNumber }));
+         navigate('/reset-password');
+      }
    };
 
    useEffect(() => {
@@ -56,7 +61,7 @@ const OtpForm = () => {
                return (
                   <input
                      ref={index === activeOtpIndex ? inputRef : null}
-                     type="text"
+                     type="number"
                      className="size-12 rounded  border-2 border-gray-400 text-center outline-none focus:border-gray-700"
                      onChange={handleOnChange}
                      key={index}
@@ -66,7 +71,11 @@ const OtpForm = () => {
                );
             })}
          </div>
-
+         {errMsg && (
+            <p className="mb-1 text-left font-semibold text-red-500">
+               {errMsg}
+            </p>
+         )}
          <SubmitButton text="Continue" disabled={false} />
       </form>
    );
