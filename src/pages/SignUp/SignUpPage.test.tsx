@@ -1,33 +1,40 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen } from '../../test/test-utils';
-import LoginPage from './LoginPage';
+import { render, screen, waitFor } from '../../test/test-utils';
+import LoginPage from '../Login/LoginPage';
+import SignUpPage from './SignUpPage';
 
-describe('Login Test', () => {
+describe('Sign Up Test', () => {
    describe('with valid inputs', () => {
-      it('should redirect to home page', async () => {
+      it('should show toast with success message after submitting form', async () => {
          const user = userEvent.setup();
-         render(<LoginPage />);
+         render(<SignUpPage />);
          const emailInput = screen.getByLabelText(/email/i);
          expect(emailInput).toBeInTheDocument();
+
+         const usernameInput = screen.getByLabelText(/username/i);
+         expect(usernameInput).toBeInTheDocument();
 
          const passwordInput = screen.getByLabelText(/password/i);
          expect(passwordInput).toBeInTheDocument();
 
-         const loginButton = screen.getByRole('button', { name: /login/i });
-         expect(loginButton).toBeInTheDocument();
+         const signupButton = screen.getByRole('button', { name: /sign up/i });
+         expect(signupButton).toBeInTheDocument();
 
          await user.type(emailInput, 'test@gmail.com');
+         await user.type(usernameInput, 'test1234');
          await user.type(passwordInput, 'Test12345');
 
-         await user.click(loginButton);
+         await user.click(signupButton);
 
-         expect(window.location.pathname).toBe('/');
+         await waitFor(() => {
+            expect(screen.getByText(/sign up success/i)).toBeInTheDocument();
+         });
       });
    });
    describe('with invalid email', () => {
       it('should show invalid email if email is not valid', async () => {
          const user = userEvent.setup();
-         render(<LoginPage />);
+         render(<SignUpPage />);
          const emailInput = screen.getByLabelText(/email/i);
          await user.type(emailInput, 'test.com');
 
@@ -41,7 +48,7 @@ describe('Login Test', () => {
    describe('with invalid password', () => {
       it('should render password is to short validation error', async () => {
          const user = userEvent.setup();
-         render(<LoginPage />);
+         render(<SignUpPage />);
 
          const passwordInput = screen.getByLabelText(/password/i);
          const emailInput = screen.getByLabelText(/email/i);
@@ -56,7 +63,7 @@ describe('Login Test', () => {
       });
       it('should render password do not match criteria', async () => {
          const user = userEvent.setup();
-         render(<LoginPage />);
+         render(<SignUpPage />);
 
          const passwordInput = screen.getByLabelText(/password/i);
          const emailInput = screen.getByLabelText(/email/i);
