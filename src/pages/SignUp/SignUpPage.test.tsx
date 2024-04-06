@@ -1,6 +1,5 @@
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '../../test/test-utils';
-import LoginPage from '../Login/LoginPage';
 import SignUpPage from './SignUpPage';
 
 describe('Sign Up Test', () => {
@@ -82,19 +81,21 @@ describe('Sign Up Test', () => {
       it('should return error message', async () => {
          const user = userEvent.setup();
 
-         render(<LoginPage />);
+         render(<SignUpPage />);
 
          const emailInput = screen.getByLabelText(/email/i);
+         const usernameInput = screen.getByLabelText(/username/i);
          const passwordInput = screen.getByLabelText(/password/i);
-         const loginButton = screen.getByRole('button', { name: /login/i });
+         const signUpButton = screen.getByRole('button', { name: /sign up/i });
 
          await user.type(emailInput, 'test2@gmail.com');
+         await user.type(usernameInput, 'test1234');
          await user.type(passwordInput, 'Test12345');
 
-         await user.click(loginButton);
+         await user.click(signUpButton);
 
          expect(
-            await screen.findByText(/invalid credentials/i),
+            await screen.findByText(/user already exist/i),
          ).toBeInTheDocument();
       });
    });
