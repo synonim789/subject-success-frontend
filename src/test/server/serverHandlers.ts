@@ -15,6 +15,11 @@ type ForgotPasswordBody = {
    email: string;
 };
 
+type ResetPasswordBody = {
+   password: string;
+   confirmPassword: string;
+};
+
 export const handlers = [
    http.post<
       PathParams,
@@ -63,5 +68,20 @@ export const handlers = [
          { message: 'forgot password success' },
          { status: 200 },
       );
+   }),
+   http.put<
+      PathParams,
+      ResetPasswordBody,
+      { message: string },
+      'http://localhost:3000/user/reset-password'
+   >('http://localhost:3000/user/reset-password', async ({ request }) => {
+      const { password } = await request.json();
+      if (password === 'Test!1234') {
+         return HttpResponse.json(
+            { message: 'cannot reset password' },
+            { status: 401 },
+         );
+      }
+      return HttpResponse.json({ message: 'reset success' }, { status: 200 });
    }),
 ];
