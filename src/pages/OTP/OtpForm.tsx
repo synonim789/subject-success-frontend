@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { setOtp as setOtpDispatch } from '../../app/slices/userSlice';
 import SubmitButton from '../../components/SubmitButton';
 
-let currentOTPIndex: number = 0;
 
 const OtpForm = () => {
    const [otp, setOtp] = useState<string[]>(new Array(4).fill(''));
    const [activeOtpIndex, setActiveOtpIndex] = useState<number>(0);
+   const [currentOTPIndex, setCurrentOTPIndex] = useState<number>(0);
    const inputRef = useRef<HTMLInputElement>(null);
    const [errMsg, setErrMsg] = useState('');
    const dispatch = useDispatch();
@@ -33,7 +33,7 @@ const OtpForm = () => {
       { key }: React.KeyboardEvent<HTMLInputElement>,
       index: number,
    ) => {
-      currentOTPIndex = index;
+      setCurrentOTPIndex(index);
       if (key === 'Backspace') {
          setActiveOtpIndex(currentOTPIndex - 1);
       }
