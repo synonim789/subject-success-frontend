@@ -3,21 +3,33 @@ import { ReactElement, ReactNode } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import store from '../app/store';
+import { AppStore, RootState, setupStore } from '../app/store';
 
-const AllProdivers = ({ children }: { children: ReactNode }) => (
-   <>
-      <Toaster />
-      <Provider store={store}>
-         <BrowserRouter>{children}</BrowserRouter>
-      </Provider>
-   </>
-);
+interface ExtenderRenderOptions extends Omit<RenderOptions, 'queries'> {
+   preloadedState?: Partial<RootState>;
+   store?: AppStore;
+}
 
 const customRender = (
    ui: ReactElement,
-   options?: Omit<RenderOptions, 'wrapper'>,
-) => render(ui, { wrapper: AllProdivers, ...options });
+   {
+      preloadedState = {},
+      store = setupStore(preloadedState),
+      ...renderOptions
+   }: ExtenderRenderOptions = {},
+) => {
+   const Wrapper = ({ children }: { children: ReactNode }) => {
+      return (
+         <>
+            <Toaster />
+            <Provider store={store}>
+               <BrowserRouter>{children}</BrowserRouter>
+            </Provider>
+         </>
+      );
+   };
+   return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) };
+};
 
 export * from '@testing-library/react';
 export { customRender as render };

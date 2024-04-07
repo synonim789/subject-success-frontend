@@ -1,5 +1,4 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import { setupListeners } from '@reduxjs/toolkit/query/react';
 import { api } from './api/apiSlice';
 import authSlice from './slices/authSlice';
 import userSlice from './slices/userSlice';
@@ -19,10 +18,4 @@ export const setupStore = (preloadedState?: Partial<RootState>) =>
       preloadedState,
    });
 
-const store = setupStore();
-
 export type AppStore = ReturnType<typeof setupStore>;
-
-setupListeners(store.dispatch);
-
-export default store;
