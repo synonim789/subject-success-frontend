@@ -1,14 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
-import AnonymousRoute from './helpers/AnonymousRoute';
-import ProtectedRoute from './helpers/ProtectedRoute';
-import Dash from './pages/Dash/Dash';
-import ForgotPasswordPage from './pages/ForgotPassword/ForgotPasswordPage';
-import LoginPage from './pages/Login/LoginPage';
-import NotFound from './pages/NotFound/NotFound';
-import OtpPage from './pages/OTP/OtpPage';
-import ResetPasswordPage from './pages/ResetPassword/ResetPasswordPage';
-import ResetPasswordSuccessPage from './pages/ResetPasswordSuccess/ResetPasswordSuccessPage';
-import SignUpPage from './pages/SignUp/SignUpPage';
+import Dash from '../pages/Dash/Dash';
+import ForgotPasswordPage from '../pages/ForgotPassword/ForgotPasswordPage';
+import LoginPage from '../pages/Login/LoginPage';
+import NotFound from '../pages/NotFound/NotFound';
+import OtpPage from '../pages/OTP/OtpPage';
+import ResetPasswordPage from '../pages/ResetPassword/ResetPasswordPage';
+import ResetPasswordSuccessPage from '../pages/ResetPasswordSuccess/ResetPasswordSuccessPage';
+import SignUpPage from '../pages/SignUp/SignUpPage';
+import AnonymousRoute from './AnonymousRoute';
+import ProtectedRoute from './ProtectedRoute';
 
 export const router = createBrowserRouter([
    {
