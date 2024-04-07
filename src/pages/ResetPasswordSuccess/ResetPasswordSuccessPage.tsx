@@ -25,6 +25,7 @@ const ResetPasswordSuccessPage = () => {
             <Link
                to="/login"
                className="w-full rounded bg-green-house-500 py-2 uppercase text-white transition-all duration-300 hover:bg-green-house-600"
+               role="button"
             >
                Continue
             </Link>
