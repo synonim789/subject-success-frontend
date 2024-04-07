@@ -51,8 +51,10 @@ const Input = ({
                name={name}
                id={id}
                className={`${
-                  error ? 'border-2 border-red-500' : 'border-[#CDD6E1] '
-               }  rounded-md border py-3 pl-5 pr-3 outline-none`}
+                  error
+                     ? 'border-2 border-red-500'
+                     : 'border-[#CDD6E1] dark:border-slate-600'
+               }  rounded-md border bg-transparent py-3 pl-5 pr-3 outline-none dark:text-white`}
                {...register}
             />
             {isPassword && (

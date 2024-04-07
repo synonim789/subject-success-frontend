@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { setOtp as setOtpDispatch } from '../../app/slices/userSlice';
 import SubmitButton from '../../components/SubmitButton';
 
-
 const OtpForm = () => {
    const [otp, setOtp] = useState<string[]>(new Array(4).fill(''));
    const [activeOtpIndex, setActiveOtpIndex] = useState<number>(0);
@@ -62,7 +61,7 @@ const OtpForm = () => {
                   <input
                      ref={index === activeOtpIndex ? inputRef : null}
                      type="number"
-                     className="size-12 rounded  border-2 border-gray-400 text-center outline-none focus:border-gray-700"
+                     className="size-12 rounded  border-2 border-gray-400 text-center font-bold outline-none focus:border-gray-700 dark:border-slate-600 dark:bg-transparent dark:text-white/60"
                      onChange={handleOnChange}
                      key={index}
                      value={otp[index]}

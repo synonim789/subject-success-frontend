@@ -76,7 +76,7 @@ const LoginForm = () => {
             <div className="mb-2 w-full text-right">
                <Link
                   to="/forgot-password"
-                  className="text-right text-sm text-gray-400 underline transition hover:text-green-600"
+                  className="text-right text-sm text-gray-400 underline transition hover:text-green-600 dark:text-white/40"
                >
                   Forgot Password?
                </Link>
