@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import StayLoggedIn from '../helpers/StayLoggedIn';
 import Dash from '../pages/Dash/Dash';
 import ForgotPasswordPage from '../pages/ForgotPassword/ForgotPasswordPage';
 import LoginPage from '../pages/Login/LoginPage';
@@ -19,7 +20,6 @@ export const router = createBrowserRouter([
             children: [
                {
                   path: '/login',
-
                   element: <LoginPage />,
                },
                {
@@ -44,14 +44,19 @@ export const router = createBrowserRouter([
                },
             ],
          },
-      ],
-   },
-   {
-      element: <ProtectedRoute />,
-      children: [
          {
-            path: '/',
-            element: <Dash />,
+            element: <StayLoggedIn />,
+            children: [
+               {
+                  element: <ProtectedRoute />,
+                  children: [
+                     {
+                        path: '/',
+                        element: <Dash />,
+                     },
+                  ],
+               },
+            ],
          },
       ],
    },

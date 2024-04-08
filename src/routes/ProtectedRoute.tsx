@@ -5,10 +5,6 @@ import { RootState } from '../app/store';
 const ProtectedRoute = () => {
    const token = useSelector((state: RootState) => state.auth.token);
 
-   if (!token) {
-      return <Navigate to="/login" />;
-   }
-
-   return <Outlet />;
+   return token ? <Outlet /> : <Navigate to="/login" />;
 };
 export default ProtectedRoute;
