@@ -3,7 +3,7 @@ import notFoundImage from '/bro.svg';
 
 const NotFound = () => {
    return (
-      <section className="h-full">
+      <section className="h-screen">
          <div className="flex h-full flex-col items-center justify-center  gap-10 px-5 font-bold">
             <img
                src={notFoundImage}
