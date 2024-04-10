@@ -1,13 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
 import StayLoggedIn from '../helpers/StayLoggedIn';
-import Dash from '../pages/Dash/Dash';
+import DashLayout from '../layout/DashLayout';
 import ForgotPasswordPage from '../pages/ForgotPassword/ForgotPasswordPage';
+import HomePage from '../pages/Home/HomePage';
 import LoginPage from '../pages/Login/LoginPage';
 import NotFound from '../pages/NotFound/NotFound';
 import OtpPage from '../pages/OTP/OtpPage';
 import ResetPasswordPage from '../pages/ResetPassword/ResetPasswordPage';
 import ResetPasswordSuccessPage from '../pages/ResetPasswordSuccess/ResetPasswordSuccessPage';
 import SignUpPage from '../pages/SignUp/SignUpPage';
+import SubjectsPage from '../pages/Subjects/SubjectsPage';
+import TasksPage from '../pages/Tasks/TasksPage';
 import AnonymousRoute from './AnonymousRoute';
 import ProtectedRoute from './ProtectedRoute';
 
@@ -51,8 +54,21 @@ export const router = createBrowserRouter([
                   element: <ProtectedRoute />,
                   children: [
                      {
-                        path: '/',
-                        element: <Dash />,
+                        element: <DashLayout />,
+                        children: [
+                           {
+                              element: <HomePage />,
+                              path: '/',
+                           },
+                           {
+                              element: <SubjectsPage />,
+                              path: '/subjects',
+                           },
+                           {
+                              element: <TasksPage />,
+                              path: '/tasks',
+                           },
+                        ],
                      },
                   ],
                },

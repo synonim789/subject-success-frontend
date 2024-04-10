@@ -1,8 +1,8 @@
 import { Outlet } from 'react-router-dom';
-import DashNavbar from '../../components/DashNavbar';
-import DashSidebar from '../../components/DashSidebar';
+import DashNavbar from '../components/DashNavbar';
+import DashSidebar from '../components/DashSidebar';
 
-const Dash = () => {
+const DashLayout = () => {
    return (
       <div className="relative flex">
          <div className="fixed w-80 dark:bg-dark-800">
@@ -19,4 +19,4 @@ const Dash = () => {
       </div>
    );
 };
-export default Dash;
+export default DashLayout;
