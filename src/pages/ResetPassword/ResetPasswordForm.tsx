@@ -13,11 +13,11 @@ import {
 } from '../../types/resetPasswordSchema';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
-type ResetPasswordForm = {
+type Props = {
    otp: number;
 };
 
-const ResetPasswordForm = ({ otp }: ResetPasswordForm) => {
+const ResetPasswordForm = ({ otp }: Props) => {
    const navigate = useNavigate();
    const [resetPassword, { isLoading, error }] = useResetPasswordMutation();
 

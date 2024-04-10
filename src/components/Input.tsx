@@ -2,7 +2,7 @@ import { ReactNode, useState } from 'react';
 import { FieldError } from 'react-hook-form';
 import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
 
-type Input = {
+type Props = {
    label: string;
    placeholder: string;
    icon?: ReactNode;
@@ -25,7 +25,7 @@ const Input = ({
    isPassword,
    register,
    error,
-}: Input) => {
+}: Props) => {
    const [isPasswordVisible, setIsPassowrdVisible] = useState(false);
 
    const togglePasswordVisibilty = () => {

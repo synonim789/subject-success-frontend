@@ -6,11 +6,11 @@ import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSendLogoutMutation } from '../app/api/authApiSlice';
 import { sidebarData } from '../data/sidebarData';
 
-type DashSidebar = {
+type Props = {
    className: string;
 };
 
-const DashSidebar = ({ className }: DashSidebar) => {
+const DashSidebar = ({ className }: Props) => {
    const [sendLogout, { isSuccess }] = useSendLogoutMutation();
    const navigate = useNavigate();
 
