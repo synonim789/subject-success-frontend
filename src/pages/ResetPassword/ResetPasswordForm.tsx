@@ -82,7 +82,7 @@ const ResetPasswordForm = ({ otp }: ResetPasswordForm) => {
             isPassword={true}
          />
          {error && (
-            <p className="mt-2 text-left font-semibold text-red-500">
+            <p className="mt-2 text-left font-semibold text-red-500 dark:text-red-400">
                {'status' in error
                   ? (error as { data: { message: string } }).data.message
                   : error.message}

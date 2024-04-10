@@ -36,7 +36,7 @@ const Input = ({
       <div className="text-left">
          <label
             htmlFor={id}
-            className={`${error ? 'text-red-500' : 'text-gray-400'} font-medium`}
+            className={`${error ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
          >
             {label}
          </label>
@@ -52,7 +52,7 @@ const Input = ({
                id={id}
                className={`${
                   error
-                     ? 'border-2 border-red-500'
+                     ? 'border-2 border-red-500 dark:border-red-400'
                      : 'border-[#CDD6E1] dark:border-slate-600'
                }  rounded-md border bg-transparent py-3 pl-5 pr-3 outline-none dark:text-white`}
                {...register}
@@ -79,7 +79,7 @@ const Input = ({
          </div>
          {error?.message && (
             <div
-               className="mb-1.5 text-justify font-semibold text-red-500"
+               className="mb-1.5 text-justify font-semibold text-red-500 dark:text-red-400"
                role="alert"
             >
                {error.message}

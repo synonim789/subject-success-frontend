@@ -71,7 +71,7 @@ const OtpForm = () => {
             })}
          </div>
          {errMsg && (
-            <p className="mb-1 text-left font-semibold text-red-500">
+            <p className="mb-1 text-left font-semibold text-red-500 dark:text-red-400">
                {errMsg}
             </p>
          )}
