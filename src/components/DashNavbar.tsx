@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BiCalendar } from 'react-icons/bi';
-import { MdKeyboardArrowDown } from 'react-icons/md';
 import { formatDate } from '../utils/formatDate';
+import NavbarDropdown from './NavbarDropdown';
 
 type Props = {
    className: string;
@@ -27,7 +27,9 @@ const DashNavbar = ({
             >
                <AiOutlineMenu />
             </button>
-            <p className="transition hover:text-green-400">Hello, Oskar 👋</p>
+            <p className="hidden transition hover:text-green-400 md:block">
+               Hello, Oskar 👋
+            </p>
          </div>
          <div className="flex items-center gap-5">
             <p className="group hidden items-center gap-2 text-lg md:flex">
@@ -36,14 +38,7 @@ const DashNavbar = ({
                   {currentDate}
                </span>
             </p>
-            <button
-               className="flex items-center justify-center gap-2"
-               type="button"
-            >
-               <div className="size-6 rounded-full bg-white" />
-               <p className="text-lg">Oskar</p>
-               <MdKeyboardArrowDown className=" text-gray-400" />
-            </button>
+            <NavbarDropdown />
          </div>
       </nav>
    );

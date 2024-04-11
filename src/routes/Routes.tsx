@@ -6,6 +6,7 @@ import HomePage from '../pages/Home/HomePage';
 import LoginPage from '../pages/Login/LoginPage';
 import NotFound from '../pages/NotFound/NotFound';
 import OtpPage from '../pages/OTP/OtpPage';
+import ProfilePage from '../pages/Profile/ProfilePage';
 import ResetPasswordPage from '../pages/ResetPassword/ResetPasswordPage';
 import ResetPasswordSuccessPage from '../pages/ResetPasswordSuccess/ResetPasswordSuccessPage';
 import SignUpPage from '../pages/SignUp/SignUpPage';
@@ -67,6 +68,10 @@ export const router = createBrowserRouter([
                            {
                               element: <TasksPage />,
                               path: '/tasks',
+                           },
+                           {
+                              element: <ProfilePage />,
+                              path: '/profile',
                            },
                         ],
                      },
