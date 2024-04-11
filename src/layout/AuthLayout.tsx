@@ -19,9 +19,7 @@ const AuthLayout = ({ children }: AuthLayout) => {
                <>
                   <div className="my-4 flex w-full items-center px-16">
                      <div className="flex-1 border-t-2 border-gray-300 dark:border-slate-600" />
-                     <span className="bg-white px-3 text-gray-500 dark:bg-transparent">
-                        or
-                     </span>
+                     <span className="px-3 text-gray-500">or</span>
                      <div className="flex-1 border-t-2 border-gray-300 dark:border-slate-600" />
                   </div>
                   <div className="flex w-full flex-col gap-5 px-5 md:flex-row md:items-center md:justify-center">
