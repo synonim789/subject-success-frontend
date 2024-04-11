@@ -3,7 +3,7 @@ import { router } from './routes/Routes';
 
 const App = () => {
    return (
-      <main className="dark:bg-[#121212]">
+      <main className="bg-[#F4F3F2] dark:bg-[#121212]">
          <RouterProvider router={router} />
       </main>
    );
