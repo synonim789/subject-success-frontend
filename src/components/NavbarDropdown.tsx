@@ -1,14 +1,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { CiLogout } from 'react-icons/ci';
+import { LuMoon, LuSun } from 'react-icons/lu';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSendLogoutMutation } from '../app/api/authApiSlice';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 const NavbarDropdown = () => {
    const [showDropdown, setShowDropdown] = useState(false);
    const [sendLogout, { isSuccess }] = useSendLogoutMutation();
    const dropdownMenu = useRef<HTMLDivElement>(null);
    const navigate = useNavigate();
+   const [isDarkMode, setIsDarkMode] = useDarkMode();
 
    const handleLogout = () => {
       sendLogout();
@@ -45,7 +48,7 @@ const NavbarDropdown = () => {
          </button>
          {showDropdown && (
             <div
-               className="absolute right-0 z-10 mt-2 w-full  divide-y divide-gray-100 rounded-md bg-white shadow-lg  dark:bg-dark-500"
+               className="mt-2divide-y absolute right-0 z-10 w-52  divide-gray-100 rounded-md bg-white shadow-lg  dark:bg-dark-500"
                ref={dropdownMenu}
             >
                <div className="py-2">
@@ -56,6 +59,30 @@ const NavbarDropdown = () => {
                   >
                      Profile
                   </Link>
+                  <div className="flex items-center gap-2 px-4 py-2 transition hover:bg-gray-100 dark:hover:bg-dark-200">
+                     <label
+                        htmlFor="check"
+                        className="relative block h-8 w-16 cursor-pointer rounded-full bg-gray-100 dark:bg-dark-900"
+                     >
+                        <input
+                           type="checkbox"
+                           className="peer sr-only"
+                           name="check"
+                           id="check"
+                           checked={isDarkMode}
+                           onChange={(e) => setIsDarkMode(e.target.checked)}
+                        />
+                        <span className="absolute left-1 top-1 flex items-center justify-center rounded-full bg-black  transition-all duration-500 peer-checked:left-9 peer-checked:bg-[#F4F3F2]">
+                           {isDarkMode ? (
+                              <LuMoon className="p-1 text-dark-900" />
+                           ) : (
+                              <LuSun className="p-1 text-white" />
+                           )}
+                        </span>
+                     </label>
+                     <p className="text-base">Dark mode</p>
+                  </div>
+
                   <button
                      className="flex w-full items-center gap-2 px-4 py-2 text-left text-base text-red-400 transition-none hover:bg-gray-100 dark:hover:bg-dark-200"
                      type="button"
@@ -64,7 +91,6 @@ const NavbarDropdown = () => {
                      <CiLogout />
                      <span>Logout</span>
                   </button>
-                  <div>Test</div>
                </div>
             </div>
          )}
