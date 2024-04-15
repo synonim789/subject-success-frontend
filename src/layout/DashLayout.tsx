@@ -17,7 +17,7 @@ const DashLayout = () => {
             className={`fixed z-[1000] bg-white dark:bg-dark-800`}
          >
             <DashSidebar
-               className="relative  h-screen overflow-auto pb-10 pl-3 shadow-2xl md:overflow-hidden md:hover:overflow-auto"
+               className="relative h-screen overflow-auto pb-10 pl-3 shadow-2xl md:overflow-hidden md:hover:overflow-auto"
                sidebarVisible={sidebarVisible}
                setSidebarVisible={setSidebarVisible}
             />
@@ -31,9 +31,9 @@ const DashLayout = () => {
                   sidebarVisible={sidebarVisible}
                   setSidebarVisible={setSidebarVisible}
                />
-               <div className="p-10">
+               <section className="p-10">
                   <Outlet />
-               </div>
+               </section>
             </div>
          </div>
       </div>
