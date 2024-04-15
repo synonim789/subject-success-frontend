@@ -1,3 +1,4 @@
+import { User } from '../../types/UserModel';
 import { api } from './apiSlice';
 
 const userApiSlice = api.injectEndpoints({
@@ -29,6 +30,9 @@ const userApiSlice = api.injectEndpoints({
             body: { password, confirmPassword, otp },
          }),
       }),
+      getUser: build.query<User, void>({
+         query: () => '/user/user',
+      }),
    }),
 });
 
@@ -36,4 +40,5 @@ export const {
    useSignUpMutation,
    useForgotPasswordMutation,
    useResetPasswordMutation,
+   useGetUserQuery,
 } = userApiSlice;
