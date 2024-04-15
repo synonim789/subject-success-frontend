@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BiCalendar } from 'react-icons/bi';
+import { useGetUserQuery } from '../app/api/userApiSlice';
 import { formatDate } from '../utils/formatDate';
 import NavbarDropdown from './NavbarDropdown';
 
@@ -17,6 +18,16 @@ const DashNavbar = ({
 }: Props) => {
    const currentDate = formatDate(new Date());
 
+   const { data, isLoading, isError } = useGetUserQuery();
+
+   if (isLoading) {
+      return <p>Loading...</p>;
+   }
+
+   if (isError) {
+      return <p>error</p>;
+   }
+
    return (
       <nav className={`${className} text-2xl`}>
          <div className="flex items-center gap-2 ">
@@ -28,7 +39,7 @@ const DashNavbar = ({
                <AiOutlineMenu />
             </button>
             <p className="hidden transition hover:text-green-400 md:block">
-               Hello, Oskar 👋
+               Hello, {data?.username} 👋
             </p>
          </div>
          <div className="flex items-center gap-5">

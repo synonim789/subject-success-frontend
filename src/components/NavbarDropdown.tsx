@@ -5,6 +5,7 @@ import { LuMoon, LuSun } from 'react-icons/lu';
 import { MdKeyboardArrowDown } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSendLogoutMutation } from '../app/api/authApiSlice';
+import { useGetUserQuery } from '../app/api/userApiSlice';
 import { useDarkMode } from '../hooks/useDarkMode';
 import ProfileImagePlaceholder from '/profile-placeholder.jpg';
 
@@ -14,10 +15,7 @@ const NavbarDropdown = () => {
    const dropdownMenu = useRef<HTMLDivElement>(null);
    const navigate = useNavigate();
    const [isDarkMode, setIsDarkMode] = useDarkMode();
-
-   const handleLogout = () => {
-      sendLogout();
-   };
+   const { data, isLoading, isError } = useGetUserQuery();
 
    useEffect(() => {
       if (isSuccess) {
@@ -37,6 +35,18 @@ const NavbarDropdown = () => {
       return () => document.removeEventListener('mousedown', handler);
    });
 
+   if (isLoading) {
+      return <p>Loading...</p>;
+   }
+
+   if (isError) {
+      return <p>error</p>;
+   }
+
+   const handleLogout = () => {
+      sendLogout();
+   };
+
    return (
       <div className="relative" ref={dropdownMenu}>
          <button
@@ -44,11 +54,23 @@ const NavbarDropdown = () => {
             type="button"
             onClick={() => setShowDropdown(!showDropdown)}
          >
-            <img
-               src={ProfileImagePlaceholder}
-               className="size-6 rounded-full bg-white transition"
-            />
-            <p className="text-lg transition group-hover:text-white">Oskar</p>
+            {data?.picture ? (
+               <img
+                  src={data.picture}
+                  alt="piture"
+                  className=" size-6 rounded-full"
+                  referrerPolicy="no-referrer"
+               />
+            ) : (
+               <img
+                  src={ProfileImagePlaceholder}
+                  className="size-6 rounded-full  transition"
+               />
+            )}
+
+            <p className="text-lg transition group-hover:text-white">
+               {data?.username}
+            </p>
             <MdKeyboardArrowDown className=" text-gray-400 transition group-hover:text-white" />
          </button>
          <AnimatePresence>
