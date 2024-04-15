@@ -1,4 +1,10 @@
+import Header from '../../components/Header';
+
 const SubjectsPage = () => {
-   return <div>SubjectsPage</div>;
+   return (
+      <section>
+         <Header text="subjects" />
+      </section>
+   );
 };
 export default SubjectsPage;
