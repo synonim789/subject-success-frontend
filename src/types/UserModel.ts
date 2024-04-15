@@ -4,5 +4,6 @@ export type User = {
    email: string;
    createdAt: string;
    updatedAt: string;
+   picture?: string;
    __v: number;
 };
