@@ -6,6 +6,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSendLogoutMutation } from '../app/api/authApiSlice';
 import { useDarkMode } from '../hooks/useDarkMode';
+import ProfileImagePlaceholder from '/profile-placeholder.jpg';
 
 const NavbarDropdown = () => {
    const [showDropdown, setShowDropdown] = useState(false);
@@ -43,7 +44,10 @@ const NavbarDropdown = () => {
             type="button"
             onClick={() => setShowDropdown(!showDropdown)}
          >
-            <div className="size-6 rounded-full bg-white transition" />
+            <img
+               src={ProfileImagePlaceholder}
+               className="size-6 rounded-full bg-white transition"
+            />
             <p className="text-lg transition group-hover:text-white">Oskar</p>
             <MdKeyboardArrowDown className=" text-gray-400 transition group-hover:text-white" />
          </button>
@@ -87,7 +91,7 @@ const NavbarDropdown = () => {
                      </div>
 
                      <button
-                        className="flex w-full items-center gap-2 px-4 py-2 text-left text-base text-red-400 transition-none hover:bg-gray-100 dark:hover:bg-dark-200"
+                        className="flex w-full items-center gap-2 px-4 py-2 text-left text-base font-bold text-red-400 transition-none hover:bg-gray-100 dark:hover:bg-dark-200"
                         type="button"
                         onClick={handleLogout}
                      >
