@@ -31,7 +31,7 @@ const DashLayout = () => {
                   sidebarVisible={sidebarVisible}
                   setSidebarVisible={setSidebarVisible}
                />
-               <div>
+               <div className="p-10">
                   <Outlet />
                </div>
             </div>
