@@ -3,10 +3,8 @@ import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { MdAlternateEmail } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../app/api/authApiSlice';
-import { setUser } from '../../app/slices/authSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { LoginFields, loginSchema } from '../../types/loginSchema';
@@ -14,7 +12,6 @@ import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const LoginForm = () => {
    const navigate = useNavigate();
-   const dispatch = useDispatch();
    const [login, { isLoading, error }] = useLoginMutation();
    const {
       register,
@@ -28,11 +25,10 @@ const LoginForm = () => {
 
    const submitHandler: SubmitHandler<LoginFields> = async (data) => {
       try {
-         const accessToken = await login({
+         await login({
             email: data.email,
             password: data.password,
          }).unwrap();
-         dispatch(setUser({ accessToken: accessToken }));
          navigate('/');
          reset();
       } catch (err) {
