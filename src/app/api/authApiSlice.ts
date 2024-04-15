@@ -1,16 +1,19 @@
-import { logout, setUser } from '../slices/authSlice';
+import { logout, setIsAuthenticated } from '../slices/authSlice';
 import { api } from './apiSlice';
 
 const authApiSlice = api.injectEndpoints({
    endpoints: (build) => ({
-      login: build.mutation<string, { email: string; password: string }>({
+      login: build.mutation<
+         { isAuthenticated: boolean },
+         { email: string; password: string }
+      >({
          query: ({ email, password }) => ({
             url: '/auth/login',
             method: 'POST',
             body: { email, password },
          }),
       }),
-      refresh: build.mutation<string, void>({
+      refresh: build.mutation<{ isAuthenticated: boolean }, void>({
          query: () => ({
             url: '/auth/refresh',
             method: 'GET',
@@ -18,7 +21,7 @@ const authApiSlice = api.injectEndpoints({
          async onQueryStarted(_args, { dispatch, queryFulfilled }) {
             try {
                const { data } = await queryFulfilled;
-               dispatch(setUser({ accessToken: data }));
+               dispatch(setIsAuthenticated(data.isAuthenticated));
             } catch (error) {
                console.log(error);
             }

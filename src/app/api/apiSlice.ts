@@ -6,7 +6,7 @@ import {
    fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 import env from '../../utils/cleanEnv';
-import { logout, setUser } from '../slices/authSlice';
+import { logout, setIsAuthenticated } from '../slices/authSlice';
 
 const baseQuery = fetchBaseQuery({
    baseUrl: new URL(env.VITE_SERVER_ENDPOINT).href,
@@ -25,8 +25,8 @@ const baseQueryWithReauth: BaseQueryFn<
          api,
          extraOptions,
       );
-      if (refreshResult.data && typeof refreshResult.data === 'string') {
-         api.dispatch(setUser({ accessToken: refreshResult.data }));
+      if (refreshResult.data) {
+         api.dispatch(setIsAuthenticated(refreshResult.data.isAuthenticated));
          result = await baseQuery(args, api, extraOptions);
       } else {
          api.dispatch(logout());
