@@ -34,6 +34,16 @@ const userApiSlice = api.injectEndpoints({
          query: () => '/user/user',
          providesTags: ['User'],
       }),
+      setNewPassword: build.mutation<
+         { message: string },
+         { password: string; confirmPassword: string }
+      >({
+         query: ({ password, confirmPassword }) => ({
+            url: '/user/set-new-password',
+            method: 'PUT',
+            body: { password, confirmPassword },
+         }),
+      }),
    }),
 });
 
@@ -42,4 +52,5 @@ export const {
    useForgotPasswordMutation,
    useResetPasswordMutation,
    useGetUserQuery,
+   useSetNewPasswordMutation,
 } = userApiSlice;
