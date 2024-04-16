@@ -55,8 +55,8 @@ const ProfileInput = ({
                className={`${
                   error
                      ? ' border-red-500 dark:border-red-400'
-                     : 'border-[#CDD6E1] dark:border-slate-600'
-               }  r transition-alls  border-b-2 bg-transparent py-3 pl-5 pr-3 outline-none duration-500 placeholder:font-bold placeholder:text-gray-600 focus:border-green-house-500 dark:text-white`}
+                     : 'border-[#CDD6E1] focus:border-green-house-500 dark:border-slate-600 '
+               }  r transition-alls  border-b-2 bg-transparent py-3 pl-5 pr-3 outline-none duration-500 placeholder:font-bold placeholder:text-gray-600 dark:text-white`}
                {...register}
                disabled={disabled}
             />
