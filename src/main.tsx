@@ -9,7 +9,7 @@ const store = setupStore();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
    <>
-      <Toaster position="top-center" reverseOrder={true} />
+      <Toaster position="bottom-right" reverseOrder={true} />
       <Provider store={store}>
          <App />
       </Provider>
