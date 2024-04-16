@@ -44,6 +44,16 @@ const userApiSlice = api.injectEndpoints({
             body: { password, confirmPassword },
          }),
       }),
+      updateUsername: build.mutation<{ message: string }, { username: string }>(
+         {
+            query: ({ username }) => ({
+               url: '/user/update-username',
+               method: 'PUT',
+               body: { username },
+            }),
+            invalidatesTags: ['User'],
+         },
+      ),
    }),
 });
 
@@ -53,4 +63,5 @@ export const {
    useResetPasswordMutation,
    useGetUserQuery,
    useSetNewPasswordMutation,
+   useUpdateUsernameMutation,
 } = userApiSlice;
