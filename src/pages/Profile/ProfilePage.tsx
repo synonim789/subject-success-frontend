@@ -19,7 +19,7 @@ const ProfilePage = () => {
    return (
       <section>
          <Header text="profile" />
-         <section className="mb-5  flex w-full items-center gap-10  rounded-xl bg-white px-5 py-8 drop-shadow-xl dark:bg-dark-700">
+         <section className="mb-5  flex w-full flex-col items-center gap-10 rounded-xl  bg-white px-5 py-8 drop-shadow-xl sm:flex-row dark:bg-dark-700">
             <div className="relative w-fit">
                {data?.picture ? (
                   <img
@@ -43,7 +43,7 @@ const ProfilePage = () => {
                   <CiEdit size={25} />
                </button>
             </div>
-            <div>
+            <div className="text-center sm:text-left">
                <p className="text-xl dark:text-white/85">{data?.username}</p>
                <p className="text-lg dark:text-white/55">{data?.email}</p>
             </div>
