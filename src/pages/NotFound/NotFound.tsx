@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import notFoundImage from '/bro.svg';
+import notFoundImage from '/not-found.svg';
 
 const NotFound = () => {
    return (
