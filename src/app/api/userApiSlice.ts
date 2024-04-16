@@ -32,6 +32,7 @@ const userApiSlice = api.injectEndpoints({
       }),
       getUser: build.query<User, void>({
          query: () => '/user/user',
+         providesTags: ['User'],
       }),
    }),
 });

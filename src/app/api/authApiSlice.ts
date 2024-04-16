@@ -26,6 +26,7 @@ const authApiSlice = api.injectEndpoints({
                console.log(error);
             }
          },
+         invalidatesTags: ['User'],
       }),
       sendLogout: build.mutation<{ message: string }, void>({
          query: () => ({
