@@ -54,6 +54,14 @@ const userApiSlice = api.injectEndpoints({
             invalidatesTags: ['User'],
          },
       ),
+      updateProfilePicture: build.mutation<{ message: string }, FormData>({
+         query: (body) => ({
+            url: '/user/update-profile-image',
+            method: 'PUT',
+            body: body,
+         }),
+         invalidatesTags: ['User'],
+      }),
    }),
 });
 
@@ -64,4 +72,5 @@ export const {
    useGetUserQuery,
    useSetNewPasswordMutation,
    useUpdateUsernameMutation,
+   useUpdateProfilePictureMutation,
 } = userApiSlice;
