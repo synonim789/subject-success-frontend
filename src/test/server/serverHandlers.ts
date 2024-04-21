@@ -1,4 +1,5 @@
 import { HttpResponse, PathParams, http } from 'msw';
+import { User } from '../../types/UserModel';
 
 type LoginRequestBody = {
    email: string;
@@ -20,9 +21,13 @@ type ResetPasswordBody = {
    confirmPassword: string;
 };
 
-type setNewPasswordBody = {
+type SetNewPasswordBody = {
    password: string;
    confirmPassword: string;
+};
+
+type UpdateUsernameBody = {
+   username: string;
 };
 
 export const handlers = [
@@ -91,7 +96,7 @@ export const handlers = [
    }),
    http.put<
       PathParams,
-      setNewPasswordBody,
+      SetNewPasswordBody,
       { message: string },
       'http://localhost:3000/user/set-new-password'
    >('http://localhost:3000/user/set-new-password', async ({ request }) => {
@@ -103,5 +108,36 @@ export const handlers = [
          );
       }
       return HttpResponse.json({ message: 'reset success' }, { status: 200 });
+   }),
+   http.get<PathParams, null, User, 'http://localhost:3000/user/user'>(
+      'http://localhost:3000/user/user',
+      async () => {
+         return HttpResponse.json({
+            __v: 0,
+            _id: 'firgr',
+            createdAt: 'yesterday',
+            email: 'test@test.com',
+            updatedAt: 'today',
+            picture: 'picture placeholder',
+            username: 'test!1234',
+         });
+      },
+   ),
+
+   http.put<
+      PathParams,
+      UpdateUsernameBody,
+      { message: string },
+      'http://localhost:3000/user/update-username'
+   >('http://localhost:3000/user/update-username', async ({ request }) => {
+      const { username } = await request.json();
+      if (username === 'test!12345') {
+         return HttpResponse.json(
+            { message: 'cannot update username' },
+            { status: 401 },
+         );
+      }
+
+      return HttpResponse.json({ message: 'update success' }, { status: 200 });
    }),
 ];
