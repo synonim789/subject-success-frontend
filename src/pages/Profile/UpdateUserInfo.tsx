@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import {
@@ -14,7 +15,7 @@ import {
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const UpdateUserInfo = () => {
-   const { data } = useGetUserQuery();
+   const { data, isLoading, isFetching, isSuccess } = useGetUserQuery();
    const [updateUsername, { error }] = useUpdateUsernameMutation();
 
    const {
@@ -45,6 +46,17 @@ const UpdateUserInfo = () => {
          }
       }
    };
+
+   useEffect(() => {
+      if (isSuccess) {
+         reset({ email: data.email });
+      }
+   }, [isSuccess, reset]);
+
+   if (isLoading || isFetching) {
+      return <p>Loading...</p>;
+   }
+
    return (
       <form
          className="flex w-full flex-col gap-10 rounded-xl  bg-white/80 p-8 drop-shadow-xl dark:bg-dark-600"
