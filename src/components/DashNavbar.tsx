@@ -18,15 +18,7 @@ const DashNavbar = ({
 }: Props) => {
    const currentDate = formatDate(new Date());
 
-   const { data, isLoading, isError } = useGetUserQuery();
-
-   if (isLoading) {
-      return <p>Loading...</p>;
-   }
-
-   if (isError) {
-      return <p>error</p>;
-   }
+   const { data } = useGetUserQuery();
 
    return (
       <nav className={`${className} text-2xl`}>
