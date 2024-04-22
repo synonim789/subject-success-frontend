@@ -31,7 +31,7 @@ const ProfilePage = () => {
                   {data?.picture ? (
                      <img
                         src={data.picture}
-                        alt="piture"
+                        alt="picture"
                         className="relative size-28 rounded-full"
                         referrerPolicy="no-referrer"
                      />
@@ -47,6 +47,7 @@ const ProfilePage = () => {
                      className="absolute bottom-0 right-0 flex size-12 cursor-pointer items-center justify-center rounded-full bg-green-house-500 p-1 transition duration-300 hover:scale-110 hover:bg-green-house-600 hover:text-white"
                      type="button"
                      onClick={showModal}
+                     aria-label="Edit Image"
                   >
                      <CiEdit size={25} />
                   </button>
