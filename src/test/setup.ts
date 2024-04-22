@@ -15,10 +15,6 @@ Object.defineProperty(window, 'matchMedia', {
    }),
 });
 
-if (typeof window.URL.createObjectURL === 'undefined') {
-   window.URL.createObjectURL = vi.fn(() => 'url');
-}
-
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 
 afterAll(() => server.close());
