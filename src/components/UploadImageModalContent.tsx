@@ -22,15 +22,19 @@ const UploadImageModalContent = () => {
    const onFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length > 0) {
          const file = e.target.files[0];
-         setPhoto({ url: URL.createObjectURL(file), file: file });
-         setOpenCrop(true);
+         const reader = new FileReader();
+         reader.onload = (event) => {
+            const url = event.target?.result as string;
+            setPhoto({ url, file });
+            setOpenCrop(true);
+         };
+         reader.readAsDataURL(file);
       }
    };
 
    const handleCropImage = async () => {
       try {
          if (photo?.url && croppedAreaPixels) {
-            console.log(croppedAreaPixels);
             const croppedImg = await getCroppedImg(
                photo.url,
                croppedAreaPixels,
@@ -57,7 +61,7 @@ const UploadImageModalContent = () => {
          {openCrop ? (
             <section className="flex h-fit w-full flex-col gap-5">
                <h2 className="my-3">Crop Image</h2>
-               <section className="relative  aspect-square w-full overflow-hidden rounded-lg">
+               <section className="relative aspect-square w-full overflow-hidden rounded-lg">
                   <Cropper
                      image={photo?.url}
                      crop={crop}
