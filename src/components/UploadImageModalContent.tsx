@@ -15,7 +15,6 @@ const UploadImageModalContent = () => {
    const [croppedAreaPixels, setCroppedAreaPixels] = useState<Area | null>(
       null,
    );
-
    const completeCrop = (_croppedArea: Area, croppedAreaPixels: Area) => {
       setCroppedAreaPixels(croppedAreaPixels);
    };
@@ -31,6 +30,7 @@ const UploadImageModalContent = () => {
    const handleCropImage = async () => {
       try {
          if (photo?.url && croppedAreaPixels) {
+            console.log(croppedAreaPixels);
             const croppedImg = await getCroppedImg(
                photo.url,
                croppedAreaPixels,
@@ -84,6 +84,7 @@ const UploadImageModalContent = () => {
                      value={zoom}
                      onChange={(e) => setZoom(parseFloat(e.target.value))}
                      className="w-full"
+                     aria-label="zoom range"
                   />
                </div>
                <button
@@ -103,6 +104,7 @@ const UploadImageModalContent = () => {
                   className="file block w-full text-slate-500 file:mr-2 file:cursor-pointer file:rounded-md file:border-none file:bg-green-house-500 file:px-5 file:py-2 file:uppercase file:text-white file:transition file:hover:bg-green-house-600"
                   accept="image/*"
                   onChange={onFileChange}
+                  aria-label="choose image file"
                />
             </label>
          )}
