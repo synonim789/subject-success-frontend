@@ -17,6 +17,7 @@ const Modal = ({ modalRef, children, close }: Props) => {
             className="absolute right-2 top-2"
             type="button"
             onClick={close}
+            aria-label="Close Modal"
          >
             <MdOutlineCancel size={30} />
          </button>
