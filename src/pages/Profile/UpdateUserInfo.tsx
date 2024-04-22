@@ -15,7 +15,7 @@ import {
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const UpdateUserInfo = () => {
-   const { data, isLoading, isFetching, isSuccess } = useGetUserQuery();
+   const { data, isSuccess } = useGetUserQuery();
    const [updateUsername, { error }] = useUpdateUsernameMutation();
 
    const {
@@ -51,11 +51,7 @@ const UpdateUserInfo = () => {
       if (isSuccess) {
          reset({ email: data.email });
       }
-   }, [isSuccess, reset]);
-
-   if (isLoading || isFetching) {
-      return <p>Loading...</p>;
-   }
+   }, [data, isSuccess, reset]);
 
    return (
       <form
