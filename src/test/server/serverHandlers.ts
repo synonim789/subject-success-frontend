@@ -140,15 +140,4 @@ export const handlers = [
 
       return HttpResponse.json({ message: 'update success' }, { status: 200 });
    }),
-   http.put(
-      'http://localhost:3000/user/update-profile-image',
-      async ({ request }) => {
-         const data = await request.formData();
-         console.log(data);
-         return HttpResponse.json(
-            { message: 'Update image success' },
-            { status: 200 },
-         );
-      },
-   ),
 ];
