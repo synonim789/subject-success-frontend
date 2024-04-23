@@ -53,6 +53,7 @@ const NavbarDropdown = () => {
             className="group flex items-center justify-center gap-2 rounded-lg p-2 hover:bg-green-600 "
             type="button"
             onClick={() => setShowDropdown(!showDropdown)}
+            aria-label="Open dropdown"
          >
             {data?.picture ? (
                <img
@@ -116,6 +117,7 @@ const NavbarDropdown = () => {
                         className="flex w-full items-center gap-2 px-4 py-2 text-left text-base font-bold text-red-400 transition-none hover:bg-gray-100 dark:hover:bg-dark-200"
                         type="button"
                         onClick={handleLogout}
+                        aria-label="Dropdown Logout"
                      >
                         <CiLogout />
                         <span>Logout</span>

@@ -140,4 +140,10 @@ export const handlers = [
 
       return HttpResponse.json({ message: 'update success' }, { status: 200 });
    }),
+   http.post('http://localhost:3000/auth/logout', async () => {
+      return HttpResponse.json(
+         { message: 'Logout successful' },
+         { status: 200 },
+      );
+   }),
 ];

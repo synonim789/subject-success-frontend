@@ -27,6 +27,7 @@ const DashNavbar = ({
                type="button"
                className="p-3 transition hover:text-green-400"
                onClick={() => setSidebarVisible(!sidebarVisible)}
+               aria-label="Toggle Sidebar"
             >
                <AiOutlineMenu />
             </button>
