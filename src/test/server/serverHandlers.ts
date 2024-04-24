@@ -109,8 +109,8 @@ export const handlers = [
       }
       return HttpResponse.json({ message: 'reset success' }, { status: 200 });
    }),
-   http.get<PathParams, null, User, 'http://localhost:3000/user/user'>(
-      'http://localhost:3000/user/user',
+   http.get<PathParams, null, User, 'http://localhost:3000/user'>(
+      'http://localhost:3000/user',
       async () => {
          return HttpResponse.json({
             __v: 0,

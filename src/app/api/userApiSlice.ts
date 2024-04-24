@@ -31,7 +31,7 @@ const userApiSlice = api.injectEndpoints({
          }),
       }),
       getUser: build.query<User, void>({
-         query: () => '/user/user',
+         query: () => '/user',
          providesTags: ['User'],
       }),
       setNewPassword: build.mutation<
