@@ -89,10 +89,10 @@ const NavbarDropdown = () => {
                      >
                         Profile
                      </Link>
-                     <div className="flex items-center gap-2 px-4 py-2 transition hover:bg-gray-100 dark:hover:bg-dark-200">
+                     <div className="group flex items-center gap-2 px-4 py-2 transition hover:bg-gray-100 dark:hover:bg-dark-200">
                         <label
                            htmlFor="check"
-                           className="relative block h-8 w-16 cursor-pointer rounded-full bg-gray-100 dark:bg-dark-900"
+                           className="relative block h-8 w-16 cursor-pointer rounded-full bg-gray-100 group-hover:bg-white dark:bg-dark-900 dark:group-hover:bg-dark-600"
                         >
                            <input
                               type="checkbox"
