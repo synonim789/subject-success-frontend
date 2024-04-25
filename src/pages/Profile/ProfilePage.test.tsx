@@ -28,7 +28,7 @@ describe('Profile Page Test', () => {
 
    it('should render placeholder image if user have no image', async () => {
       server.use(
-         http.get('http://localhost:3000/user/user', () => {
+         http.get('http://localhost:3000/user', () => {
             return HttpResponse.json({
                __v: 0,
                _id: 'firgr',
@@ -48,7 +48,7 @@ describe('Profile Page Test', () => {
 
    it('should return error if there is one', async () => {
       server.use(
-         http.get('http://localhost:3000/user/user', () => {
+         http.get('http://localhost:3000/user', () => {
             return HttpResponse.json(
                {
                   message: 'something went wrong',
