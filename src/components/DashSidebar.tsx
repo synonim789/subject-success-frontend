@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { BsCheck } from 'react-icons/bs';
 import { CiLogout } from 'react-icons/ci';
 import { MdOutlineCancel } from 'react-icons/md';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useSendLogoutMutation } from '../app/api/authApiSlice';
 import { sidebarData } from '../data/sidebarData';
 
@@ -37,17 +37,21 @@ const DashSidebar = ({
             {sidebarVisible && (
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                   <div className="flex items-center justify-between">
-                     <Link
+                     <NavLink
                         to="/"
-                        className="group ml-3 mt-4 flex items-center gap-3 text-xl font-extrabold text-slate-500   dark:text-white/85"
+                        className={({ isActive }) =>
+                           isActive
+                              ? 'group ml-3 mt-4 flex items-center gap-3 border-green-house-400 text-xl font-extrabold text-green-400 dark:text-white/85'
+                              : 'group ml-3 mt-4 flex items-center gap-3 text-xl font-extrabold text-slate-500   dark:text-white/85'
+                        }
                      >
-                        <span className="rounded-full border-2  border-slate-500 transition-colors group-hover:border-green-house-400 group-hover:text-green-house-400 dark:border-white/85">
+                        <span className="rounded-full border-2  border-slate-500 transition-colors group-hover:border-green-house-600 group-hover:text-green-house-600 dark:border-white/85">
                            <BsCheck />
                         </span>{' '}
                         <span className="transition-colors group-hover:text-green-house-400">
                            Subject Success
                         </span>
-                     </Link>
+                     </NavLink>
                      <button
                         className="mr-2 mt-4 block rounded-full p-3 text-2xl text-slate-800 hover:bg-gray-300 md:hidden dark:text-white/85"
                         type="button"
@@ -62,7 +66,11 @@ const DashSidebar = ({
                            <NavLink
                               key={link.name}
                               to={`/${link.name}`}
-                              className="m-2 flex items-center gap-5 rounded-lg pb-2.5 pl-4 pt-3 text-lg text-gray-700 transition hover:bg-green-house-600 hover:text-white dark:text-white/60"
+                              className={({ isActive }) =>
+                                 isActive
+                                    ? 'm-2 flex items-center gap-5 rounded-lg bg-green-house-400 pb-2.5 pl-4 pt-3 text-lg text-white transition hover:bg-green-house-600 dark:text-white/60'
+                                    : 'm-2 flex items-center gap-5 rounded-lg pb-2.5 pl-4 pt-3 text-lg text-gray-700 transition hover:bg-green-house-600 hover:text-white dark:text-white/60'
+                              }
                            >
                               {link.icon}
                               <span className="capitalize">{link.name}</span>
