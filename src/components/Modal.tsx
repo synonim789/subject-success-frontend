@@ -11,7 +11,7 @@ const Modal = ({ modalRef, children, close }: Props) => {
    return (
       <dialog
          ref={modalRef}
-         className="w-full rounded-md bg-white p-6 shadow-lg sm:max-w-[350px] dark:bg-dark-900 dark:text-white/90"
+         className="z-[1000] w-full rounded-md bg-white p-6 shadow-lg sm:w-fit dark:bg-dark-900 dark:text-white/90"
       >
          <button
             className="absolute right-2 top-2"
