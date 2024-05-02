@@ -59,7 +59,7 @@ const AddSubject = () => {
    return (
       <>
          <button
-            className="flex h-[500px] min-w-[300px] cursor-pointer items-center justify-center rounded-xl border border-dashed border-gray-600 text-gray-600 transition hover:border-gray-800"
+            className="flex h-[500px] min-w-[300px] cursor-pointer items-center justify-center rounded-xl border-2 border-dashed border-gray-600 text-xl font-bold text-gray-600 transition hover:border-gray-300"
             onClick={showModal}
          >
             Add Subject +
