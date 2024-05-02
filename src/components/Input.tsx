@@ -41,7 +41,7 @@ const Input = ({
             {label}
          </label>
          <div
-            className={` ${error ? 'mb-0.5' : 'mb-4'} relative mt-1 flex w-full flex-col text-left`}
+            className={` ${error ? 'mb-0.5' : 'mb-4'} relative mt-1 flex w-full  flex-col text-left`}
          >
             <input
                type={
