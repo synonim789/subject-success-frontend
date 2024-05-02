@@ -1,4 +1,5 @@
 import { useGetSubjectsQuery } from '../../app/api/subjectApiSlice';
+import AddSubject from './AddSubject';
 import Subject from './Subject';
 
 const Subjects = () => {
@@ -8,7 +9,7 @@ const Subjects = () => {
    }
    console.log(data);
    return (
-      <div className="divide-y-2">
+      <div className="flex flex-wrap justify-center gap-5">
          {data?.map((subject) => (
             <Subject
                key={subject._id}
@@ -18,6 +19,7 @@ const Subjects = () => {
                tasks={subject.tasks}
             />
          ))}
+         <AddSubject />
       </div>
    );
 };
