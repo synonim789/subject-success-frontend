@@ -17,6 +17,7 @@ const Subjects = () => {
                completed={subject.completed}
                grade={subject.grade}
                tasks={subject.tasks}
+               id={subject._id}
             />
          ))}
          <AddSubject />

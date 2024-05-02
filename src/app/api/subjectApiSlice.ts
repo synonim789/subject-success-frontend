@@ -19,7 +19,20 @@ const subjectApiSlice = api.injectEndpoints({
          }),
          invalidatesTags: ['Subject'],
       }),
+      deleteSubject: build.mutation<{ message: string }, { subjectId: string }>(
+         {
+            query: ({ subjectId }) => ({
+               url: `subject/${subjectId}`,
+               method: 'DELETE',
+            }),
+            invalidatesTags: ['Subject'],
+         },
+      ),
    }),
 });
 
-export const { useGetSubjectsQuery, useAddSubjectMutation } = subjectApiSlice;
+export const {
+   useGetSubjectsQuery,
+   useAddSubjectMutation,
+   useDeleteSubjectMutation,
+} = subjectApiSlice;

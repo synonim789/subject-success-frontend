@@ -1,4 +1,15 @@
+import {
+   Button,
+   Dialog,
+   DialogTrigger,
+   OverlayArrow,
+   Popover,
+} from 'react-aria-components';
+import toast from 'react-hot-toast';
+import { BsThreeDots } from 'react-icons/bs';
+import { useDeleteSubjectMutation } from '../../app/api/subjectApiSlice';
 import { Task } from '../../types/TaskModel';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import SubjectTask from './SubjectTask';
 
 type Props = {
@@ -6,15 +17,55 @@ type Props = {
    completed?: boolean;
    grade?: number;
    tasks: Task[];
+   id: string;
 };
 
-const Subject = ({ name, completed, grade, tasks }: Props) => {
-   console.log(completed, grade);
+const Subject = ({ name, completed, grade, tasks, id }: Props) => {
+   const [deleteSubject] = useDeleteSubjectMutation();
+   const handleDelete = async () => {
+      try {
+         await deleteSubject({ subjectId: id }).unwrap();
+         toast.success('Subject deleted successsfully');
+      } catch (err) {
+         if (isFetchBaseQueryError(err)) {
+            const errMsg = (err as { data: { message: string } }).data.message;
+            toast.error(errMsg);
+         }
+      }
+   };
    return (
       <div className="h-[500px] w-[300px]  rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600">
          <div className="w-full border-b border-dark-700 p-2 text-left">
-            <div className="mt-2 text-wrap text-2xl">
+            <div className="mt-2 flex justify-between text-wrap text-2xl">
                <p>{name}</p>
+               <DialogTrigger>
+                  <Button>
+                     <BsThreeDots />
+                  </Button>
+                  <Popover className="group rounded-lg bg-white  text-xl transition dark:bg-dark-700">
+                     <OverlayArrow>
+                        <svg
+                           width={12}
+                           height={12}
+                           viewBox="0 0 12 12"
+                           className=" block rotate-180 fill-white"
+                        >
+                           <path d="M0 0 L6 6 L12 0" />
+                        </svg>
+                     </OverlayArrow>
+                     <Dialog className="flex w-full flex-col p-2 text-left">
+                        <button className="w-full  rounded-lg p-2   font-bold text-blue-400 hover:bg-gray-200 dark:hover:bg-dark-300">
+                           Edit
+                        </button>
+                        <button
+                           className="w-full rounded-lg p-2 font-bold text-red-400 hover:bg-gray-200 dark:hover:bg-dark-300"
+                           onClick={handleDelete}
+                        >
+                           Delete
+                        </button>
+                     </Dialog>
+                  </Popover>
+               </DialogTrigger>
             </div>
          </div>
          <div className="flex w-full flex-col gap-5 p-3">
