@@ -1,8 +1,14 @@
-import { useRef } from 'react';
+import {
+   Button,
+   Dialog,
+   DialogTrigger,
+   Modal,
+   ModalOverlay,
+} from 'react-aria-components';
 import { CiEdit } from 'react-icons/ci';
+import { MdOutlineCancel } from 'react-icons/md';
 import { useGetUserQuery } from '../../app/api/userApiSlice';
 import Header from '../../components/Header';
-import Modal from '../../components/Modal';
 import UploadImageModalContent from '../../components/UploadImageModalContent';
 import SetNewPasswordForm from './SetNewPasswordForm';
 import UpdateUserInfo from './UpdateUserInfo';
@@ -10,9 +16,6 @@ import ProfileImagePlaceholder from '/profile-placeholder.jpg';
 
 const ProfilePage = () => {
    const { data, isLoading, isError } = useGetUserQuery();
-   const modalRef = useRef<HTMLDialogElement | null>(null);
-   const showModal = () => modalRef.current?.showModal();
-   const closeModal = () => modalRef.current?.close();
 
    if (isLoading) {
       return <p>Loading...</p>;
@@ -42,15 +45,36 @@ const ProfilePage = () => {
                         className="relative size-28 rounded-full"
                      />
                   )}
-
-                  <button
-                     className="absolute bottom-0 right-0 flex size-12 cursor-pointer items-center justify-center rounded-full bg-green-house-500 p-1 transition duration-300 hover:scale-110 hover:bg-green-house-600 hover:text-white"
-                     type="button"
-                     onClick={showModal}
-                     aria-label="Edit Image"
-                  >
-                     <CiEdit size={25} />
-                  </button>
+                  <DialogTrigger>
+                     <Button
+                        className="absolute bottom-0 right-0 flex size-12 cursor-pointer items-center justify-center rounded-full bg-green-house-500 p-1 transition duration-300 hover:scale-110 hover:bg-green-house-600 hover:text-white"
+                        type="button"
+                        aria-label="Edit Image"
+                     >
+                        <CiEdit size={25} />
+                     </Button>
+                     <ModalOverlay className="fixed left-0 top-0 isolate z-20 flex h-full w-full items-center justify-center bg-black/15 p-4 text-center backdrop-blur-lg">
+                        <Modal>
+                           <Dialog className="relative w-full rounded-md bg-white p-6 shadow-lg sm:w-fit dark:bg-dark-900 dark:text-white/90">
+                              {({ close }) => (
+                                 <>
+                                    <button
+                                       className="absolute right-2 top-2"
+                                       type="button"
+                                       onClick={close}
+                                       aria-label="Close Modal"
+                                    >
+                                       <MdOutlineCancel size={30} />
+                                    </button>
+                                    <div className="flex w-full items-center">
+                                       <UploadImageModalContent />
+                                    </div>
+                                 </>
+                              )}
+                           </Dialog>
+                        </Modal>
+                     </ModalOverlay>
+                  </DialogTrigger>
                </div>
                <div className="text-center sm:text-left">
                   <p className="text-xl dark:text-white/85">{data?.username}</p>
@@ -62,9 +86,6 @@ const ProfilePage = () => {
                <SetNewPasswordForm />
             </section>
          </section>
-         <Modal modalRef={modalRef} close={closeModal}>
-            <UploadImageModalContent />
-         </Modal>
       </>
    );
 };
