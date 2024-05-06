@@ -14,7 +14,7 @@ const DashLayout = () => {
             animate={{
                width: sidebarVisible ? 320 : 0,
             }}
-            className={`fixed z-[1000] bg-white dark:bg-dark-800`}
+            className={`fixed z-10 bg-white dark:bg-dark-800`}
          >
             <DashSidebar
                className="relative h-screen overflow-auto pb-10 pl-3 shadow-2xl md:hover:overflow-auto"
