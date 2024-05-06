@@ -34,10 +34,10 @@ const Subject = ({ name, completed, grade, tasks, id }: Props) => {
       }
    };
    return (
-      <div className="h-[500px] w-[300px]  rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600">
+      <div className="min-h-[500px] min-w-[300px]   overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600">
          <div className="w-full border-b border-dark-700 p-2 text-left">
             <div className="mt-2 flex justify-between text-wrap text-2xl">
-               <p>{name}</p>
+               <p className="max-w-[250px] text-lg">{name}</p>
                <DialogTrigger>
                   <Button>
                      <BsThreeDots />
