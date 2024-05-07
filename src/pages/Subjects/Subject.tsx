@@ -18,9 +18,10 @@ type Props = {
    grade?: number;
    tasks: Task[];
    id: string;
+   type: 'grade' | 'completion';
 };
 
-const Subject = ({ name, completed, grade, tasks, id }: Props) => {
+const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
    const [deleteSubject] = useDeleteSubjectMutation();
    const handleDelete = async () => {
       try {
@@ -33,8 +34,9 @@ const Subject = ({ name, completed, grade, tasks, id }: Props) => {
          }
       }
    };
+
    return (
-      <div className="min-h-[500px] min-w-[300px]   overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600">
+      <div className="relative min-h-[500px] min-w-[300px] overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600">
          <div className="w-full border-b border-dark-700 p-2 text-left">
             <div className="mt-2 flex justify-between text-wrap text-2xl">
                <p className="max-w-[250px] text-lg">{name}</p>
@@ -42,7 +44,7 @@ const Subject = ({ name, completed, grade, tasks, id }: Props) => {
                   <Button>
                      <BsThreeDots />
                   </Button>
-                  <Popover className="group rounded-lg bg-white  text-xl transition dark:bg-dark-700">
+                  <Popover className="group  rounded-lg bg-gray-100  text-xl  shadow-2xl transition dark:bg-dark-700">
                      <OverlayArrow>
                         <svg
                            width={12}
@@ -72,9 +74,23 @@ const Subject = ({ name, completed, grade, tasks, id }: Props) => {
             {tasks.map((task) => (
                <SubjectTask key={task._id} task={task} />
             ))}
-            <button className="w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-dark-700">
+            <button className="w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-gray-200 dark:hover:bg-dark-700">
                Add Task +
             </button>
+         </div>
+         <div className="absolute bottom-2 left-2">
+            {type === 'completion' ? (
+               completed ? (
+                  <p className="font-bold text-green-house-500">Completed</p>
+               ) : (
+                  <p className="font-bold text-red-400">Not Completed</p>
+               )
+            ) : (
+               ''
+            )}
+            {type === 'grade' && (
+               <p className="font-bold text-blue-500">Grade: {grade}</p>
+            )}
          </div>
       </div>
    );
