@@ -59,7 +59,7 @@ const UploadImageModalContent = () => {
    return (
       <>
          {openCrop ? (
-            <section className="flex h-fit w-full flex-col gap-5">
+            <section className="flex h-fit min-w-[225px] flex-col gap-5 sm:min-w-[350px]">
                <h2 className="my-3">Crop Image</h2>
                <section className="relative aspect-square w-full overflow-hidden rounded-lg">
                   <Cropper
