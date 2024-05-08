@@ -8,6 +8,8 @@ import {
 import toast from 'react-hot-toast';
 import { BsThreeDots } from 'react-icons/bs';
 import { useDeleteSubjectMutation } from '../../app/api/subjectApiSlice';
+import EditSubjectModalContent from '../../components/EditSubjectModalContent';
+import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import SubjectTask from './SubjectTask';
@@ -44,7 +46,10 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                   <Button>
                      <BsThreeDots />
                   </Button>
-                  <Popover className="group  rounded-lg bg-gray-100  text-xl  shadow-2xl transition dark:bg-dark-700">
+                  <Popover
+                     className="group rounded-lg bg-gray-100  text-xl  shadow-2xl transition dark:bg-dark-700"
+                     style={{ zIndex: '10' }}
+                  >
                      <OverlayArrow>
                         <svg
                            width={12}
@@ -56,9 +61,19 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                         </svg>
                      </OverlayArrow>
                      <Dialog className="flex w-full flex-col p-2 text-left">
-                        <button className="w-full  rounded-lg p-2   font-bold text-blue-400 hover:bg-gray-200 dark:hover:bg-dark-300">
-                           Edit
-                        </button>
+                        <ModalComponent
+                           buttonClassName="w-full rounded-lg p-2 font-bold text-blue-400 hover:bg-gray-200 dark:hover:bg-dark-300"
+                           buttonChildren="Edit"
+                           children={
+                              <EditSubjectModalContent
+                                 subjectName={name}
+                                 subjectType={type}
+                                 subjectCompleted={completed}
+                                 subjectGrade={grade}
+                                 subjectId={id}
+                              />
+                           }
+                        />
                         <button
                            className="w-full rounded-lg p-2 font-bold text-red-400 hover:bg-gray-200 dark:hover:bg-dark-300"
                            onClick={handleDelete}
@@ -78,7 +93,7 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                Add Task +
             </button>
          </div>
-         <div className="absolute bottom-2 left-2">
+         <div className="absolute bottom-3 left-3">
             {type === 'completion' ? (
                completed ? (
                   <p className="font-bold text-green-house-500">Completed</p>

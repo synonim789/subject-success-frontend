@@ -1,5 +1,6 @@
 import { Subject } from '../../types/SubjectModel';
 import { AddSubjectFields } from '../../types/addSubjectSchema';
+import { editSubjectFields } from '../../types/editSubjectSchema';
 import { api } from './apiSlice';
 
 const subjectApiSlice = api.injectEndpoints({
@@ -19,15 +20,24 @@ const subjectApiSlice = api.injectEndpoints({
          }),
          invalidatesTags: ['Subject'],
       }),
-      deleteSubject: build.mutation<{ message: string }, { subjectId: string }>(
-         {
-            query: ({ subjectId }) => ({
-               url: `subject/${subjectId}`,
-               method: 'DELETE',
-            }),
-            invalidatesTags: ['Subject'],
-         },
-      ),
+      deleteSubject: build.mutation<Subject, { subjectId: string }>({
+         query: ({ subjectId }) => ({
+            url: `subject/${subjectId}`,
+            method: 'DELETE',
+         }),
+         invalidatesTags: ['Subject'],
+      }),
+      editSubject: build.mutation<
+         { message: string },
+         editSubjectFields & { subjectId: string }
+      >({
+         query: ({ subjectId, name, type, completion, grade }) => ({
+            url: `/subject/${subjectId}`,
+            method: 'PUT',
+            body: { name, type, completed: completion, grade },
+         }),
+         invalidatesTags: ['Subject'],
+      }),
    }),
 });
 
@@ -35,4 +45,5 @@ export const {
    useGetSubjectsQuery,
    useAddSubjectMutation,
    useDeleteSubjectMutation,
+   useEditSubjectMutation,
 } = subjectApiSlice;
