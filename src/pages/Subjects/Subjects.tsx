@@ -4,10 +4,11 @@ import Subject from './Subject';
 
 const Subjects = () => {
    const { data, isLoading } = useGetSubjectsQuery();
+
    if (isLoading) {
       return <p>Loading...</p>;
    }
-   console.log(data);
+
    return (
       <div className="flex flex-wrap justify-center gap-5">
          {data?.map((subject) => (

@@ -59,8 +59,6 @@ const EditSubjectModalContent = ({
       },
    });
 
-   console.log(errors);
-
    const submitHandler: SubmitHandler<editSubjectFields> = async (data) => {
       try {
          const { name, type, completion, grade } = data;
