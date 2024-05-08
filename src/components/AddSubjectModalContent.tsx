@@ -1,12 +1,20 @@
+import { zodResolver } from '@hookform/resolvers/zod';
+import {
+   Button,
+   Label,
+   ListBox,
+   ListBoxItem,
+   Popover,
+   Select,
+   SelectValue,
+} from 'react-aria-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
+import { FaChevronDown } from 'react-icons/fa';
 import { useAddSubjectMutation } from '../app/api/subjectApiSlice';
 import { AddSubjectFields, addSubjectSchema } from '../types/addSubjectSchema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import toast from 'react-hot-toast';
 import { isFetchBaseQueryError } from '../utils/isFetchBaseQueryError';
 import Input from './Input';
-import { Button, Label, ListBox, ListBoxItem, Popover, Select, SelectValue } from 'react-aria-components';
-import { FaChevronDown } from 'react-icons/fa';
 import SubmitButton from './SubmitButton';
 
 const AddSubjectModalContent = () => {
@@ -30,7 +38,7 @@ const AddSubjectModalContent = () => {
             name,
             type,
          }).unwrap();
-         toast.success('Subject addess successsfully');
+         toast.success('Subject added successfully');
          reset();
       } catch (err) {
          if (isFetchBaseQueryError(err)) {
