@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Cropper, { Area } from 'react-easy-crop';
 import toast from 'react-hot-toast';
-import { useUpdateProfilePictureMutation } from '../app/api/userApiSlice';
-import getCroppedImg from '../utils/cropImage';
+import { useUpdateProfilePictureMutation } from '../../app/api/userApiSlice';
+import getCroppedImg from '../../utils/cropImage';
 
 const UploadImageModalContent = () => {
    const [updateProfilePicture, { isLoading }] =

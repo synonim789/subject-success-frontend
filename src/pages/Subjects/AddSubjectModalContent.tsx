@@ -11,11 +11,14 @@ import {
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaChevronDown } from 'react-icons/fa';
-import { useAddSubjectMutation } from '../app/api/subjectApiSlice';
-import { AddSubjectFields, addSubjectSchema } from '../types/addSubjectSchema';
-import { isFetchBaseQueryError } from '../utils/isFetchBaseQueryError';
-import Input from './Input';
-import SubmitButton from './SubmitButton';
+import { useAddSubjectMutation } from '../../app/api/subjectApiSlice';
+import Input from '../../components/Input';
+import SubmitButton from '../../components/SubmitButton';
+import {
+   AddSubjectFields,
+   addSubjectSchema,
+} from '../../types/addSubjectSchema';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const AddSubjectModalContent = () => {
    const [addSubject, { isLoading }] = useAddSubjectMutation();

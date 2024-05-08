@@ -14,14 +14,14 @@ import {
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
-import { useEditSubjectMutation } from '../app/api/subjectApiSlice';
+import { useEditSubjectMutation } from '../../app/api/subjectApiSlice';
+import Input from '../../components/Input';
+import SubmitButton from '../../components/SubmitButton';
 import {
    editSubjectFields,
    editSubjectSchema,
-} from '../types/editSubjectSchema';
-import { isFetchBaseQueryError } from '../utils/isFetchBaseQueryError';
-import Input from './Input';
-import SubmitButton from './SubmitButton';
+} from '../../types/editSubjectSchema';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 type Props = {
    subjectName: string;
@@ -84,6 +84,8 @@ const EditSubjectModalContent = ({
    if (isLoading) {
       return <p>Loading...</p>;
    }
+
+   console.log(errors);
 
    return (
       <div className="flex w-full items-center">
