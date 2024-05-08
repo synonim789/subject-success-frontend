@@ -8,10 +8,11 @@ import {
 import toast from 'react-hot-toast';
 import { BsThreeDots } from 'react-icons/bs';
 import { useDeleteSubjectMutation } from '../../app/api/subjectApiSlice';
-import EditSubjectModalContent from '../../components/EditSubjectModalContent';
 import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import AddTaskModalContent from './AddTaskModalContent';
+import EditSubjectModalContent from './EditSubjectModalContent';
 import SubjectTask from './SubjectTask';
 
 type Props = {
@@ -89,9 +90,11 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
             {tasks.map((task) => (
                <SubjectTask key={task._id} task={task} />
             ))}
-            <button className="w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-gray-200 dark:hover:bg-dark-700">
-               Add Task +
-            </button>
+            <ModalComponent
+               buttonClassName="w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-gray-200 dark:hover:bg-dark-700 mb-7"
+               buttonChildren="Add Task +"
+               children={<AddTaskModalContent subjectId={id} />}
+            />
          </div>
          <div className="absolute bottom-3 left-3">
             {type === 'completion' ? (

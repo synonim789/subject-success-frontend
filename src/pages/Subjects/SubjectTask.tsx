@@ -11,7 +11,7 @@ type Props = {
 const SubjectTask = ({ task }: Props) => {
    const [isSelected, setIsSelected] = useState(false);
    return (
-      <div className="flex w-full items-center justify-between rounded-lg bg-dark-100 p-3 text-center text-lg transition hover:bg-dark-900">
+      <div className="flex w-full items-center justify-between rounded-lg bg-gray-300 p-3 text-center text-lg transition hover:bg-gray-700 dark:bg-dark-100 dark:hover:bg-dark-900">
          <div className="flex gap-3">
             <Checkbox
                className="group cursor-pointer"
@@ -20,14 +20,15 @@ const SubjectTask = ({ task }: Props) => {
             >
                {({ isSelected }) => (
                   <>
-                     <div className="flex items-center gap-2">
+                     <div className="flex  items-center gap-2">
                         <div
                            className={`active: flex h-5 w-5 flex-shrink items-center justify-center rounded  border-2 hover:bg-green-house-300 ${isSelected && 'border-none bg-green-house-500 text-white hover:bg-green-house-900'}`}
                         >
                            {isSelected && <FaCheck size={15} />}
                         </div>
-
-                        {task.title}
+                        <p className="max-w-[150px] overflow-hidden break-words">
+                           {task.title}
+                        </p>
                      </div>
                   </>
                )}
