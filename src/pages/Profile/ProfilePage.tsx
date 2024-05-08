@@ -2,9 +2,9 @@ import { CiEdit } from 'react-icons/ci';
 import { useGetUserQuery } from '../../app/api/userApiSlice';
 import Header from '../../components/Header';
 import ModalComponent from '../../components/Modal';
-import UploadImageModalContent from '../../components/UploadImageModalContent';
 import SetNewPasswordForm from './SetNewPasswordForm';
 import UpdateUserInfo from './UpdateUserInfo';
+import UploadImageModalContent from './UploadImageModalContent';
 import ProfileImagePlaceholder from '/profile-placeholder.jpg';
 
 const ProfilePage = () => {
