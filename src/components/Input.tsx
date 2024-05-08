@@ -13,6 +13,7 @@ type Props = {
    // eslint-disable-next-line @typescript-eslint/no-explicit-any
    register: any;
    error?: FieldError;
+   step?: number;
 };
 
 const Input = ({
@@ -25,6 +26,7 @@ const Input = ({
    isPassword,
    register,
    error,
+   step,
 }: Props) => {
    const [isPasswordVisible, setIsPassowrdVisible] = useState(false);
 
@@ -56,6 +58,7 @@ const Input = ({
                      : 'border-[#CDD6E1] dark:border-slate-600'
                }  rounded-md border bg-transparent py-3 pl-5 pr-3 outline-none dark:text-white`}
                {...register}
+               step={step}
             />
             {isPassword && (
                <button
