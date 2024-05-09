@@ -7,6 +7,7 @@ import {
    ModalOverlay,
 } from 'react-aria-components';
 import { MdOutlineCancel } from 'react-icons/md';
+import { ModalContext } from '../context/ModalContext';
 
 type Props = {
    buttonClassName: string;
@@ -26,7 +27,7 @@ const ModalComponent = ({
             <Modal>
                <Dialog className="relative w-full rounded-md bg-white p-6 shadow-lg  dark:bg-dark-900 dark:text-white/90">
                   {({ close }) => (
-                     <>
+                     <ModalContext.Provider value={{close}}>
                         <button
                            className="absolute right-2 top-2"
                            type="button"
@@ -38,7 +39,7 @@ const ModalComponent = ({
                         <div className="flex w-full items-center">
                            {children}
                         </div>
-                     </>
+                     </ModalContext.Provider>
                   )}
                </Dialog>
             </Modal>
