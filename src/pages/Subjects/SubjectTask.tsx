@@ -9,6 +9,7 @@ import {
 import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import EditTaskModalContent from './EditTaskModalContent';
 
 type Props = {
    task: Task;
@@ -75,7 +76,12 @@ const SubjectTask = ({ task }: Props) => {
             <ModalComponent
                buttonClassName="text-blue-400 transition hover:text-blue-500"
                buttonChildren={<CiEdit size={23} />}
-               children={<p>Test</p>}
+               children={
+                  <EditTaskModalContent
+                     taskId={task._id}
+                     taskName={task.title}
+                  />
+               }
             />
          </div>
       </div>

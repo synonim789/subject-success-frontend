@@ -106,6 +106,10 @@ export const updateUsernameSchema = z.object({
    username: z.string().min(8, 'Username should be at least 8 characters'),
 });
 
+export const editTaskSchema = z.object({
+   name: z.string(),
+});
+
 export type AddSubjectFields = z.infer<typeof addSubjectSchema>;
 export type AddTaskFields = z.infer<typeof addTaskSchema>;
 export type EditSubjectFields = z.infer<typeof editSubjectSchema>;
@@ -115,3 +119,4 @@ export type ResetPasswordFields = z.infer<typeof resetPasswordSchema>;
 export type SetNewPasswordFields = z.infer<typeof setNewPasswordSchema>;
 export type SignUpFields = z.infer<typeof signUpSchema>;
 export type UpdateUsernameFields = z.infer<typeof updateUsernameSchema>;
+export type EditTaskFields = z.infer<typeof editTaskSchema>;
