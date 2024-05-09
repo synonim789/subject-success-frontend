@@ -1,22 +1,52 @@
-import { useState } from 'react';
 import { Checkbox } from 'react-aria-components';
+import toast from 'react-hot-toast';
 import { CiEdit, CiTrash } from 'react-icons/ci';
 import { FaCheck } from 'react-icons/fa';
+import {
+   useDeleteTaskMutation,
+   useSetCompletedMutation,
+} from '../../app/api/taskApiSlice';
+import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 type Props = {
    task: Task;
 };
 
 const SubjectTask = ({ task }: Props) => {
-   const [isSelected, setIsSelected] = useState(false);
+   const [setCompleted] = useSetCompletedMutation();
+   const [deleteTask] = useDeleteTaskMutation();
+
+   const deleteTaskHandler = async () => {
+      try {
+         await deleteTask({ taskId: task._id });
+      } catch (err) {
+         if (isFetchBaseQueryError(err)) {
+            const errMsg = (err as { data: { message: string } }).data.message;
+            toast.error(errMsg);
+         }
+      }
+   };
+
+   const handleCompleteTask = async (isSelected: boolean) => {
+      try {
+         await setCompleted({ completed: isSelected, taskId: task._id });
+      } catch (err) {
+         if (isFetchBaseQueryError(err)) {
+            const errMsg = (err as { data: { message: string } }).data.message;
+            toast.error(errMsg);
+         }
+      }
+   };
+
    return (
       <div className="flex w-full items-center justify-between rounded-lg bg-gray-300 p-3 text-center text-lg transition hover:bg-gray-700 dark:bg-dark-100 dark:hover:bg-dark-900">
          <div className="flex gap-3">
             <Checkbox
                className="group cursor-pointer"
-               isSelected={isSelected}
-               onChange={setIsSelected}
+               isSelected={task.completed}
+               onChange={handleCompleteTask}
             >
                {({ isSelected }) => (
                   <>
@@ -36,12 +66,17 @@ const SubjectTask = ({ task }: Props) => {
          </div>
 
          <div className="flex gap-2">
-            <button className="text-red-400 transition hover:text-red-500">
+            <button
+               className="text-red-400 transition hover:text-red-500"
+               onClick={deleteTaskHandler}
+            >
                <CiTrash size={23} />
             </button>
-            <button className="text-blue-400 transition hover:text-blue-500">
-               <CiEdit size={23} />
-            </button>
+            <ModalComponent
+               buttonClassName="text-blue-400 transition hover:text-blue-500"
+               buttonChildren={<CiEdit size={23} />}
+               children={<p>Test</p>}
+            />
          </div>
       </div>
    );
