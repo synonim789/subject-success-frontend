@@ -1,10 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useAddTaskMutation } from '../../app/api/taskApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-import { AddTaskFields, addTaskSchema } from '../../types/addTaskSchema';
+import { ModalContext } from '../../context/ModalContext';
+import { AddTaskFields, addTaskSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 type Props = {
@@ -13,6 +15,8 @@ type Props = {
 
 const AddTaskModalContent = ({ subjectId }: Props) => {
    const [addTask, { isLoading }] = useAddTaskMutation();
+   const { close } = useContext(ModalContext)!;
+
    const {
       register,
       handleSubmit,
@@ -27,6 +31,7 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
          const { name } = data;
          await addTask({ subjectId, name }).unwrap();
          toast.success('Task added successfully');
+         close();
       } catch (err) {
          if (isFetchBaseQueryError(err)) {
             const errMsg = (err as { data: { message: string } }).data.message;
