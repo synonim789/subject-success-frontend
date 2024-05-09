@@ -11,7 +11,7 @@ import SubmitButton from '../../components/SubmitButton';
 import {
    UpdateUsernameFields,
    updateUsernameSchema,
-} from '../../types/updateUsernameSchema';
+} from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const UpdateUserInfo = () => {

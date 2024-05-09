@@ -7,7 +7,7 @@ import SubmitButton from '../../components/SubmitButton';
 import {
    SetNewPasswordFields,
    setNewPasswordSchema,
-} from '../../types/setNewPasswordSchema';
+} from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const SetNewPasswordForm = () => {

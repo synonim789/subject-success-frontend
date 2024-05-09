@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../app/api/authApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-import { LoginFields, loginSchema } from '../../types/loginSchema';
+import { LoginFields, loginSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const LoginForm = () => {

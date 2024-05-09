@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSignUpMutation } from '../../app/api/userApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-import { SignUpFields, signUpSchema } from '../../types/signUpSchema';
+import { SignUpFields, signUpSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const SignUpForm = () => {

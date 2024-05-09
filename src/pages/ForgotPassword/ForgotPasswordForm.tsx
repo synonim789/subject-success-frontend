@@ -10,7 +10,7 @@ import SubmitButton from '../../components/SubmitButton';
 import {
    ForgotPasswordFields,
    forgotPasswordSchema,
-} from '../../types/forgotPasswordSchema';
+} from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const ForgotPasswordForm = () => {
