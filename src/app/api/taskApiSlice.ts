@@ -29,6 +29,14 @@ const taskApiSlice = api.injectEndpoints({
          }),
          invalidatesTags: ['Subject'],
       }),
+      editTaskName: build.mutation<Task, { name: string; taskId: string }>({
+         query: ({ name, taskId }) => ({
+            url: `/task/title/${taskId}`,
+            method: 'PUT',
+            body: { title: name },
+         }),
+         invalidatesTags: ['Subject'],
+      }),
    }),
 });
 
@@ -36,4 +44,5 @@ export const {
    useAddTaskMutation,
    useSetCompletedMutation,
    useDeleteTaskMutation,
+   useEditTaskNameMutation,
 } = taskApiSlice;
