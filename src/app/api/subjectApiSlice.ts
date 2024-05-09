@@ -1,6 +1,5 @@
 import { Subject } from '../../types/SubjectModel';
-import { AddSubjectFields } from '../../types/addSubjectSchema';
-import { editSubjectFields } from '../../types/editSubjectSchema';
+import { AddSubjectFields, EditSubjectFields } from '../../types/schemas';
 import { api } from './apiSlice';
 
 const subjectApiSlice = api.injectEndpoints({
@@ -29,7 +28,7 @@ const subjectApiSlice = api.injectEndpoints({
       }),
       editSubject: build.mutation<
          { message: string },
-         editSubjectFields & { subjectId: string }
+         EditSubjectFields & { subjectId: string }
       >({
          query: ({ subjectId, name, type, completion, grade }) => ({
             url: `/subject/${subjectId}`,
