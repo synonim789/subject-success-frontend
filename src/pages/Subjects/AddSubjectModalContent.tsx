@@ -1,4 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useContext } from 'react';
 import {
    Button,
    Label,
@@ -14,15 +15,13 @@ import { FaChevronDown } from 'react-icons/fa';
 import { useAddSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-import {
-   AddSubjectFields,
-   addSubjectSchema,
-} from '../../types/addSubjectSchema';
+import { ModalContext } from '../../context/ModalContext';
+import { AddSubjectFields, addSubjectSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 const AddSubjectModalContent = () => {
    const [addSubject, { isLoading }] = useAddSubjectMutation();
-
+   const { close } = useContext(ModalContext)!;
    const {
       register,
       handleSubmit,
@@ -43,6 +42,7 @@ const AddSubjectModalContent = () => {
          }).unwrap();
          toast.success('Subject added successfully');
          reset();
+         close();
       } catch (err) {
          if (isFetchBaseQueryError(err)) {
             const errMsg = (err as { data: { message: string } }).data.message;

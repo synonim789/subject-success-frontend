@@ -1,5 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
    Button,
    Checkbox,
@@ -17,10 +17,8 @@ import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import { useEditSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-import {
-   editSubjectFields,
-   editSubjectSchema,
-} from '../../types/editSubjectSchema';
+import { ModalContext } from '../../context/ModalContext';
+import { EditSubjectFields, editSubjectSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 type Props = {
@@ -41,6 +39,7 @@ const EditSubjectModalContent = ({
    const [type, setType] = useState<'grade' | 'completion' | Key>(subjectType);
    const [completed, setCompleted] = useState(subjectCompleted);
    const [editSubject, { isLoading }] = useEditSubjectMutation();
+   const { close } = useContext(ModalContext)!;
 
    const {
       handleSubmit,
@@ -48,7 +47,7 @@ const EditSubjectModalContent = ({
       control,
       formState: { errors, isSubmitting },
       watch,
-   } = useForm<editSubjectFields>({
+   } = useForm<EditSubjectFields>({
       resolver: zodResolver(editSubjectSchema),
       mode: 'onBlur',
       defaultValues: {
@@ -59,7 +58,7 @@ const EditSubjectModalContent = ({
       },
    });
 
-   const submitHandler: SubmitHandler<editSubjectFields> = async (data) => {
+   const submitHandler: SubmitHandler<EditSubjectFields> = async (data) => {
       try {
          const { name, type, completion, grade } = data;
 
@@ -71,6 +70,7 @@ const EditSubjectModalContent = ({
             subjectId,
          }).unwrap();
          toast.success('Subject updated successfully');
+         close();
       } catch (err) {
          if (isFetchBaseQueryError(err)) {
             const errMsg = (err as { data: { message: string } }).data.message;
