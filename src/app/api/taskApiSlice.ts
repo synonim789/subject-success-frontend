@@ -11,7 +11,29 @@ const taskApiSlice = api.injectEndpoints({
          }),
          invalidatesTags: ['Subject'],
       }),
+      setCompleted: build.mutation<
+         Task,
+         { completed: boolean; taskId: string }
+      >({
+         query: ({ completed, taskId }) => ({
+            url: `task/completed/${taskId}`,
+            method: 'PUT',
+            body: { completed },
+         }),
+         invalidatesTags: ['Subject'],
+      }),
+      deleteTask: build.mutation<{ message: string }, { taskId: string }>({
+         query: ({ taskId }) => ({
+            url: `/task/${taskId}`,
+            method: 'DELETE',
+         }),
+         invalidatesTags: ['Subject'],
+      }),
    }),
 });
 
-export const { useAddTaskMutation } = taskApiSlice;
+export const {
+   useAddTaskMutation,
+   useSetCompletedMutation,
+   useDeleteTaskMutation,
+} = taskApiSlice;
