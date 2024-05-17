@@ -18,7 +18,6 @@ type Props = {
 const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
    const { close } = useContext(ModalContext)!;
    const [editTaskName] = useEditTaskNameMutation();
-   console.log(taskDate);
 
    const {
       register,
@@ -29,7 +28,9 @@ const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
       mode: 'onBlur',
       defaultValues: {
          name: taskName,
-         date: new Date().toISOString().substring(0, 10),
+         date: taskDate
+            ? new Date(taskDate).toISOString().substring(0, 10)
+            : '',
       },
    });
 
