@@ -107,7 +107,11 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                ''
             )}
             {type === 'grade' && (
-               <p className="font-bold text-blue-500">Grade: {grade}</p>
+               <p
+                  className={`font-bold ${grade && grade > 1 ? 'text-green-house-500' : 'text-red-400'} `}
+               >
+                  Grade: {grade}
+               </p>
             )}
          </div>
       </div>
