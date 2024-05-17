@@ -28,8 +28,9 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
 
    const submitHandler: SubmitHandler<AddTaskFields> = async (data) => {
       try {
-         const { name } = data;
-         await addTask({ subjectId, name }).unwrap();
+         const { name, date } = data;
+         console.log(date);
+         await addTask({ subjectId, name, date }).unwrap();
          toast.success('Task added successfully');
          close();
       } catch (err) {
@@ -47,15 +48,27 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <Input
-               id="name"
-               label="Name"
-               placeholder="Enter Task"
-               name="name"
-               type="text"
-               register={{ ...register('name') }}
-               error={errors.name}
-            />
+            <div className="flex gap-5">
+               <Input
+                  id="name"
+                  label="Name"
+                  placeholder="Enter Task"
+                  name="name"
+                  type="text"
+                  register={{ ...register('name') }}
+                  error={errors.name}
+               />
+               <Input
+                  type="date"
+                  label="Date"
+                  placeholder=""
+                  name="date"
+                  register={{ ...register('date', { valueAsDate: true }) }}
+                  error={errors.date}
+                  id="date"
+               />
+            </div>
+
             <SubmitButton text="Add Task" disabled={isSubmitting} />
          </form>
       </div>

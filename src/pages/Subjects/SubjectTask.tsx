@@ -42,7 +42,7 @@ const SubjectTask = ({ task }: Props) => {
    };
 
    return (
-      <div className="flex w-full items-center justify-between rounded-lg bg-gray-300 p-3 text-center text-lg transition hover:bg-gray-700 dark:bg-dark-100 dark:hover:bg-dark-900">
+      <div className="flex items-center justify-between rounded-lg bg-gray-300 p-3 text-center text-lg transition hover:bg-gray-700 dark:bg-dark-100 dark:hover:bg-dark-900">
          <div className="flex gap-3">
             <Checkbox
                className="group cursor-pointer"
@@ -80,6 +80,7 @@ const SubjectTask = ({ task }: Props) => {
                   <EditTaskModalContent
                      taskId={task._id}
                      taskName={task.title}
+                     taskDate={task.date}
                   />
                }
             />

@@ -7,6 +7,7 @@ export const addSubjectSchema = z.object({
 
 export const addTaskSchema = z.object({
    name: z.string(),
+   date: z.coerce.date().optional(),
 });
 
 export const editSubjectSchema = z.object({
@@ -108,6 +109,7 @@ export const updateUsernameSchema = z.object({
 
 export const editTaskSchema = z.object({
    name: z.string(),
+   date: z.coerce.date().optional(),
 });
 
 export type AddSubjectFields = z.infer<typeof addSubjectSchema>;

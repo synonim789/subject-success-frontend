@@ -12,11 +12,13 @@ import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 type Props = {
    taskId: string;
    taskName: string;
+   taskDate?: string;
 };
 
-const EditTaskModalContent = ({ taskId, taskName }: Props) => {
+const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
    const { close } = useContext(ModalContext)!;
    const [editTaskName] = useEditTaskNameMutation();
+   console.log(taskDate);
 
    const {
       register,
@@ -25,13 +27,16 @@ const EditTaskModalContent = ({ taskId, taskName }: Props) => {
    } = useForm<EditTaskFields>({
       resolver: zodResolver(editTaskSchema),
       mode: 'onBlur',
-      defaultValues: { name: taskName },
+      defaultValues: {
+         name: taskName,
+         date: new Date().toISOString().substring(0, 10),
+      },
    });
 
    const submitHandler: SubmitHandler<EditTaskFields> = async (data) => {
       try {
-         const { name } = data;
-         await editTaskName({ taskId, name }).unwrap();
+         const { name, date } = data;
+         await editTaskName({ taskId, name, date }).unwrap();
          close();
       } catch (err) {
          if (isFetchBaseQueryError(err)) {
@@ -44,16 +49,28 @@ const EditTaskModalContent = ({ taskId, taskName }: Props) => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <Input
-               id="name"
-               label="Name"
-               placeholder="Enter Task"
-               name="name"
-               type="text"
-               register={{ ...register('name') }}
-               error={errors.name}
-            />
-            <SubmitButton text="Add Task" disabled={isSubmitting} />
+            <div className="flex gap-5">
+               <Input
+                  id="name"
+                  label="Name"
+                  placeholder="Enter Task"
+                  name="name"
+                  type="text"
+                  register={{ ...register('name') }}
+                  error={errors.name}
+               />
+               <Input
+                  type="date"
+                  id="date"
+                  label="Date"
+                  placeholder=""
+                  name="date"
+                  register={{ ...register('date') }}
+                  error={errors.date}
+               />
+            </div>
+
+            <SubmitButton text="Edit Task" disabled={isSubmitting} />
          </form>
       </div>
    );

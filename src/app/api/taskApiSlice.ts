@@ -3,11 +3,14 @@ import { api } from './apiSlice';
 
 const taskApiSlice = api.injectEndpoints({
    endpoints: (build) => ({
-      addTask: build.mutation<Task, { name: string; subjectId: string }>({
-         query: ({ subjectId, name }) => ({
+      addTask: build.mutation<
+         Task,
+         { name: string; subjectId: string; date: Date | undefined }
+      >({
+         query: ({ subjectId, name, date }) => ({
             url: '/task',
             method: 'POST',
-            body: { subjectId, title: name },
+            body: { subjectId, title: name, date: date },
          }),
          invalidatesTags: ['Subject'],
       }),
@@ -29,13 +32,22 @@ const taskApiSlice = api.injectEndpoints({
          }),
          invalidatesTags: ['Subject'],
       }),
-      editTaskName: build.mutation<Task, { name: string; taskId: string }>({
-         query: ({ name, taskId }) => ({
+      editTaskName: build.mutation<
+         Task,
+         { name: string; taskId: string; date: Date | undefined }
+      >({
+         query: ({ name, taskId, date }) => ({
             url: `/task/title/${taskId}`,
             method: 'PUT',
-            body: { title: name },
+            body: { title: name, date: date },
          }),
          invalidatesTags: ['Subject'],
+      }),
+      getAllTask: build.query<Task[], void>({
+         query: () => ({
+            url: '/task',
+            method: 'GET',
+         }),
       }),
    }),
 });
@@ -45,4 +57,5 @@ export const {
    useSetCompletedMutation,
    useDeleteTaskMutation,
    useEditTaskNameMutation,
+   useGetAllTaskQuery,
 } = taskApiSlice;
