@@ -24,7 +24,7 @@ const subjectApiSlice = api.injectEndpoints({
             url: `subject/${subjectId}`,
             method: 'DELETE',
          }),
-         invalidatesTags: ['Subject'],
+         invalidatesTags: ['Subject', 'Dates'],
       }),
       editSubject: build.mutation<
          { message: string },
