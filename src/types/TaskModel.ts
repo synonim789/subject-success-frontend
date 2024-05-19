@@ -1,6 +1,8 @@
+import { Subject } from './SubjectModel';
+
 export type Task = {
    completed: boolean;
-   subject: string;
+   subject: Subject;
    title: string;
    user: string;
    date: string;
