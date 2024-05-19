@@ -10,7 +10,7 @@ const Subjects = () => {
    }
 
    return (
-      <div className="flex flex-wrap justify-center gap-5">
+      <div className="flex flex-wrap gap-5">
          {data?.map((subject) => (
             <Subject
                key={subject._id}
