@@ -56,7 +56,7 @@ const Input = ({
                   error
                      ? 'border-2 border-red-500 dark:border-red-400'
                      : 'border-[#CDD6E1] dark:border-slate-600'
-               }  rounded-md border bg-transparent py-3 pl-5 pr-3 outline-none dark:text-white`}
+               }  rounded-md border bg-transparent py-3 pl-5 pr-3 outline-none dark:text-white dark:[color-scheme:dark]`}
                {...register}
                step={step}
             />
