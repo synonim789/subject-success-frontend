@@ -23,7 +23,7 @@ const TaskList = () => {
          <div className="flex flex-col items-start gap-5">
             {tasks && tasks.length > 1 ? (
                tasks?.map((task) => (
-                  <div>
+                  <div key={task._id}>
                      <p className="text-sm text-gray-400">
                         {task.subject.name}
                      </p>
