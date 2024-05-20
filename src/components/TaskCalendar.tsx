@@ -7,6 +7,7 @@ import {
    CalendarGrid,
    Heading,
 } from 'react-aria-components';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useGetTaskDatesQuery } from '../app/api/taskApiSlice';
 import { Task } from '../types/TaskModel';
 
@@ -58,7 +59,7 @@ const TaskCalendar = () => {
    }
 
    return (
-      <section className="w-fit rounded-lg bg-white p-5 shadow-2xl dark:bg-dark-400">
+      <section className="w-full rounded-lg bg-white p-5 shadow-2xl md:w-fit dark:bg-dark-400">
          <Calendar
             aria-label="Appointment date"
             className="dark:text-white"
@@ -66,22 +67,26 @@ const TaskCalendar = () => {
             onFocusChange={setSelectedDate}
          >
             <header className="flex w-full items-center gap-1 px-1 pb-4">
-               <Button slot="previous">◀</Button>
+               <Button slot="previous" className="rounded-full bg-gray-900">
+                  <MdKeyboardArrowLeft size={30} className="text-white" />
+               </Button>
                <Heading className="mx-2 flex-1 text-center" />
-               <Button slot="next">▶</Button>
+               <Button slot="next" className="rounded-full bg-gray-900">
+                  <MdKeyboardArrowRight size={30} className="text-white" />
+               </Button>
             </header>
-            <CalendarGrid className="">
+            <CalendarGrid>
                {(date) => (
                   <CalendarCell
                      className={({ isSelected, date, isOutsideMonth }) => {
-                        return `${isSelected ? 'bg-green-house-500 hover:bg-green-house-300' : isDateInArray(date) && 'bg-yellow-400 text-black hover:bg-yellow-200 '} m-1 flex size-10 items-center justify-center rounded-full ${isOutsideMonth ? 'hidden' : ''}`;
+                        return `${isSelected ? 'bg-green-house-500 hover:bg-green-house-300' : isDateInArray(date) && 'bg-yellow-400 text-black hover:bg-yellow-200 '} flex size-9 items-center justify-center rounded-full md:m-1 md:size-10 ${isOutsideMonth ? 'hidden' : ''}`;
                      }}
                      date={date}
                   ></CalendarCell>
                )}
             </CalendarGrid>
          </Calendar>
-         <div className="mt-2 text-xl text-white">
+         <div className="mt-2 text-xl dark:text-white">
             {tasks.length >= 1 ? (
                <div className="flex w-fit max-w-[300px] flex-col">
                   {tasks.map((task) => (
