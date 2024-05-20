@@ -56,6 +56,21 @@ const taskApiSlice = api.injectEndpoints({
          }),
          providesTags: ['Dates'],
       }),
+      getRecommendedTasks: build.query<Task[], void>({
+         query: () => ({
+            url: '/task/recommended',
+            method: 'GET',
+         }),
+      }),
+      getTaskCount: build.query<
+         { taskAmount: number; completedTasks: number },
+         void
+      >({
+         query: () => ({
+            url: '/task/completed',
+            method: 'GET',
+         }),
+      }),
    }),
 });
 
@@ -66,4 +81,6 @@ export const {
    useEditTaskNameMutation,
    useGetAllTaskQuery,
    useGetTaskDatesQuery,
+   useGetRecommendedTasksQuery,
+   useGetTaskCountQuery,
 } = taskApiSlice;
