@@ -18,14 +18,14 @@ const subjectApiSlice = api.injectEndpoints({
             method: 'POST',
             body: { name, type },
          }),
-         invalidatesTags: ['Subject'],
+         invalidatesTags: ['Subject', 'Completed'],
       }),
       deleteSubject: build.mutation<Subject, { subjectId: string }>({
          query: ({ subjectId }) => ({
             url: `subject/${subjectId}`,
             method: 'DELETE',
          }),
-         invalidatesTags: ['Subject', 'Dates'],
+         invalidatesTags: ['Subject', 'Dates', 'Completed'],
       }),
       editSubject: build.mutation<
          { message: string },
@@ -36,13 +36,14 @@ const subjectApiSlice = api.injectEndpoints({
             method: 'PUT',
             body: { name, type, completed: completion, grade },
          }),
-         invalidatesTags: ['Subject'],
+         invalidatesTags: ['Subject', 'Completed'],
       }),
       getRecommendedSubject: build.query<RecommendedSubject[], void>({
          query: () => ({
             url: '/subject/recommended',
             method: 'GET',
          }),
+         providesTags: ['Completed'],
       }),
    }),
 });

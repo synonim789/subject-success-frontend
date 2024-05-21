@@ -12,7 +12,7 @@ const taskApiSlice = api.injectEndpoints({
             method: 'POST',
             body: { subjectId, title: name, date: date },
          }),
-         invalidatesTags: ['Subject', 'Dates', 'Task'],
+         invalidatesTags: ['Subject', 'Dates', 'Task', 'Completed'],
       }),
       setCompleted: build.mutation<
          Task,
@@ -23,14 +23,14 @@ const taskApiSlice = api.injectEndpoints({
             method: 'PUT',
             body: { completed },
          }),
-         invalidatesTags: ['Subject', 'Task'],
+         invalidatesTags: ['Subject', 'Task', 'Completed'],
       }),
       deleteTask: build.mutation<{ message: string }, { taskId: string }>({
          query: ({ taskId }) => ({
             url: `/task/${taskId}`,
             method: 'DELETE',
          }),
-         invalidatesTags: ['Subject', 'Dates', 'Task'],
+         invalidatesTags: ['Subject', 'Dates', 'Task', 'Completed'],
       }),
       editTaskName: build.mutation<
          Task,
@@ -41,7 +41,7 @@ const taskApiSlice = api.injectEndpoints({
             method: 'PUT',
             body: { title: name, date: date },
          }),
-         invalidatesTags: ['Subject', 'Dates', 'Task'],
+         invalidatesTags: ['Subject', 'Dates', 'Task', 'Completed'],
       }),
       getAllTask: build.query<Task[], void>({
          query: () => ({
