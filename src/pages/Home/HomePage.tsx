@@ -1,4 +1,5 @@
 import Header from '../../components/Header';
+import SubjectList from '../../components/SubjectList';
 import TaskCalendar from '../../components/TaskCalendar';
 import TaskList from '../../components/TaskList';
 
@@ -6,7 +7,8 @@ const HomePage = () => {
    return (
       <section>
          <Header text="Home" />
-         <div className="flex flex-col justify-between gap-5 md:flex-row">
+         <div className="flex flex-col gap-10 md:flex-row">
+            <SubjectList />
             <TaskList />
             <TaskCalendar />
          </div>

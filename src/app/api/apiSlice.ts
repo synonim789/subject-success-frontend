@@ -8,6 +8,10 @@ import {
 import env from '../../utils/cleanEnv';
 import { logout, setIsAuthenticated } from '../slices/authSlice';
 
+type RefreshResponse = {
+   isAuthenticated: boolean;
+};
+
 const baseQuery = fetchBaseQuery({
    baseUrl: new URL(env.VITE_SERVER_ENDPOINT).href,
    credentials: 'include',
@@ -25,8 +29,9 @@ const baseQueryWithReauth: BaseQueryFn<
          api,
          extraOptions,
       );
-      if (refreshResult.data) {
-         api.dispatch(setIsAuthenticated(refreshResult.data.isAuthenticated));
+      const refreshData = refreshResult.data as RefreshResponse;
+      if (refreshData) {
+         api.dispatch(setIsAuthenticated(refreshData.isAuthenticated));
          result = await baseQuery(args, api, extraOptions);
       } else {
          api.dispatch(logout());
@@ -39,5 +44,5 @@ export const api = createApi({
    reducerPath: 'api',
    baseQuery: baseQueryWithReauth,
    endpoints: () => ({}),
-   tagTypes: ['User', 'Subject', 'Dates'],
+   tagTypes: ['User', 'Subject', 'Dates', 'Task'],
 });

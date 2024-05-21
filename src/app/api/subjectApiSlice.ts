@@ -1,3 +1,4 @@
+import { RecommendedSubject } from '../../types/RecommendedSubject.Model';
 import { Subject } from '../../types/SubjectModel';
 import { AddSubjectFields, EditSubjectFields } from '../../types/schemas';
 import { api } from './apiSlice';
@@ -37,6 +38,12 @@ const subjectApiSlice = api.injectEndpoints({
          }),
          invalidatesTags: ['Subject'],
       }),
+      getRecommendedSubject: build.query<RecommendedSubject[], void>({
+         query: () => ({
+            url: '/subject/recommended',
+            method: 'GET',
+         }),
+      }),
    }),
 });
 
@@ -45,4 +52,5 @@ export const {
    useAddSubjectMutation,
    useDeleteSubjectMutation,
    useEditSubjectMutation,
+   useGetRecommendedSubjectQuery,
 } = subjectApiSlice;

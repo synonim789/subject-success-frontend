@@ -8,7 +8,7 @@ const TaskList = () => {
    const { data: tasks } = useGetRecommendedTasksQuery();
    const { data: taskCount } = useGetTaskCountQuery();
    return (
-      <section className="w-fit rounded-lg bg-white p-8 shadow-2xl dark:bg-dark-400">
+      <section className="w-full rounded-lg bg-white p-8 shadow-2xl dark:bg-dark-400">
          <div className="flex justify-between">
             <h2 className="mb-4 text-3xl dark:text-white/85">Tasks</h2>
             <div className="text-xl dark:text-white/85">
