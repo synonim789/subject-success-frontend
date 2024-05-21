@@ -67,11 +67,14 @@ const TaskCalendar = () => {
             onFocusChange={setSelectedDate}
          >
             <header className="flex w-full items-center gap-1 px-1 pb-4">
-               <Button slot="previous" className="rounded-full bg-gray-900">
+               <Button
+                  slot="previous"
+                  className="rounded-full bg-green-house-500"
+               >
                   <MdKeyboardArrowLeft size={30} className="text-white" />
                </Button>
                <Heading className="mx-2 flex-1 text-center" />
-               <Button slot="next" className="rounded-full bg-gray-900">
+               <Button slot="next" className="rounded-full bg-green-house-500">
                   <MdKeyboardArrowRight size={30} className="text-white" />
                </Button>
             </header>

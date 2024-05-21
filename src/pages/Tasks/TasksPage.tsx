@@ -1,6 +1,6 @@
 import { useGetAllTaskQuery } from '../../app/api/taskApiSlice';
 import Header from '../../components/Header';
-import SubjectTask from '../Subjects/SubjectTask';
+import Task from './Task';
 
 const TasksPage = () => {
    const { data: tasks } = useGetAllTaskQuery();
@@ -14,7 +14,7 @@ const TasksPage = () => {
          <Header text="tasks" />
          <section className="grid gap-5  sm:grid-cols-4">
             {tasks.map((task) => {
-               return <SubjectTask task={task} key={task._id} />;
+               return <Task task={task} key={task._id} />;
             })}
          </section>
       </section>
