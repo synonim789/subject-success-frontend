@@ -90,7 +90,7 @@ const EditSubjectModalContent = ({
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex items-center gap-5">
+            <div className="mb-5 flex flex-col items-center gap-5 md:flex-row">
                <Input
                   register={{ ...register('name') }}
                   label="Name"
@@ -105,7 +105,7 @@ const EditSubjectModalContent = ({
                   name="type"
                   render={({ field: { onChange } }) => (
                      <Select
-                        className="text-left"
+                        className="w-full text-left"
                         onSelectionChange={(selected) => {
                            onChange(selected);
                            setType(selected);
@@ -118,7 +118,7 @@ const EditSubjectModalContent = ({
                            Type
                         </Label>
                         <div className="relative mb-4 mt-1 flex w-full  flex-col text-left">
-                           <Button className="flex items-center justify-between gap-x-5 rounded-md border border-[#CDD6E1] bg-transparent py-3 pl-5 pr-3 outline-none dark:border-slate-600 dark:text-white">
+                           <Button className="flex w-full items-center justify-between gap-x-5 rounded-md border border-[#CDD6E1] bg-transparent py-3 pl-5 pr-3 outline-none dark:border-slate-600 dark:text-white">
                               <SelectValue className="w-full text-gray-400" />
                               <FaChevronDown />
                            </Button>

@@ -57,7 +57,7 @@ const AddSubjectModalContent = () => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
                <Input
                   register={{ ...register('name') }}
                   label="Name"
@@ -70,7 +70,10 @@ const AddSubjectModalContent = () => {
                   control={control}
                   name="type"
                   render={({ field: { onChange } }) => (
-                     <Select className="text-left" onSelectionChange={onChange}>
+                     <Select
+                        className="w-full text-left"
+                        onSelectionChange={onChange}
+                     >
                         <Label
                            className={`${errors.type ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
                         >

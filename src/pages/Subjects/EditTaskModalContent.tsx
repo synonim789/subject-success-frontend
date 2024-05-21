@@ -50,7 +50,7 @@ const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex gap-5">
+            <div className="flex flex-col gap-5 md:flex-row">
                <Input
                   id="name"
                   label="Name"

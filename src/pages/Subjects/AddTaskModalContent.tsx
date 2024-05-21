@@ -48,7 +48,7 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex gap-5">
+            <div className="flex flex-col gap-3  md:flex-row md:gap-5">
                <Input
                   id="name"
                   label="Name"
