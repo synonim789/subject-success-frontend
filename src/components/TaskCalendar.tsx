@@ -89,9 +89,9 @@ const TaskCalendar = () => {
                )}
             </CalendarGrid>
          </Calendar>
-         <div className="mt-2 text-xl dark:text-white">
+         <div className="mt-4 text-xl dark:text-white">
             {tasks.length >= 1 ? (
-               <div className="flex w-fit max-w-[300px] flex-col">
+               <div className="flex w-fit max-w-[300px] flex-col gap-5">
                   {tasks.map((task) => (
                      <div key={task._id}>
                         <p className="text-sm text-gray-400">
