@@ -19,7 +19,7 @@ const SubjectItem = ({ subject }: Props) => {
    );
 
    return (
-      <div className="rounded-lg bg-dark-700 p-5">
+      <div className="rounded-lg  bg-gray-100 p-5 dark:bg-dark-700">
          <h4 className="text-xl font-bold dark:text-white/85">
             {subject.name}
          </h4>
@@ -34,7 +34,7 @@ const SubjectItem = ({ subject }: Props) => {
                <span>{subject.totalTask} </span>
             </div>
          </div>
-         <div className="mt-4 h-2 w-full rounded-full bg-gray-200 dark:bg-dark-900">
+         <div className="mt-4 h-2 w-full rounded-full bg-gray-300 dark:bg-dark-900">
             {calculatedPercent < 0.5 ? (
                <div
                   className="h-2 rounded-full bg-red-400"
