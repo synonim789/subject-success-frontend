@@ -6,10 +6,10 @@ import {
    useDeleteTaskMutation,
    useSetCompletedMutation,
 } from '../../app/api/taskApiSlice';
+import EditTaskModalContent from '../../components/EditTaskModalContent';
 import ModalComponent from '../../components/Modal';
 import { Task as TaskType } from '../../types/TaskModel';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
-import EditTaskModalContent from '../Subjects/EditTaskModalContent';
 
 type Props = {
    task: TaskType;
