@@ -29,7 +29,6 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
    const submitHandler: SubmitHandler<AddTaskFields> = async (data) => {
       try {
          const { name, date } = data;
-         console.log(date);
          await addTask({ subjectId, name, date }).unwrap();
          toast.success('Task added successfully');
          close();
