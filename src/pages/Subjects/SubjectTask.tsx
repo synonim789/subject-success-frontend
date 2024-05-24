@@ -6,10 +6,10 @@ import {
    useDeleteTaskMutation,
    useSetCompletedMutation,
 } from '../../app/api/taskApiSlice';
+import EditTaskModalContent from '../../components/EditTaskModalContent';
 import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
-import EditTaskModalContent from './EditTaskModalContent';
 
 type Props = {
    task: Task;
@@ -42,7 +42,7 @@ const SubjectTask = ({ task }: Props) => {
    };
 
    return (
-      <div className="flex items-center justify-between rounded-lg bg-gray-300 p-3 text-center text-lg transition hover:bg-gray-700 dark:bg-dark-100 dark:hover:bg-dark-900">
+      <div className="flex items-center justify-between rounded-lg bg-gray-100 p-3 text-center text-lg transition hover:bg-gray-300 dark:bg-dark-100 dark:hover:bg-dark-900">
          <div className="flex gap-3">
             <Checkbox
                className="group cursor-pointer"
