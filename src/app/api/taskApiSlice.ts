@@ -34,7 +34,7 @@ const taskApiSlice = api.injectEndpoints({
       }),
       editTaskName: build.mutation<
          Task,
-         { name: string; taskId: string; date: Date | undefined }
+         { name: string; taskId: string; date: string | undefined }
       >({
          query: ({ name, taskId, date }) => ({
             url: `/task/title/${taskId}`,
