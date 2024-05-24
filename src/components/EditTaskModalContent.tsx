@@ -2,12 +2,12 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
-import { useEditTaskNameMutation } from '../../app/api/taskApiSlice';
-import Input from '../../components/Input';
-import SubmitButton from '../../components/SubmitButton';
-import { ModalContext } from '../../context/ModalContext';
-import { EditTaskFields, editTaskSchema } from '../../types/schemas';
-import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import { useEditTaskNameMutation } from '../app/api/taskApiSlice';
+import { ModalContext } from '../context/ModalContext';
+import { EditTaskFields, editTaskSchema } from '../types/schemas';
+import { isFetchBaseQueryError } from '../utils/isFetchBaseQueryError';
+import Input from './Input';
+import SubmitButton from './SubmitButton';
 
 type Props = {
    taskId: string;
@@ -30,7 +30,7 @@ const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
          name: taskName,
          date: taskDate
             ? new Date(taskDate).toISOString().substring(0, 10)
-            : '',
+            : undefined,
       },
    });
 
