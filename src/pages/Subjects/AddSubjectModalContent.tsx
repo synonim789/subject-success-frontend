@@ -73,6 +73,7 @@ const AddSubjectModalContent = () => {
                      <Select
                         className="w-full text-left"
                         onSelectionChange={onChange}
+                        aria-label="choose type"
                      >
                         <Label
                            className={`${errors.type ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
