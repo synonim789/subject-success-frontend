@@ -83,6 +83,7 @@ const SubjectTask = ({ task }: Props) => {
                      taskDate={task.date}
                   />
                }
+               label='edit task'
             />
          </div>
       </div>
