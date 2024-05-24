@@ -85,8 +85,6 @@ const EditSubjectModalContent = ({
       return <p>Loading...</p>;
    }
 
-   console.log(errors);
-
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
@@ -111,6 +109,7 @@ const EditSubjectModalContent = ({
                            setType(selected);
                         }}
                         selectedKey={type}
+                        aria-label='choose type'
                      >
                         <Label
                            className={`${errors.type ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
@@ -176,7 +175,7 @@ const EditSubjectModalContent = ({
                {selectedType === 'grade' && (
                   <Input
                      type="number"
-                     label="Grade"
+                     label="Grade Number"
                      placeholder="Enter Grade"
                      id="grade"
                      name="grade"
