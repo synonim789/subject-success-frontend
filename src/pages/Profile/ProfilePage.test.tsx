@@ -19,7 +19,9 @@ describe('Profile Page Test', () => {
       expect(await screen.findByText(/test@test.com/i)).toBeInTheDocument();
       expect(await screen.findByAltText(/picture/i)).toBeInTheDocument();
 
-      const editButton = await screen.findByLabelText(/edit image/i);
+      const editButton =  screen.getByRole('button', {
+         name: /edit image/i,
+      });
       expect(editButton).toBeInTheDocument();
 
       await user.click(editButton);
