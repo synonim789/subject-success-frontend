@@ -39,12 +39,15 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
    };
 
    return (
-      <div className="relative min-h-[500px] min-w-[300px] overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600">
+      <div
+         className="relative min-h-[500px] min-w-[300px] overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600"
+         aria-label="subject"
+      >
          <div className="w-full border-b border-dark-700 p-2 text-left">
             <div className="mt-2 flex justify-between text-wrap text-2xl">
                <p className="max-w-[250px] text-lg">{name}</p>
                <DialogTrigger>
-                  <Button>
+                  <Button aria-label="open options">
                      <BsThreeDots />
                   </Button>
                   <Popover
@@ -74,6 +77,7 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                                  subjectId={id}
                               />
                            }
+                           label="edit modal"
                         />
                         <button
                            className="w-full rounded-lg p-2 font-bold text-red-400 hover:bg-gray-200 dark:hover:bg-dark-300"
@@ -94,6 +98,7 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                buttonClassName="w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-gray-200 dark:hover:bg-dark-700 mb-7"
                buttonChildren="Add Task +"
                children={<AddTaskModalContent subjectId={id} />}
+               label="add task"
             />
          </div>
          <div className="absolute bottom-3 left-3">
