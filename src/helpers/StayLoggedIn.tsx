@@ -8,7 +8,7 @@ const StayLoggedIn = () => {
    const [refresh, { isLoading, isError, isSuccess, isUninitialized }] =
       useRefreshMutation();
    const [trueSuccess, setTrueSuccess] = useState(false);
-   const token = useSelector((state: RootState) => state.auth.token);
+   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
 
    useEffect(() => {
       const verifyRefreshToken = async () => {
@@ -19,8 +19,8 @@ const StayLoggedIn = () => {
             console.log(error);
          }
       };
-      if (!token) verifyRefreshToken();
-   }, [refresh, token]);
+      if (!isAuthenticated) verifyRefreshToken();
+   }, [refresh, isAuthenticated]);
 
    if (isLoading) {
       return <p>Loading...</p>;
@@ -28,7 +28,7 @@ const StayLoggedIn = () => {
       return <Navigate to="/login" />;
    } else if (isSuccess && trueSuccess) {
       return <Outlet />;
-   } else if (token && isUninitialized) {
+   } else if (isAuthenticated && isUninitialized) {
       return <Outlet />;
    }
 };
