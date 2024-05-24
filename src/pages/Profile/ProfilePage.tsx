@@ -42,6 +42,7 @@ const ProfilePage = () => {
                      buttonChildren={<CiEdit size={25} />}
                      buttonClassName="absolute bottom-0 right-0 flex size-12 cursor-pointer items-center justify-center rounded-full bg-green-house-500 p-1 transition duration-300 hover:scale-110 hover:bg-green-house-600 hover:text-white"
                      children={<UploadImageModalContent />}
+                     label="edit image"
                   />
                </div>
                <div className="text-center sm:text-left">
