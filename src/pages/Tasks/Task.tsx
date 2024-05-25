@@ -90,6 +90,7 @@ const Task = ({ task }: Props) => {
                      taskDate={task.date}
                   />
                }
+               label='edit task'
             />
          </div>
       </div>
