@@ -48,6 +48,7 @@ const SubjectTask = ({ task }: Props) => {
                className="group cursor-pointer"
                isSelected={task.completed}
                onChange={handleCompleteTask}
+               aria-label='complete task'
             >
                {({ isSelected }) => (
                   <>
@@ -70,7 +71,7 @@ const SubjectTask = ({ task }: Props) => {
             <button
                className="text-red-400 transition hover:text-red-500"
                onClick={deleteTaskHandler}
-               aria-label='delete task'
+               aria-label="delete task"
             >
                <CiTrash size={23} />
             </button>
@@ -84,7 +85,7 @@ const SubjectTask = ({ task }: Props) => {
                      taskDate={task.date}
                   />
                }
-               label='edit task'
+               label="edit task"
             />
          </div>
       </div>
