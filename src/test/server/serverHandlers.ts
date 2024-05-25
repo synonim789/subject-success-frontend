@@ -266,7 +266,19 @@ export const handlers = [
          );
       },
    ),
-   http.delete('http://localhost:3000/663cf66dd64201f94f27a935', async () => {
-      return HttpResponse.json({ message: 'subject deleted' }, { status: 200 });
-   }),
+   http.delete(
+      'http://localhost:3000/task/663cf652d64201f94f27a928',
+      async () => {
+         return HttpResponse.json({ message: 'task deleted' }, { status: 200 });
+      },
+   ),
+   http.put(
+      'http://localhost:3000/task/completed/663cf652d64201f94f27a928',
+      async () => {
+         return HttpResponse.json(
+            { message: 'task completed' },
+            { status: 200 },
+         );
+      },
+   ),
 ];

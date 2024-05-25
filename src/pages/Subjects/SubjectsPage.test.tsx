@@ -298,9 +298,22 @@ describe('Subjects Page Test', () => {
       expect(subjects).toHaveLength(3);
       const subject = subjects[0];
 
-      const deleteBtn = await within(subject).findByLabelText(/delete task/i)
-      expect(deleteBtn).toBeInTheDocument()
-      await user.click(deleteBtn)
+      const deleteBtn = await within(subject).findByLabelText(/delete task/i);
+      expect(deleteBtn).toBeInTheDocument();
+      await user.click(deleteBtn);
    });
-   
+   it('should be able to complete task', async () => {
+      const user = userEvent.setup();
+      render(<SubjectsPage />);
+      const subjects = await screen.findAllByLabelText('subject');
+      expect(subjects).toHaveLength(3);
+      const subject = subjects[0];
+
+      const setTaskCompleteBtn =
+         await within(subject).findByLabelText(/complete task/i);
+      expect(setTaskCompleteBtn).toBeInTheDocument();
+      await user.click(setTaskCompleteBtn);
+
+      
+   });
 });
