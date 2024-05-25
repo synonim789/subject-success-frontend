@@ -1,5 +1,5 @@
 import userEvent from '@testing-library/user-event';
-import { cleanup, render, screen } from '../../test/test-utils';
+import { cleanup, render, screen, waitFor } from '../../test/test-utils';
 import UpdateUserInfo from './UpdateUserInfo';
 
 describe('Update Username Form Test', () => {
@@ -36,8 +36,9 @@ describe('Update Username Form Test', () => {
 
       await user.type(usernameInput, 'test!12345');
       await user.click(updateUsernameButton);
-      expect(
-         await screen.findAllByText(/cannot update username/i),
-      ).toHaveLength(2);
+
+      await waitFor(() =>
+         expect(screen.getAllByText(/cannot update username/i)).toHaveLength(2),
+      );
    });
 });
