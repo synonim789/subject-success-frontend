@@ -291,4 +291,16 @@ describe('Subjects Page Test', () => {
          await screen.findByText(/task cant be added/i),
       ).toBeInTheDocument();
    });
+   it('should be able to delete task', async () => {
+      const user = userEvent.setup();
+      render(<SubjectsPage />);
+      const subjects = await screen.findAllByLabelText('subject');
+      expect(subjects).toHaveLength(3);
+      const subject = subjects[0];
+
+      const deleteBtn = await within(subject).findByLabelText(/delete task/i)
+      expect(deleteBtn).toBeInTheDocument()
+      await user.click(deleteBtn)
+   });
+   
 });

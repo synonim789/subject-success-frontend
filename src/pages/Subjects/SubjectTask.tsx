@@ -70,6 +70,7 @@ const SubjectTask = ({ task }: Props) => {
             <button
                className="text-red-400 transition hover:text-red-500"
                onClick={deleteTaskHandler}
+               aria-label='delete task'
             >
                <CiTrash size={23} />
             </button>

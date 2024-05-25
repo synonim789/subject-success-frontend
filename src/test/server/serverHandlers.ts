@@ -155,7 +155,7 @@ export const handlers = [
                tasks: [
                   {
                      _id: '663cf652d64201f94f27a928',
-                     title: 'zaliczenie za laboratoria',
+                     title: 'zaliczenie za laboratoria 1',
                      subject: '663cf649d64201f94f27a922',
                      completed: true,
                      user: '661d5f2a9d21998a6d0ce08d',
@@ -187,7 +187,7 @@ export const handlers = [
                   {
                      date: null,
                      _id: '663cf686d64201f94f27a948',
-                     title: 'zaliczenie za laboratoria',
+                     title: 'zaliczenie za laboratoria 2',
                      subject: '663cf677d64201f94f27a93b',
                      completed: true,
                      user: '661d5f2a9d21998a6d0ce08d',
@@ -266,4 +266,7 @@ export const handlers = [
          );
       },
    ),
+   http.delete('http://localhost:3000/663cf66dd64201f94f27a935', async () => {
+      return HttpResponse.json({ message: 'subject deleted' }, { status: 200 });
+   }),
 ];
