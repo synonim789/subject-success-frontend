@@ -248,4 +248,22 @@ export const handlers = [
          );
       },
    ),
+   http.post<PathParams, { title: string }, { message: string }>(
+      'http://localhost:3000/task',
+      async ({ request }) => {
+         const { title } = await request.json();
+         console.log(title);
+         if (title === 'task 2') {
+            return HttpResponse.json(
+               { message: 'task cant be added' },
+               { status: 400 },
+            );
+         }
+
+         return HttpResponse.json(
+            { message: 'task added success' },
+            { status: 200 },
+         );
+      },
+   ),
 ];
