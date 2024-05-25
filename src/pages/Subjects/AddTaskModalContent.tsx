@@ -14,7 +14,7 @@ type Props = {
 };
 
 const AddTaskModalContent = ({ subjectId }: Props) => {
-   const [addTask, { isLoading }] = useAddTaskMutation();
+   const [addTask] = useAddTaskMutation();
    const { close } = useContext(ModalContext)!;
 
    const {
@@ -39,10 +39,6 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
          }
       }
    };
-
-   if (isLoading) {
-      return <p>Loading...</p>;
-   }
 
    return (
       <div className="flex w-full items-center">
