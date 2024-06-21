@@ -40,7 +40,7 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
 
    return (
       <div
-         className="relative min-h-[500px] min-w-[300px] overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600"
+         className="relative min-h-[500px] w-full overflow-auto rounded-xl bg-white text-gray-500 shadow-xl transition dark:bg-dark-400 dark:hover:bg-dark-600"
          aria-label="subject"
       >
          <div className="w-full border-b border-dark-700 p-2 text-left">
