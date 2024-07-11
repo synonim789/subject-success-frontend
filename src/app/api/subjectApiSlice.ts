@@ -45,6 +45,13 @@ const subjectApiSlice = api.injectEndpoints({
          }),
          providesTags: ['Completed'],
       }),
+      deleteAllSubjects: build.mutation<{ message: string }, void>({
+         query: () => ({
+            url: '/subject/all',
+            method: 'DELETE',
+         }),
+         invalidatesTags: ['Subject', 'Task'],
+      }),
    }),
 });
 
@@ -54,4 +61,5 @@ export const {
    useDeleteSubjectMutation,
    useEditSubjectMutation,
    useGetRecommendedSubjectQuery,
+   useDeleteAllSubjectsMutation,
 } = subjectApiSlice;

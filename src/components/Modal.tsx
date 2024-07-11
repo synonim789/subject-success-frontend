@@ -14,6 +14,7 @@ type Props = {
    buttonChildren: string | ReactNode;
    children: ReactNode;
    label: string;
+   disabled?: boolean;
 };
 
 const ModalComponent = ({
@@ -21,10 +22,15 @@ const ModalComponent = ({
    buttonClassName,
    children,
    label,
+   disabled = false,
 }: Props) => {
    return (
       <DialogTrigger>
-         <Button className={buttonClassName} aria-label={label}>
+         <Button
+            className={buttonClassName}
+            aria-label={label}
+            isDisabled={disabled}
+         >
             {buttonChildren}
          </Button>
          <ModalOverlay className="fixed left-0 top-0 isolate z-20 flex h-full w-full items-center justify-center bg-black/15 p-4 text-center backdrop-blur-lg">
