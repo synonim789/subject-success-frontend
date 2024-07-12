@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { MdAlternateEmail } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useForgotPasswordMutation } from '../../app/api/userApiSlice';
@@ -40,12 +40,14 @@ const ForgotPasswordForm = () => {
       }
    };
 
-   useEffect(() => {
-      if (isLoading) {
-         const loadingToast = toast.loading('Loading...', { id: 'loading' });
-         return () => toast.dismiss(loadingToast);
-      }
-   }, [isLoading]);
+   if (isLoading) {
+      return (
+         <AiOutlineLoading3Quarters
+            className="animate-spin dark:text-white"
+            size={40}
+         />
+      );
+   }
 
    return (
       <form onSubmit={handleSubmit(submitHandler)} className="w-full px-5">

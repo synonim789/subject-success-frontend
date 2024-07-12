@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useRefreshMutation } from '../app/api/authApiSlice';
@@ -8,7 +9,9 @@ const StayLoggedIn = () => {
    const [refresh, { isLoading, isError, isSuccess, isUninitialized }] =
       useRefreshMutation();
    const [trueSuccess, setTrueSuccess] = useState(false);
-   const isAuthenticated = useSelector((state: RootState) => state.auth.isAuthenticated);
+   const isAuthenticated = useSelector(
+      (state: RootState) => state.auth.isAuthenticated,
+   );
 
    useEffect(() => {
       const verifyRefreshToken = async () => {
@@ -23,7 +26,14 @@ const StayLoggedIn = () => {
    }, [refresh, isAuthenticated]);
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+         <div className="flex h-screen items-center justify-center">
+            <AiOutlineLoading3Quarters
+               className="animate-spin dark:text-white"
+               size={40}
+            />
+         </div>
+      );
    } else if (isError) {
       return <Navigate to="/login" />;
    } else if (isSuccess && trueSuccess) {

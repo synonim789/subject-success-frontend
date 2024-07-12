@@ -13,6 +13,7 @@ import {
 } from 'react-aria-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { FaCheck, FaChevronDown } from 'react-icons/fa';
 import { useEditSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
@@ -82,7 +83,12 @@ const EditSubjectModalContent = ({
    const selectedType = watch('type');
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+         <AiOutlineLoading3Quarters
+            className="animate-spin dark:text-white"
+            size={40}
+         />
+      );
    }
 
    return (
@@ -109,7 +115,7 @@ const EditSubjectModalContent = ({
                            setType(selected);
                         }}
                         selectedKey={type}
-                        aria-label='choose type'
+                        aria-label="choose type"
                      >
                         <Label
                            className={`${errors.type ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}

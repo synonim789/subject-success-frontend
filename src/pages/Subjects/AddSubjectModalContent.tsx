@@ -11,6 +11,7 @@ import {
 } from 'react-aria-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { FaChevronDown } from 'react-icons/fa';
 import { useAddSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
@@ -52,7 +53,7 @@ const AddSubjectModalContent = () => {
    };
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return <AiOutlineLoading3Quarters className="animate-spin dark:text-white" size={40} />;
    }
    return (
       <div className="flex w-full items-center">

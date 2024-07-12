@@ -10,6 +10,7 @@ import {
    CalendarHeaderCell,
    Heading,
 } from 'react-aria-components';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useGetTaskDatesQuery } from '../app/api/taskApiSlice';
 import { Task } from '../types/TaskModel';
@@ -58,7 +59,12 @@ const TaskCalendar = () => {
    };
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+         <AiOutlineLoading3Quarters
+            className="animate-spin dark:text-white"
+            size={40}
+         />
+      );
    }
 
    return (

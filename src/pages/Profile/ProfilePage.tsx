@@ -1,3 +1,4 @@
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { CiEdit } from 'react-icons/ci';
 import { useGetUserQuery } from '../../app/api/userApiSlice';
 import Header from '../../components/Header';
@@ -12,7 +13,12 @@ const ProfilePage = () => {
    const { data, isLoading, isError } = useGetUserQuery();
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+         <AiOutlineLoading3Quarters
+            className="animate-spin dark:text-white"
+            size={40}
+         />
+      );
    }
 
    if (isError) {

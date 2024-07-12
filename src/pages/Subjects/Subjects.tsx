@@ -1,3 +1,4 @@
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useGetSubjectsQuery } from '../../app/api/subjectApiSlice';
 import AddSubject from './AddSubject';
 import Subject from './Subject';
@@ -6,7 +7,12 @@ const Subjects = () => {
    const { data, isLoading } = useGetSubjectsQuery();
 
    if (isLoading) {
-      return <p>Loading...</p>;
+      return (
+         <AiOutlineLoading3Quarters
+            className="animate-spin dark:text-white"
+            size={40}
+         />
+      );
    }
 
    return (
