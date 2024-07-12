@@ -5,6 +5,9 @@ import {
    Calendar,
    CalendarCell,
    CalendarGrid,
+   CalendarGridBody,
+   CalendarGridHeader,
+   CalendarHeaderCell,
    Heading,
 } from 'react-aria-components';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
@@ -59,10 +62,10 @@ const TaskCalendar = () => {
    }
 
    return (
-      <section className="w-full rounded-lg bg-white p-5 shadow-2xl md:w-fit dark:bg-dark-400">
+      <section className="flex w-full flex-col items-center rounded-lg bg-white p-5 shadow-2xl dark:bg-dark-400">
          <Calendar
             aria-label="Appointment date"
-            className="dark:text-white"
+            className="w-fit dark:text-white"
             defaultValue={today(getLocalTimeZone())}
             onFocusChange={setSelectedDate}
          >
@@ -78,15 +81,22 @@ const TaskCalendar = () => {
                   <MdKeyboardArrowRight size={30} className="text-white" />
                </Button>
             </header>
-            <CalendarGrid>
-               {(date) => (
-                  <CalendarCell
-                     className={({ isSelected, date, isOutsideMonth }) => {
-                        return `${isSelected ? 'bg-green-house-500 hover:bg-green-house-300' : isDateInArray(date) && 'bg-yellow-400 text-black hover:bg-yellow-200 '} flex size-9 items-center justify-center rounded-full md:m-1 md:size-10 ${isOutsideMonth ? 'hidden' : ''}`;
-                     }}
-                     date={date}
-                  ></CalendarCell>
-               )}
+            <CalendarGrid className="w-full">
+               <CalendarGridHeader>
+                  {(day) => (
+                     <CalendarHeaderCell className="">{day}</CalendarHeaderCell>
+                  )}
+               </CalendarGridHeader>
+               <CalendarGridBody>
+                  {(date) => (
+                     <CalendarCell
+                        className={({ isSelected, date, isOutsideMonth }) => {
+                           return `${isSelected ? 'bg-green-house-500 hover:bg-green-house-300' : isDateInArray(date) && 'bg-yellow-400 text-black hover:bg-yellow-200 '} flex size-9 items-center justify-center rounded-full md:m-1 md:size-10 ${isOutsideMonth ? 'hidden' : ''}`;
+                        }}
+                        date={date}
+                     ></CalendarCell>
+                  )}
+               </CalendarGridBody>
             </CalendarGrid>
          </Calendar>
          <div className="mt-4 text-xl dark:text-white">

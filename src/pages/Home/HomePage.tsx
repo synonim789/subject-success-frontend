@@ -7,7 +7,7 @@ const HomePage = () => {
    return (
       <section>
          <Header text="Home" />
-         <div className="flex flex-col gap-10 md:flex-row">
+         <div className="flex flex-col gap-10 lg:flex-row">
             <SubjectList />
             <TaskList />
             <TaskCalendar />
