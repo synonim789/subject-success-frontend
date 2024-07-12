@@ -72,6 +72,13 @@ const taskApiSlice = api.injectEndpoints({
             method: 'GET',
          }),
       }),
+      deleteAllTasks: build.mutation<{ message: string }, void>({
+         query: () => ({
+            url: '/task/all',
+            method: 'DELETE',
+         }),
+         invalidatesTags: ['Task', 'Subject'],
+      }),
    }),
 });
 
@@ -84,4 +91,5 @@ export const {
    useGetTaskDatesQuery,
    useGetRecommendedTasksQuery,
    useGetTaskCountQuery,
+   useDeleteAllTasksMutation,
 } = taskApiSlice;
