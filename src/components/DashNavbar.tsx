@@ -36,7 +36,7 @@ const DashNavbar = ({
             </p>
          </div>
          <div className="flex items-center gap-5">
-            <p className="group hidden items-center gap-2 text-lg md:flex">
+            <p className="group hidden items-center gap-2 text-lg lg:flex">
                <BiCalendar className="transition group-hover:text-green-house-200" />
                <span className="text-base text-slate-400 transition group-hover:text-green-house-200 dark:text-white/50">
                   {currentDate}
