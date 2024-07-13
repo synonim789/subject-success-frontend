@@ -87,8 +87,8 @@ describe('Login Test', () => {
          await user.click(loginButton);
 
          expect(
-            await screen.findByText(/invalid credentials/i),
-         ).toBeInTheDocument();
+            await screen.findAllByText(/invalid credentials/i),
+         ).toHaveLength(2);
       });
    });
 });

@@ -313,7 +313,5 @@ describe('Subjects Page Test', () => {
          await within(subject).findByLabelText(/complete task/i);
       expect(setTaskCompleteBtn).toBeInTheDocument();
       await user.click(setTaskCompleteBtn);
-
-      
    });
 });

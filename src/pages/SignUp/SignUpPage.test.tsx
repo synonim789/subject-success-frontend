@@ -94,9 +94,9 @@ describe('Sign Up Test', () => {
 
          await user.click(signUpButton);
 
-         expect(
-            await screen.findByText(/user already exist/i),
-         ).toBeInTheDocument();
+         expect(await screen.findAllByText(/user already exist/i)).toHaveLength(
+            2,
+         );
       });
    });
 });
