@@ -7,10 +7,8 @@ const getGithubAuthUrl = () => {
       client_id: env.VITE_GITHUB_CLIENT_ID,
       redirect_uri: env.VITE_GITHUB_REDIRECT_URL,
    };
-
+   console.log(options);
    const qs = new URLSearchParams(options);
-
-   console.log(qs)
 
    return `${rootUrl}?${qs.toString()}?path=${path}&scope=user:email`;
 };
