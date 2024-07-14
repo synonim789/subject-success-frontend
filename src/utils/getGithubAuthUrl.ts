@@ -10,6 +10,8 @@ const getGithubAuthUrl = () => {
 
    const qs = new URLSearchParams(options);
 
+   console.log(qs)
+
    return `${rootUrl}?${qs.toString()}?path=${path}&scope=user:email`;
 };
 
