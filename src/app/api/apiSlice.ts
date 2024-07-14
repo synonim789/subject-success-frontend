@@ -4,6 +4,7 @@ import {
    FetchBaseQueryError,
    createApi,
    fetchBaseQuery,
+   retry,
 } from '@reduxjs/toolkit/query/react';
 import env from '../../utils/cleanEnv';
 import { setIsAuthenticated } from '../slices/authSlice';
@@ -12,10 +13,15 @@ type RefreshResponse = {
    isAuthenticated: boolean;
 };
 
-const baseQuery = fetchBaseQuery({
-   baseUrl: new URL(env.VITE_SERVER_ENDPOINT).href,
-   credentials: 'include',
-});
+const baseQuery = retry(
+   fetchBaseQuery({
+      baseUrl: new URL(env.VITE_SERVER_ENDPOINT).href,
+      credentials: 'include',
+   }),
+   {
+      maxRetries: 6,
+   },
+);
 
 const baseQueryWithReauth: BaseQueryFn<
    string | FetchArgs,
@@ -33,7 +39,7 @@ const baseQueryWithReauth: BaseQueryFn<
       if (refreshData) {
          api.dispatch(setIsAuthenticated(refreshData.isAuthenticated));
          result = await baseQuery(args, api, extraOptions);
-      } 
+      }
    }
    return result;
 };
