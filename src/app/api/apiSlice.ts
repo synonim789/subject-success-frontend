@@ -6,7 +6,7 @@ import {
    fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
 import env from '../../utils/cleanEnv';
-import { logout, setIsAuthenticated } from '../slices/authSlice';
+import { setIsAuthenticated } from '../slices/authSlice';
 
 type RefreshResponse = {
    isAuthenticated: boolean;
@@ -33,9 +33,7 @@ const baseQueryWithReauth: BaseQueryFn<
       if (refreshData) {
          api.dispatch(setIsAuthenticated(refreshData.isAuthenticated));
          result = await baseQuery(args, api, extraOptions);
-      } else {
-         api.dispatch(logout());
-      }
+      } 
    }
    return result;
 };

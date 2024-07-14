@@ -16,8 +16,10 @@ const StayLoggedIn = () => {
    useEffect(() => {
       const verifyRefreshToken = async () => {
          try {
-            await refresh();
-            setTrueSuccess(true);
+            const result = await refresh().unwrap();
+            if (result.isAuthenticated) {
+               setTrueSuccess(true);
+            }
          } catch (error) {
             console.log(error);
          }
