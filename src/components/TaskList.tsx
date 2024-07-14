@@ -21,7 +21,7 @@ const TaskList = () => {
          </div>
 
          <div className="flex flex-col items-start gap-5">
-            {tasks && tasks.length > 1 ? (
+            {tasks && tasks.length > 0 ? (
                tasks?.map((task) => (
                   <div key={task._id}>
                      <p className="text-sm text-gray-400">
@@ -34,7 +34,7 @@ const TaskList = () => {
                <p className="my-5 text-4xl dark:text-white">No Tasks Found</p>
             )}
 
-            {tasks && tasks.length > 1 ? (
+            {tasks && tasks.length > 0 ? (
                <Link
                   className="flex w-full items-center justify-center rounded-xl border-2 border-dashed border-gray-500 p-4 text-xl font-bold text-gray-500 transition hover:border-black hover:text-black dark:hover:border-gray-300 dark:hover:text-white"
                   to="/tasks"
