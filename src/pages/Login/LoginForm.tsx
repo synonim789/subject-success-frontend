@@ -51,7 +51,7 @@ const LoginForm = () => {
       <>
          <form onSubmit={handleSubmit(submitHandler)} className="w-full px-5">
             <Input
-               type="text"
+               type="email"
                placeholder="Enter your email..."
                label="Email adress"
                name="email"
