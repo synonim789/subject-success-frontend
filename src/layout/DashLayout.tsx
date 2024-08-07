@@ -5,7 +5,7 @@ import DashNavbar from '../components/DashNavbar';
 import DashSidebar from '../components/DashSidebar';
 
 const DashLayout = () => {
-   const [sidebarVisible, setSidebarVisible] = useState(true);
+   const [sidebarVisible, setSidebarVisible] = useState(false);
 
    return (
       <div className="relative flex">
