@@ -1,14 +1,25 @@
 import { Link } from 'react-router-dom';
 import { useGetRecommendedSubjectQuery } from '../app/api/subjectApiSlice';
+import SkeletonSubjects from './SkeletonSubjects';
 import SubjectItem from './SubjectItem';
 
 const SubjectList = () => {
-   const { data: subjects } = useGetRecommendedSubjectQuery();
+   const { data: subjects, isLoading } = useGetRecommendedSubjectQuery();
 
    return (
       <section className="w-full rounded-lg bg-white p-8 shadow-2xl dark:bg-dark-400">
          <h2 className="mb-4 text-3xl dark:text-white/85">Subjects</h2>
          <div className="flex flex-col gap-7">
+            {isLoading ? (
+               <SkeletonSubjects />
+            ) : subjects?.length === 0 ? (
+               <p className="my-5 text-4xl dark:text-white">
+                  No Subjects Found
+               </p>
+            ) : (
+               ''
+            )}
+
             {subjects?.map((subject) => (
                <SubjectItem subject={subject} key={subject._id} />
             ))}

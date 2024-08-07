@@ -3,10 +3,13 @@ import {
    useGetRecommendedTasksQuery,
    useGetTaskCountQuery,
 } from '../app/api/taskApiSlice';
+import SkeletonTasks from './SkeletonTasks';
 
 const TaskList = () => {
-   const { data: tasks } = useGetRecommendedTasksQuery();
+   const { data: tasks, isLoading: isLoadingTasks } =
+      useGetRecommendedTasksQuery();
    const { data: taskCount } = useGetTaskCountQuery();
+
    return (
       <section className="w-full rounded-lg bg-white p-8 shadow-2xl dark:bg-dark-400">
          <div className="flex justify-between">
@@ -21,7 +24,9 @@ const TaskList = () => {
          </div>
 
          <div className="flex flex-col items-start gap-5">
-            {tasks && tasks.length > 0 ? (
+            {isLoadingTasks ? (
+               <SkeletonTasks />
+            ) : tasks && tasks.length > 0 ? (
                tasks?.map((task) => (
                   <div key={task._id}>
                      <p className="text-sm text-gray-400">

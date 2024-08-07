@@ -10,13 +10,12 @@ import {
    CalendarHeaderCell,
    Heading,
 } from 'react-aria-components';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useGetTaskDatesQuery } from '../app/api/taskApiSlice';
 import { Task } from '../types/TaskModel';
 
 const TaskCalendar = () => {
-   const { data, isSuccess, isLoading } = useGetTaskDatesQuery();
+   const { data, isSuccess } = useGetTaskDatesQuery();
    const [dates, setDates] = useState<CalendarDate[] | null>();
    const [selectedDate, setSelectedDate] = useState(today(getLocalTimeZone()));
    const [tasks, setTasks] = useState<Task[]>([]);
@@ -57,15 +56,6 @@ const TaskCalendar = () => {
          );
       }
    };
-
-   if (isLoading) {
-      return (
-         <AiOutlineLoading3Quarters
-            className="animate-spin dark:text-white"
-            size={40}
-         />
-      );
-   }
 
    return (
       <section className="flex w-full flex-col items-center rounded-lg bg-white p-5 shadow-2xl dark:bg-dark-400">
