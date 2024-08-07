@@ -44,6 +44,7 @@ const DashSidebar = ({
                               ? 'group ml-3 mt-4 flex items-center gap-3 border-green-house-400 text-xl font-extrabold text-green-400 dark:text-white/85'
                               : 'group ml-3 mt-4 flex items-center gap-3 text-xl font-extrabold text-slate-500   dark:text-white/85'
                         }
+                        onClick={() => setSidebarVisible(false)}
                      >
                         <span className="rounded-full border-2  border-slate-500 transition-colors group-hover:border-green-house-600 group-hover:text-green-house-600 dark:border-white/85">
                            <BsCheck />
@@ -71,6 +72,7 @@ const DashSidebar = ({
                                     ? 'm-2 flex items-center gap-5 rounded-lg bg-green-house-400 pb-2.5 pl-4 pt-3 text-lg text-white transition hover:bg-green-house-600 dark:text-white/60'
                                     : 'm-2 flex items-center gap-5 rounded-lg pb-2.5 pl-4 pt-3 text-lg text-gray-700 transition hover:bg-green-house-600 hover:text-white dark:text-white/60'
                               }
+                              onClick={() => setSidebarVisible(false)}
                            >
                               {link.icon}
                               <span className="capitalize">{link.name}</span>
