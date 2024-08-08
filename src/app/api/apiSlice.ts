@@ -13,7 +13,7 @@ type RefreshResponse = {
 };
 
 const baseQuery = fetchBaseQuery({
-   baseUrl: env.VITE_SERVER_ENDPOINT,
+   baseUrl: env.VITE_BACKEND_SERVER_URL,
    credentials: 'include',
 });
 

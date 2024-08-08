@@ -17,7 +17,6 @@ export default defineConfig({
       VITE_GOOGLE_REDIRECT_URL: JSON.stringify(
          process.env.VITE_GOOGLE_REDIRECT_UR,
       ),
-      VITE_SERVER_ENDPOINT: JSON.stringify(process.env.VITE_SERVER_ENDPOINT),
       VITE_GITHUB_CLIENT_ID: JSON.stringify(process.env.VITE_GITHUB_CLIENT_ID),
       VITE_GITHUB_REDIRECT_URL: JSON.stringify(
          process.env.VITE_GITHUB_REDIRECT_URL,
