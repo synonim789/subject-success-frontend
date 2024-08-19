@@ -8,11 +8,11 @@ import {
 } from '../../app/api/userApiSlice';
 import ProfileInput from '../../components/ProfileInput';
 import SubmitButton from '../../components/SubmitButton';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import {
    UpdateUsernameFields,
    updateUsernameSchema,
-} from '../../types/schemas';
-import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+} from '../../validation/profile';
 
 const UpdateUserInfo = () => {
    const { data, isSuccess } = useGetUserQuery();

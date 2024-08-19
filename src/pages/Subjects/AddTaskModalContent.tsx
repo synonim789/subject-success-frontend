@@ -6,8 +6,8 @@ import { useAddTaskMutation } from '../../app/api/taskApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { ModalContext } from '../../context/ModalContext';
-import { AddTaskFields, addTaskSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import { AddTaskFields, addTaskSchema } from '../../validation/task';
 
 type Props = {
    subjectId: string;

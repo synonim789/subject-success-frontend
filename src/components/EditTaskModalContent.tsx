@@ -4,8 +4,8 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useEditTaskNameMutation } from '../app/api/taskApiSlice';
 import { ModalContext } from '../context/ModalContext';
-import { EditTaskFields, editTaskSchema } from '../types/schemas';
 import { isFetchBaseQueryError } from '../utils/isFetchBaseQueryError';
+import { EditTaskFields, editTaskSchema } from '../validation/task';
 import Input from './Input';
 import SubmitButton from './SubmitButton';
 

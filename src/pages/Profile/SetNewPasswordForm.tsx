@@ -4,11 +4,11 @@ import toast from 'react-hot-toast';
 import { useSetNewPasswordMutation } from '../../app/api/userApiSlice';
 import ProfileInput from '../../components/ProfileInput';
 import SubmitButton from '../../components/SubmitButton';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import {
    SetNewPasswordFields,
    setNewPasswordSchema,
-} from '../../types/schemas';
-import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+} from '../../validation/profile';
 
 const SetNewPasswordForm = () => {
    const [setNewPassword, { error }] = useSetNewPasswordMutation();

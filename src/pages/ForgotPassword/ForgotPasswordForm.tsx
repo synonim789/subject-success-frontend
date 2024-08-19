@@ -7,11 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { useForgotPasswordMutation } from '../../app/api/userApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
+import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import {
    ForgotPasswordFields,
    forgotPasswordSchema,
-} from '../../types/schemas';
-import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+} from '../../validation/auth';
 
 const ForgotPasswordForm = () => {
    const navigate = useNavigate();

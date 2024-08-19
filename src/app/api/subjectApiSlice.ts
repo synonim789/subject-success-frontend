@@ -1,6 +1,6 @@
 import { RecommendedSubject } from '../../types/RecommendedSubject.Model';
 import { Subject } from '../../types/SubjectModel';
-import { AddSubjectFields, EditSubjectFields } from '../../types/schemas';
+import { AddSubjectFields, EditSubjectFields } from '../../validation/subject';
 import { api } from './apiSlice';
 
 const subjectApiSlice = api.injectEndpoints({

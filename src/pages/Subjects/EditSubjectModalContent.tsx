@@ -19,8 +19,8 @@ import { useEditSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { ModalContext } from '../../context/ModalContext';
-import { EditSubjectFields, editSubjectSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import { EditSubjectFields, editSubjectSchema } from '../../validation/subject';
 
 type Props = {
    subjectName: string;

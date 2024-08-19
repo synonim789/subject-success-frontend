@@ -17,8 +17,8 @@ import { useAddSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { ModalContext } from '../../context/ModalContext';
-import { AddSubjectFields, addSubjectSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import { AddSubjectFields, addSubjectSchema } from '../../validation/subject';
 
 const AddSubjectModalContent = () => {
    const [addSubject, { isLoading }] = useAddSubjectMutation();
@@ -53,7 +53,12 @@ const AddSubjectModalContent = () => {
    };
 
    if (isLoading) {
-      return <AiOutlineLoading3Quarters className="animate-spin dark:text-white" size={40} />;
+      return (
+         <AiOutlineLoading3Quarters
+            className="animate-spin dark:text-white"
+            size={40}
+         />
+      );
    }
    return (
       <div className="flex w-full items-center">

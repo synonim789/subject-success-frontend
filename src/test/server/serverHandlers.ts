@@ -1,6 +1,6 @@
 import { HttpResponse, PathParams, http } from 'msw';
 import { User } from '../../types/UserModel';
-import { AddSubjectFields, EditSubjectFields } from '../../types/schemas';
+import { AddSubjectFields, EditSubjectFields } from '../../validation/subject';
 
 type LoginRequestBody = {
    email: string;

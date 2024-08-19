@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom';
 import { useResetPasswordMutation } from '../../app/api/userApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
-import { ResetPasswordFields, resetPasswordSchema } from '../../types/schemas';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import {
+   ResetPasswordFields,
+   resetPasswordSchema,
+} from '../../validation/auth';
 
 type Props = {
    otp: number;
