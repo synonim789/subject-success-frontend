@@ -6,9 +6,10 @@ import { MdAlternateEmail } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 import { useLoginMutation } from '../../app/api/authApiSlice';
 import Input from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
 import SubmitButton from '../../components/SubmitButton';
-import { LoginFields, loginSchema } from '../../validation/auth';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
+import { LoginFields, loginSchema } from '../../validation/auth';
 
 const LoginForm = () => {
    const navigate = useNavigate();
@@ -53,23 +54,13 @@ const LoginForm = () => {
             <Input
                type="email"
                placeholder="Enter your email..."
-               label="Email adress"
-               name="email"
+               labelText="Email adress"
                id="email"
                icon={<MdAlternateEmail size={20} />}
-               register={{ ...register('email') }}
+               {...register('email')}
                error={errors.email}
             />
-            <Input
-               type="password"
-               placeholder="**********"
-               label="Password"
-               name="password"
-               id="password"
-               isPassword={true}
-               register={{ ...register('password') }}
-               error={errors.password}
-            />
+            <PasswordInput {...register('password')} error={errors.password} />
             <div className="mb-2 w-full text-right">
                <Link
                   to="/forgot-password"
