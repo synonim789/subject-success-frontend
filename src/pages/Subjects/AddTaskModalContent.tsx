@@ -43,22 +43,20 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col gap-3  md:flex-row md:gap-5">
+            <div className="flex flex-col gap-3 md:flex-row md:gap-5">
                <Input
                   id="name"
-                  label="Name"
+                  labelText="Name"
                   placeholder="Enter Task"
-                  name="name"
                   type="text"
-                  register={{ ...register('name') }}
+                  {...register('name')}
                   error={errors.name}
                />
                <Input
                   type="date"
-                  label="Date"
+                  labelText="Date"
                   placeholder=""
-                  name="date"
-                  register={{ ...register('date', { valueAsDate: true }) }}
+                  {...register('date', { valueAsDate: true })}
                   error={errors.date}
                   id="date"
                />
