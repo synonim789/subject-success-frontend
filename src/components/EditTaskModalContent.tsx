@@ -53,20 +53,18 @@ const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
             <div className="flex flex-col gap-5 md:flex-row">
                <Input
                   id="name"
-                  label="Name"
+                  labelText="Name"
                   placeholder="Enter Task"
-                  name="name"
                   type="text"
-                  register={{ ...register('name') }}
+                  {...register('name')}
                   error={errors.name}
                />
                <Input
                   type="date"
                   id="date"
-                  label="Date"
+                  labelText="Date"
                   placeholder=""
-                  name="date"
-                  register={{ ...register('date') }}
+                  {...register('date')}
                   error={errors.date}
                />
             </div>
