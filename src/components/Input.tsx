@@ -1,94 +1,62 @@
-import { ReactNode, useState } from 'react';
+import { forwardRef, InputHTMLAttributes, ReactNode } from 'react';
 import { FieldError } from 'react-hook-form';
-import { IoMdEye, IoMdEyeOff } from 'react-icons/io';
+import { cn } from '../utils/cn';
 
-type Props = {
-   label: string;
-   placeholder: string;
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
    icon?: ReactNode;
-   id: string;
-   name: string;
-   type: string;
-   isPassword?: boolean;
-   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-   register: any;
    error?: FieldError;
-   step?: number;
-};
+   labelText: string;
+}
 
-const Input = ({
-   label,
-   placeholder,
-   icon,
-   id,
-   name,
-   type,
-   isPassword,
-   register,
-   error,
-   step,
-}: Props) => {
-   const [isPasswordVisible, setIsPassowrdVisible] = useState(false);
-
-   const togglePasswordVisibilty = () => {
-      setIsPassowrdVisible(!isPasswordVisible);
-   };
-
-   return (
-      <div className="text-left">
-         <label
-            htmlFor={id}
-            className={`${error ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
-         >
-            {label}
-         </label>
-         <div
-            className={` ${error ? 'mb-0.5' : 'mb-4'} relative mt-1 flex w-full  flex-col text-left`}
-         >
-            <input
-               type={
-                  isPassword ? (isPasswordVisible ? 'text' : 'password') : type
-               }
-               placeholder={placeholder}
-               name={name}
-               id={id}
-               className={`${
-                  error
-                     ? 'border-2 border-red-500 dark:border-red-400'
-                     : 'border-[#CDD6E1] dark:border-slate-600'
-               }  rounded-md border bg-transparent py-3 pl-5 pr-3 outline-none dark:text-white dark:[color-scheme:dark]`}
-               {...register}
-               step={step}
-            />
-            {isPassword && (
-               <button
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-600"
-                  onClick={togglePasswordVisibilty}
-                  type="button"
-               >
-                  {isPasswordVisible ? (
-                     <IoMdEye size={20} />
-                  ) : (
-                     <IoMdEyeOff size={20} />
+const Input = forwardRef<HTMLInputElement, Props>(
+   ({ id, error, labelText, type, placeholder, name, step, icon }, ref) => {
+      return (
+         <div className="text-left">
+            <label
+               htmlFor={id}
+               className={cn('font-medium text-gray-400', {
+                  'text-red-500 dark:text-red-400': error,
+               })}
+            >
+               {labelText}
+            </label>
+            <div
+               className={cn(
+                  'relative mb-4 mt-1 flex  w-full flex-col text-left',
+                  {
+                     'mb-0.5': error,
+                  },
+               )}
+            >
+               <input
+                  type={type}
+                  placeholder={placeholder}
+                  name={name}
+                  id={id}
+                  className={cn(
+                     'rounded-md border border-[#CDD6E1] bg-transparent py-3 pl-5 pr-12 outline-none dark:border-slate-600 dark:text-white dark:[color-scheme:dark]',
+                     { 'border-2 border-red-500 dark:border-red-400': error },
                   )}
-               </button>
-            )}
+                  step={step}
+                  ref={ref}
+               />
 
-            {icon && (
-               <div className="absolute inset-y-0 right-3 flex items-center text-gray-600">
-                  {icon}
+               {icon && (
+                  <div className="absolute inset-y-0 right-3 flex items-center text-gray-600">
+                     {icon}
+                  </div>
+               )}
+            </div>
+            {error?.message && (
+               <div
+                  className="mb-1.5 text-justify font-semibold text-red-500 dark:text-red-400"
+                  role="alert"
+               >
+                  {error.message}
                </div>
             )}
          </div>
-         {error?.message && (
-            <div
-               className="mb-1.5 text-justify font-semibold text-red-500 dark:text-red-400"
-               role="alert"
-            >
-               {error.message}
-            </div>
-         )}
-      </div>
-   );
-};
+      );
+   },
+);
 export default Input;
