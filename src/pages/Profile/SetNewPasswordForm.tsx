@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { useSetNewPasswordMutation } from '../../app/api/userApiSlice';
-import ProfileInput from '../../components/ProfileInput';
+import ProfilePasswordInput from '../../components/ProfilePasswordInput';
 import SubmitButton from '../../components/SubmitButton';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import {
@@ -44,24 +44,16 @@ const SetNewPasswordForm = () => {
          className="flex w-full flex-col justify-center gap-10 rounded-xl  bg-white/80 p-8 drop-shadow-xl dark:bg-dark-600"
          onSubmit={handleSubmit(submitHandler)}
       >
-         <ProfileInput
-            name="password"
-            type="password"
-            label="Password"
+         <ProfilePasswordInput
             id="password"
             placeholder="Enter Password"
-            register={{ ...register('password') }}
+            {...register('password')}
             error={errors.password}
-            isPassword
          />
-         <ProfileInput
-            name="confirmPassword"
-            type="password"
-            label="Confirm Password"
+         <ProfilePasswordInput
             id="confirmPassword"
             placeholder="Re-enter Password"
-            register={{ ...register('confirmPassword') }}
-            isPassword
+            {...register('confirmPassword')}
             error={errors.confirmPassword}
          />
          {error && (

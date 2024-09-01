@@ -59,21 +59,19 @@ const UpdateUserInfo = () => {
          onSubmit={handleSubmit(submitHandler)}
       >
          <ProfileInput
-            name="username"
             type="text"
-            label="Username"
+            labelText="Username"
             id="username"
             placeholder="Enter Username"
-            register={{ ...register('username') }}
+            {...register('username')}
             error={errors.username}
          />
          <ProfileInput
-            name="Email"
             type="email"
-            label="Email"
+            labelText="Email"
             id="email"
             placeholder="Enter Email"
-            register={{ ...register('email') }}
+            {...register('email')}
             disabled
             error={errors.email}
          />
