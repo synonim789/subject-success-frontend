@@ -63,14 +63,14 @@ const AddSubjectModalContent = () => {
    return (
       <div className="flex w-full items-center">
          <form onSubmit={handleSubmit(submitHandler)}>
-            <div className="flex flex-col items-center gap-3 md:flex-row md:gap-5">
+            <div className="flex flex-col items-start gap-3 md:flex-row md:gap-5">
                <Input
-                  register={{ ...register('name') }}
-                  label="Name"
+                  labelText="Name"
                   placeholder="Enter name of subject"
                   id="name"
-                  name="name"
                   type="text"
+                  {...register('name')}
+                  error={errors.name}
                />
                <Controller
                   control={control}
