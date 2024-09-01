@@ -60,7 +60,11 @@ const LoginForm = () => {
                error={errors.email}
                {...register('email')}
             />
-            <PasswordInput {...register('password')} error={errors.password} />
+            <PasswordInput
+               id="password"
+               {...register('password')}
+               error={errors.password}
+            />
             <div className="mb-2 w-full text-right">
                <Link
                   to="/forgot-password"

@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useNavigate } from 'react-router-dom';
 import { useResetPasswordMutation } from '../../app/api/userApiSlice';
-import Input from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
 import SubmitButton from '../../components/SubmitButton';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import {
@@ -61,25 +61,17 @@ const ResetPasswordForm = ({ otp }: Props) => {
 
    return (
       <form onSubmit={handleSubmit(submitHandler)} className="w-full px-5">
-         <Input
-            type="password"
+         <PasswordInput
             placeholder="Enter your new password"
-            label="Password"
             id="password"
-            name="password"
-            register={{ ...register('password') }}
+            {...register('password')}
             error={errors.password}
-            isPassword={true}
          />
-         <Input
-            type="password"
+         <PasswordInput
             placeholder="Re-enter password"
-            label="Confirm Password"
             id="confirmPassword"
-            name="confirmPassword"
-            register={{ ...register('confirmPassword') }}
+            {...register('confirmPassword')}
             error={errors.confirmPassword}
-            isPassword={true}
          />
          {error && (
             <p className="mt-2 text-left font-semibold text-red-500 dark:text-red-400">

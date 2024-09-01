@@ -8,7 +8,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const PasswordInput = forwardRef<HTMLInputElement, Props>(
-   ({ error, ...props }, ref) => {
+   ({ error, placeholder, id, ...props }, ref) => {
       const [showPassword, setShowPassword] = useState<boolean>(false);
 
       return (
@@ -17,8 +17,8 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
                type={showPassword ? 'text' : 'password'}
                ref={ref}
                labelText="Password"
-               id="password"
-               placeholder="**********"
+               id={id}
+               placeholder={placeholder || '**********'}
                error={error}
                {...props}
                icon={
