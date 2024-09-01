@@ -48,7 +48,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
                   name={name}
                   id={id}
                   className={cn(
-                     'rounded-md  border-2 border-[#CDD6E1] bg-transparent py-3 pl-5 pr-12 outline-none dark:border-slate-600 dark:text-white dark:[color-scheme:dark]',
+                     'rounded-md  border border-[#CDD6E1] bg-transparent py-3 pl-5 pr-12 outline-none dark:border-slate-600 dark:text-white dark:[color-scheme:dark]',
                      className,
                      { ' border-red-500 dark:border-red-400': error },
                   )}
