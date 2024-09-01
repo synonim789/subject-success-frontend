@@ -6,6 +6,7 @@ import { MdAlternateEmail, MdDriveFileRenameOutline } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useSignUpMutation } from '../../app/api/userApiSlice';
 import Input from '../../components/Input';
+import { PasswordInput } from '../../components/PasswordInput';
 import SubmitButton from '../../components/SubmitButton';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import { SignUpFields, signUpSchema } from '../../validation/auth';
@@ -54,31 +55,29 @@ const SignUpForm = () => {
             <Input
                type="text"
                placeholder="Enter your email..."
-               label="Email adress"
-               name="email"
+               labelText="Email adress"
+               className="border"
                id="email"
                icon={<MdAlternateEmail size={20} />}
-               register={{ ...register('email') }}
+               {...register('email')}
                error={errors.email}
             />
             <Input
                type="text"
                placeholder="Enter your username..."
-               label="Username"
-               name="username"
+               labelText="Username"
                id="username"
+               className="border"
                icon={<MdDriveFileRenameOutline size={20} />}
-               register={{ ...register('username') }}
+               {...register('username')}
                error={errors.username}
             />
-            <Input
+            <PasswordInput
                type="password"
+               className="border"
                placeholder="**********"
-               label="Password"
-               name="password"
                id="password"
-               isPassword={true}
-               register={{ ...register('password') }}
+               {...register('password')}
                error={errors.password}
             />
             <SubmitButton text="Sign Up" disabled={isSubmitting} />
