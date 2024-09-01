@@ -21,7 +21,6 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
                placeholder="**********"
                error={error}
                {...props}
-               className="pe-10"
                icon={
                   <button
                      type="button"

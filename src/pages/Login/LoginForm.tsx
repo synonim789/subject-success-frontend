@@ -57,8 +57,8 @@ const LoginForm = () => {
                labelText="Email adress"
                id="email"
                icon={<MdAlternateEmail size={20} />}
-               {...register('email')}
                error={errors.email}
+               {...register('email')}
             />
             <PasswordInput {...register('password')} error={errors.password} />
             <div className="mb-2 w-full text-right">

@@ -7,7 +7,7 @@ export const forgotPasswordSchema = z.object({
 export type ForgotPasswordFields = z.infer<typeof forgotPasswordSchema>;
 
 export const loginSchema = z.object({
-   email: z.string().email(),
+   email: z.string().email().min(1, 'Required'),
    password: z
       .string()
       .min(8, 'Password should be at least 8 characters')

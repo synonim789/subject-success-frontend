@@ -9,7 +9,10 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 const Input = forwardRef<HTMLInputElement, Props>(
-   ({ id, error, labelText, type, placeholder, name, step, icon }, ref) => {
+   (
+      { id, error, labelText, type, placeholder, name, step, icon, ...props },
+      ref,
+   ) => {
       return (
          <div className="text-left">
             <label
@@ -39,6 +42,7 @@ const Input = forwardRef<HTMLInputElement, Props>(
                   )}
                   step={step}
                   ref={ref}
+                  {...props}
                />
 
                {icon && (
