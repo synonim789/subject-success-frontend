@@ -54,11 +54,10 @@ const ForgotPasswordForm = () => {
          <Input
             type="text"
             placeholder="Enter your email..."
-            label="Email adress"
-            name="email"
+            labelText="Email adress"
             id="email"
             icon={<MdAlternateEmail size={20} />}
-            register={{ ...register('email') }}
+            {...register('email')}
             error={errors.email}
          />
          <SubmitButton disabled={isSubmitting} text="reset password" />
