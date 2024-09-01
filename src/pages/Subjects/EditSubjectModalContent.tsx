@@ -66,7 +66,7 @@ const EditSubjectModalContent = ({
          await editSubject({
             name,
             type,
-            completion,
+            completion: !!completion,
             grade,
             subjectId,
          }).unwrap();
@@ -92,15 +92,14 @@ const EditSubjectModalContent = ({
    }
 
    return (
-      <div className="flex w-full items-center">
+      <div className="items-sta flex w-full">
          <form onSubmit={handleSubmit(submitHandler)}>
             <div className="mb-5 flex flex-col items-center gap-5 md:flex-row">
                <Input
-                  register={{ ...register('name') }}
-                  label="Name"
+                  {...register('name')}
+                  labelText="Name"
                   placeholder="Enter name of subject"
                   id="name"
-                  name="name"
                   type="text"
                   error={errors.name}
                />
@@ -148,7 +147,7 @@ const EditSubjectModalContent = ({
                   )}
                />
                {selectedType === 'completion' && (
-                  <div className="text-left">
+                  <div className="flex h-full w-full items-center justify-center text-left">
                      <Controller
                         control={control}
                         name="completion"
@@ -165,7 +164,7 @@ const EditSubjectModalContent = ({
                                  <>
                                     <div className="flex h-full items-center gap-2 text-lg">
                                        <div
-                                          className={`active: flex h-8 w-8 flex-shrink items-center justify-center rounded  border-2 hover:bg-green-house-300 ${isSelected && 'border-none bg-green-house-500 text-white hover:bg-green-house-900'}`}
+                                          className={` flex h-8 w-8 flex-shrink items-center justify-center rounded  border-2 hover:bg-green-house-300 ${isSelected && 'border-none bg-green-house-500 text-white hover:bg-green-house-900'}`}
                                        >
                                           {isSelected && <FaCheck size={15} />}
                                        </div>
@@ -181,13 +180,10 @@ const EditSubjectModalContent = ({
                {selectedType === 'grade' && (
                   <Input
                      type="number"
-                     label="Grade Number"
+                     labelText="Grade Number"
                      placeholder="Enter Grade"
                      id="grade"
-                     name="grade"
-                     register={{
-                        ...register('grade', { valueAsNumber: true }),
-                     }}
+                     {...register('grade', { valueAsNumber: true })}
                      error={errors.grade}
                      step={0.1}
                   />
