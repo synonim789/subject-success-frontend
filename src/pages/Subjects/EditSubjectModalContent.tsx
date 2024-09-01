@@ -126,7 +126,14 @@ const EditSubjectModalContent = ({
                               <SelectValue className="w-full text-gray-400" />
                               <FaChevronDown />
                            </Button>
-                           <Popover className="overflow-hidden rounded-xl border border-black/10  bg-white p-2 text-slate-700 shadow-2xl dark:border-white dark:bg-zinc-900 dark:text-zinc-300">
+                           <Popover
+                              className="overflow-hidden rounded-xl border border-black/10  bg-white p-2 text-slate-700 shadow-2xl dark:border-white dark:bg-zinc-900 dark:text-zinc-300"
+                              ref={(ref) =>
+                                 ref?.addEventListener('touchend', (e) =>
+                                    e.preventDefault(),
+                                 )
+                              }
+                           >
                               <ListBox className="isolate max-h-[inherit] overflow-auto outline-none">
                                  <ListBoxItem
                                     id="grade"
