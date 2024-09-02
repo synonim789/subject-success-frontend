@@ -9,6 +9,7 @@ import {
 import EditTaskModalContent from '../../components/EditTaskModalContent';
 import ModalComponent from '../../components/Modal';
 import { Task as TaskType } from '../../types/TaskModel';
+import { cn } from '../../utils/cn';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 type Props = {
@@ -55,7 +56,13 @@ const Task = ({ task }: Props) => {
                   <>
                      <div className="flex  items-center gap-2">
                         <div
-                           className={` mr-2 flex h-5 w-5 items-center justify-center rounded  border-2 hover:bg-green-house-300 ${isSelected && 'border-none bg-green-house-500 text-white/85 hover:bg-green-house-900'}`}
+                           className={cn(
+                              'mr-2 flex h-5 w-5 items-center justify-center rounded  border-2 hover:bg-green-house-300',
+                              {
+                                 'border-none bg-green-house-500 text-white/85 hover:bg-green-house-900':
+                                    isSelected,
+                              },
+                           )}
                         >
                            {isSelected && <FaCheck size={15} />}
                         </div>
@@ -90,7 +97,7 @@ const Task = ({ task }: Props) => {
                      taskDate={task.date}
                   />
                }
-               label='edit task'
+               label="edit task"
             />
          </div>
       </div>

@@ -9,6 +9,7 @@ import {
 import EditTaskModalContent from '../../components/EditTaskModalContent';
 import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
+import { cn } from '../../utils/cn';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 
 type Props = {
@@ -48,13 +49,19 @@ const SubjectTask = ({ task }: Props) => {
                className="group cursor-pointer"
                isSelected={task.completed}
                onChange={handleCompleteTask}
-               aria-label='complete task'
+               aria-label="complete task"
             >
                {({ isSelected }) => (
                   <>
                      <div className="flex  items-center gap-2">
                         <div
-                           className={`active: flex h-5 w-5 flex-shrink items-center justify-center rounded  border-2 hover:bg-green-house-300 ${isSelected && 'border-none bg-green-house-500 text-white hover:bg-green-house-900'}`}
+                           className={cn(
+                              'flex h-5 w-5 flex-shrink items-center justify-center rounded  border-2 hover:bg-green-house-300',
+                              {
+                                 'border-none bg-green-house-500 text-white hover:bg-green-900':
+                                    isSelected,
+                              },
+                           )}
                         >
                            {isSelected && <FaCheck size={15} />}
                         </div>
