@@ -87,12 +87,12 @@ const AddSubjectModalContent = () => {
                            Type
                         </Label>
                         <div className="relative mb-4 mt-1 flex w-full  flex-col text-left">
-                           <Button className="flex items-center justify-between gap-x-5 rounded-md border border-[#CDD6E1] bg-transparent py-3 pl-5 pr-3 outline-none dark:border-slate-600 dark:text-white">
+                           <Button className="flex items-center justify-between gap-x-5 rounded-md border border-[#CDD6E1] bg-transparent py-3 pl-5 pr-3 text-left outline-none dark:border-slate-600 dark:text-white">
                               <SelectValue className="w-full text-gray-400" />
                               <FaChevronDown />
                            </Button>
                            <Popover
-                              className="overflow-hidden rounded-xl border border-black/10  bg-white p-2 text-slate-700 shadow-2xl dark:border-white dark:bg-zinc-900 dark:text-zinc-300"
+                              className="overflow-hidden rounded-xl border border-black/10  bg-white p-2 text-slate-700 shadow-2xl dark:border-white/40 dark:bg-zinc-900 dark:text-zinc-300"
                               ref={(ref) =>
                                  ref?.addEventListener('touchend', (e) =>
                                     e.preventDefault(),
