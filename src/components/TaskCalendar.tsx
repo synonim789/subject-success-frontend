@@ -13,6 +13,7 @@ import {
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { useGetTaskDatesQuery } from '../app/api/taskApiSlice';
 import { Task } from '../types/TaskModel';
+import { cn } from '../utils/cn';
 
 const TaskCalendar = () => {
    const { data, isSuccess } = useGetTaskDatesQuery();
@@ -23,10 +24,7 @@ const TaskCalendar = () => {
    useEffect(() => {
       if (isSuccess) {
          const datesArr = data.map((item) => {
-            const [year, month, day] = item.date
-               .split('T')[0]
-               .split('-')
-               .map(Number);
+            const [year, month, day] = item.date.split('-').map(Number);
 
             const calendarDate = new CalendarDate(year, month, day);
             return calendarDate;
@@ -38,8 +36,10 @@ const TaskCalendar = () => {
    useEffect(() => {
       const areTasksInDate = () => {
          if (data) {
-            const date = selectedDate.toDate('UTC').toISOString();
+            const date = selectedDate.toString();
+
             const taskFoundForDay = data.filter((task) => task.date === date);
+
             setTasks(taskFoundForDay);
          }
       };
@@ -86,9 +86,18 @@ const TaskCalendar = () => {
                <CalendarGridBody>
                   {(date) => (
                      <CalendarCell
-                        className={({ isSelected, date, isOutsideMonth }) => {
-                           return `${isSelected ? 'bg-green-house-500 hover:bg-green-house-300' : isDateInArray(date) && 'bg-yellow-400 text-black hover:bg-yellow-200 '} flex size-9 items-center justify-center rounded-full md:m-1 md:size-10 ${isOutsideMonth ? 'hidden' : ''}`;
-                        }}
+                        className={({ isSelected, date, isOutsideMonth }) =>
+                           cn(
+                              'flex size-9 items-center justify-center rounded-full md:m-1 md:size-10',
+                              {
+                                 'bg-green-house-500 hover:bg-green-house-300':
+                                    isSelected,
+                                 'bg-yellow-400 text-black hover:bg-yellow-200':
+                                    isDateInArray(date),
+                                 hidden: isOutsideMonth,
+                              },
+                           )
+                        }
                         date={date}
                      ></CalendarCell>
                   )}
@@ -99,7 +108,7 @@ const TaskCalendar = () => {
             {tasks.length >= 1 ? (
                <div className="flex w-fit max-w-[300px] flex-col gap-5">
                   {tasks.map((task) => (
-                     <div key={task._id}>
+                     <div key={task._id} className="text-center">
                         <p className="text-sm text-gray-400">
                            {task.subject.name}
                         </p>
