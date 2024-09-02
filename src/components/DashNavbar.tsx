@@ -18,7 +18,7 @@ const DashNavbar = ({
 }: Props) => {
    const currentDate = formatDate(new Date());
 
-   const { data } = useGetUserQuery();
+   const { data, isLoading } = useGetUserQuery();
 
    return (
       <nav className={`${className} text-2xl`}>
@@ -31,8 +31,13 @@ const DashNavbar = ({
             >
                <AiOutlineMenu />
             </button>
+
             <p className="hidden transition hover:text-green-400 md:block">
-               Hello, {data?.username} 👋
+               {isLoading ? (
+                  <span className="inline-block h-6 w-36 animate-pulse rounded-lg bg-dark-500"></span>
+               ) : (
+                  `Hello ${data?.username} 👋`
+               )}
             </p>
          </div>
          <div className="flex items-center gap-5">
