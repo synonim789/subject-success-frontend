@@ -6,6 +6,7 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useSendLogoutMutation } from '../app/api/authApiSlice';
 import { sidebarData } from '../data/sidebarData';
+import { cn } from '../utils/cn';
 
 type Props = {
    className: string;
@@ -40,9 +41,13 @@ const DashSidebar = ({
                      <NavLink
                         to="/"
                         className={({ isActive }) =>
-                           isActive
-                              ? 'group ml-3 mt-4 flex items-center gap-3 border-green-house-400 text-xl font-extrabold text-green-400 dark:text-white/85'
-                              : 'group ml-3 mt-4 flex items-center gap-3 text-xl font-extrabold text-slate-500   dark:text-white/85'
+                           cn(
+                              'group ml-3 mt-4 flex items-center gap-3 text-xl font-extrabold text-slate-500 dark:text-white/85',
+                              {
+                                 'border-green-house-400 text-green-400 dark:text-white/85':
+                                    isActive,
+                              },
+                           )
                         }
                         onClick={() => setSidebarVisible(false)}
                      >
@@ -68,9 +73,13 @@ const DashSidebar = ({
                               key={link.name}
                               to={`/${link.name}`}
                               className={({ isActive }) =>
-                                 isActive
-                                    ? 'm-2 flex items-center gap-5 rounded-lg bg-green-house-400 pb-2.5 pl-4 pt-3 text-lg text-white transition hover:bg-green-house-600 dark:text-white/60'
-                                    : 'm-2 flex items-center gap-5 rounded-lg pb-2.5 pl-4 pt-3 text-lg text-gray-700 transition hover:bg-green-house-600 hover:text-white dark:text-white/60'
+                                 cn(
+                                    'm-2 flex items-center gap-5 rounded-lg pb-2.5 pl-4 pt-3 text-lg text-gray-700 transition hover:bg-green-house-600 hover:text-white dark:text-white/60',
+                                    {
+                                       'bg-green-house-400 text-white dark:text-white':
+                                          isActive,
+                                    },
+                                 )
                               }
                               onClick={() => setSidebarVisible(false)}
                            >
