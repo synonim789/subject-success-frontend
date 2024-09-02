@@ -55,7 +55,7 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
                <Input
                   type="date"
                   labelText="Date"
-                  placeholder=""
+                  placeholder="dd/mm/yyyy"
                   {...register('date', { valueAsDate: true })}
                   error={errors.date}
                   id="date"
