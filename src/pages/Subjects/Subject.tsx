@@ -10,6 +10,7 @@ import { BsThreeDots } from 'react-icons/bs';
 import { useDeleteSubjectMutation } from '../../app/api/subjectApiSlice';
 import ModalComponent from '../../components/Modal';
 import { Task } from '../../types/TaskModel';
+import { cn } from '../../utils/cn';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import AddTaskModalContent from './AddTaskModalContent';
 import EditSubjectModalContent from './EditSubjectModalContent';
@@ -113,7 +114,9 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
             )}
             {type === 'grade' && (
                <p
-                  className={`font-bold ${grade && grade > 1 ? 'text-green-house-500' : 'text-red-400'} `}
+                  className={cn('font-bold text-red-400', {
+                     'text-green-house-500': grade && grade > 1,
+                  })}
                >
                   Grade: {grade}
                </p>
