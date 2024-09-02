@@ -5,7 +5,7 @@ const taskApiSlice = api.injectEndpoints({
    endpoints: (build) => ({
       addTask: build.mutation<
          Task,
-         { name: string; subjectId: string; date: Date | undefined }
+         { name: string; subjectId: string; date: string | undefined }
       >({
          query: ({ subjectId, name, date }) => ({
             url: '/task',

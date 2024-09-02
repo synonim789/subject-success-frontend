@@ -24,6 +24,9 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
    } = useForm<AddTaskFields>({
       resolver: zodResolver(addTaskSchema),
       mode: 'onBlur',
+      defaultValues: {
+         date: new Date().toISOString().substring(0, 10),
+      },
    });
 
    const submitHandler: SubmitHandler<AddTaskFields> = async (data) => {
@@ -56,7 +59,8 @@ const AddTaskModalContent = ({ subjectId }: Props) => {
                   type="date"
                   labelText="Date"
                   placeholder="dd/mm/yyyy"
-                  {...register('date', { valueAsDate: true })}
+                  className="w-full"
+                  {...register('date')}
                   error={errors.date}
                   id="date"
                />

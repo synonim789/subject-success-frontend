@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 export const addTaskSchema = z.object({
    name: z.string().min(1, 'Required'),
-   date: z.coerce.date().optional(),
+   date: z.string().min(8, 'Required'),
 });
 
 export type AddTaskFields = z.infer<typeof addTaskSchema>;
