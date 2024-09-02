@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import DashNavbar from '../components/DashNavbar';
 import DashSidebar from '../components/DashSidebar';
+import { cn } from '../utils/cn';
 
 const DashLayout = () => {
    const [sidebarVisible, setSidebarVisible] = useState(false);
@@ -14,7 +15,7 @@ const DashLayout = () => {
             animate={{
                width: sidebarVisible ? 320 : 0,
             }}
-            className={`fixed z-10 bg-white dark:bg-dark-800`}
+            className="fixed z-10 bg-white dark:bg-dark-800"
          >
             <DashSidebar
                className="relative h-screen overflow-auto pb-10 pl-3 shadow-2xl md:hover:overflow-auto"
@@ -23,7 +24,9 @@ const DashLayout = () => {
             />
          </motion.div>
          <div
-            className={`${sidebarVisible ? 'md:ml-80' : 'flex-2'} min-h-screen w-full`}
+            className={cn('min-h-screen w-full', {
+               'md:ml-80': sidebarVisible,
+            })}
          >
             <div className="static  w-full dark:bg-dark-900">
                <DashNavbar
