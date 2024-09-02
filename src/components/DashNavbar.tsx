@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { AiOutlineMenu } from 'react-icons/ai';
 import { BiCalendar } from 'react-icons/bi';
 import { useGetUserQuery } from '../app/api/userApiSlice';
+import { cn } from '../utils/cn';
 import { formatDate } from '../utils/formatDate';
 import NavbarDropdown from './NavbarDropdown';
 
@@ -21,7 +22,7 @@ const DashNavbar = ({
    const { data, isLoading } = useGetUserQuery();
 
    return (
-      <nav className={`${className} text-2xl`}>
+      <nav className={cn('text-2xl', className)}>
          <div className="flex items-center gap-2 ">
             <button
                type="button"
