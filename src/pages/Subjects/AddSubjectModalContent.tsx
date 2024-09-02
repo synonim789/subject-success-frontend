@@ -17,6 +17,7 @@ import { useAddSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { ModalContext } from '../../context/ModalContext';
+import { cn } from '../../utils/cn';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import { AddSubjectFields, addSubjectSchema } from '../../validation/subject';
 
@@ -82,7 +83,9 @@ const AddSubjectModalContent = () => {
                         aria-label="choose type"
                      >
                         <Label
-                           className={`${errors.type ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
+                           className={cn('font-medium text-gray-400', {
+                              'text-red-500 dark:text-red-400': errors.type,
+                           })}
                         >
                            Type
                         </Label>

@@ -19,6 +19,7 @@ import { useEditSubjectMutation } from '../../app/api/subjectApiSlice';
 import Input from '../../components/Input';
 import SubmitButton from '../../components/SubmitButton';
 import { ModalContext } from '../../context/ModalContext';
+import { cn } from '../../utils/cn';
 import { isFetchBaseQueryError } from '../../utils/isFetchBaseQueryError';
 import { EditSubjectFields, editSubjectSchema } from '../../validation/subject';
 
@@ -117,7 +118,9 @@ const EditSubjectModalContent = ({
                         aria-label="choose type"
                      >
                         <Label
-                           className={`${errors.type ? 'text-red-500 dark:text-red-400' : 'text-gray-400'} font-medium`}
+                           className={cn('font-medium text-gray-400', {
+                              'text-red-500 dark:text-red-400': errors.type,
+                           })}
                         >
                            Type
                         </Label>
@@ -171,7 +174,13 @@ const EditSubjectModalContent = ({
                                  <>
                                     <div className="flex h-full items-center gap-2 text-lg">
                                        <div
-                                          className={` flex h-8 w-8 flex-shrink items-center justify-center rounded  border-2 hover:bg-green-house-300 ${isSelected && 'border-none bg-green-house-500 text-white hover:bg-green-house-900'}`}
+                                          className={cn(
+                                             'flex h-8 w-8 flex-shrink items-center justify-center rounded border-2 hover:bg-green-house-300',
+                                             {
+                                                'border-none bg-green-house-500 text-white hover:bg-green-house-900':
+                                                   isSelected,
+                                             },
+                                          )}
                                        >
                                           {isSelected && <FaCheck size={15} />}
                                        </div>
