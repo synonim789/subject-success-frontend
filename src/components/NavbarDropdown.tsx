@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { CiLogout } from 'react-icons/ci';
 import { LuMoon, LuSun } from 'react-icons/lu';
 import { MdKeyboardArrowDown } from 'react-icons/md';
@@ -30,15 +29,6 @@ const NavbarDropdown = () => {
       return () => document.removeEventListener('mousedown', handler);
    });
 
-   if (isLoading) {
-      return (
-         <AiOutlineLoading3Quarters
-            className="animate-spin dark:text-white"
-            size={40}
-         />
-      );
-   }
-
    if (isError) {
       return <p>error</p>;
    }
@@ -47,6 +37,15 @@ const NavbarDropdown = () => {
       sendLogout();
       navigate('/login');
    };
+
+   if (isLoading) {
+      return (
+         <div className="flex items-center gap-2">
+            <div className="size-6 rounded-full bg-white dark:bg-dark-300"></div>
+            <div className="h-4 w-32 rounded-lg bg-white dark:bg-dark-200"></div>
+         </div>
+      );
+   }
 
    return (
       <div className="relative" ref={dropdownMenu}>
