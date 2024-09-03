@@ -33,7 +33,7 @@ const DashSidebar = ({
    }, [isSuccess, navigate]);
 
    return (
-      <nav className={cn("h-full", className) }>
+      <nav className={cn('min-h-screen', className)}>
          <AnimatePresence>
             {sidebarVisible && (
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
