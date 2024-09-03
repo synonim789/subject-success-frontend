@@ -33,7 +33,7 @@ const DashSidebar = ({
    }, [isSuccess, navigate]);
 
    return (
-      <nav className={cn('h-[100dvh]', className)}>
+      <nav className={cn('', className)}>
          <AnimatePresence>
             {sidebarVisible && (
                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
