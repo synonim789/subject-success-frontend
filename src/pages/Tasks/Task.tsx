@@ -42,8 +42,6 @@ const Task = ({ task }: Props) => {
       }
    };
 
-   console.log(task);
-
    return (
       <div className="flex items-center justify-between rounded-lg bg-white p-3 text-center text-lg shadow-xl transition hover:bg-dark-200 hover:text-white/85 dark:bg-dark-100  dark:text-white/85 dark:hover:bg-gray-400">
          <div className="flex ">

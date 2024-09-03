@@ -12,17 +12,11 @@ import ProfileImagePlaceholder from '/profile-placeholder.jpg';
 
 const NavbarDropdown = () => {
    const [showDropdown, setShowDropdown] = useState(false);
-   const [sendLogout, { isSuccess }] = useSendLogoutMutation();
-   const dropdownMenu = useRef<HTMLDivElement>(null);
+   const [sendLogout] = useSendLogoutMutation();
+   const dropdownMenu = useRef<HTMLDivElement | null>(null);
    const navigate = useNavigate();
    const [isDarkMode, setIsDarkMode] = useDarkMode();
    const { data, isLoading, isError } = useGetUserQuery();
-
-   useEffect(() => {
-      if (isSuccess) {
-         navigate('/login');
-      }
-   }, [isSuccess, navigate]);
 
    useEffect(() => {
       const handler = (e: TouchEvent | MouseEvent) => {
@@ -51,6 +45,7 @@ const NavbarDropdown = () => {
 
    const handleLogout = () => {
       sendLogout();
+      navigate('/login');
    };
 
    return (

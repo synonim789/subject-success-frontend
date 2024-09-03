@@ -10,7 +10,6 @@ const TasksPage = () => {
       return <p>No Task found</p>;
    }
 
-   console.log(tasks);
    return (
       <section>
          <Header text="tasks" />

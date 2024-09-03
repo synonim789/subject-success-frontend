@@ -252,7 +252,7 @@ export const handlers = [
       'http://localhost:3000/task',
       async ({ request }) => {
          const { title } = await request.json();
-         console.log(title);
+
          if (title === 'task 2') {
             return HttpResponse.json(
                { message: 'task cant be added' },
