@@ -64,9 +64,11 @@ const UpdateUserInfo = () => {
             id="username"
             placeholder="Enter Username"
             {...register('username')}
+            autoComplete="username"
             error={errors.username}
          />
          <ProfileInput
+            autoComplete="email"
             type="email"
             labelText="Email"
             id="email"

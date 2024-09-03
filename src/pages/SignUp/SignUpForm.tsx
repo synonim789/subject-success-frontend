@@ -58,12 +58,14 @@ const SignUpForm = () => {
                labelText="Email adress"
                className="border"
                id="email"
+               autoComplete="email"
                icon={<MdAlternateEmail size={20} />}
                {...register('email')}
                error={errors.email}
             />
             <Input
                type="text"
+               autoComplete="username"
                placeholder="Enter your username..."
                labelText="Username"
                id="username"

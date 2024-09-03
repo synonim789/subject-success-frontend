@@ -19,6 +19,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
                labelText="Password"
                id={id}
                placeholder={placeholder || '**********'}
+               autoComplete="current-password"
                error={error}
                {...props}
                icon={

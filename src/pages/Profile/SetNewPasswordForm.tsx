@@ -48,9 +48,11 @@ const SetNewPasswordForm = () => {
             id="password"
             placeholder="Enter Password"
             {...register('password')}
+            autoComplete="new-password"
             error={errors.password}
          />
          <ProfilePasswordInput
+            autoComplete="new-password"
             id="confirmPassword"
             placeholder="Re-enter Password"
             {...register('confirmPassword')}

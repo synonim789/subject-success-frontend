@@ -56,6 +56,7 @@ const LoginForm = () => {
                placeholder="Enter your email..."
                labelText="Email adress"
                id="email"
+               autoComplete="email"
                icon={<MdAlternateEmail size={20} />}
                error={errors.email}
                {...register('email')}

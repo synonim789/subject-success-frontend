@@ -56,6 +56,7 @@ const ForgotPasswordForm = () => {
             placeholder="Enter your email..."
             labelText="Email adress"
             id="email"
+            autoComplete="email"
             icon={<MdAlternateEmail size={20} />}
             {...register('email')}
             error={errors.email}

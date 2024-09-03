@@ -11,7 +11,17 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 const ProfileInput = forwardRef<HTMLInputElement, Props>(
    (
-      { id, labelText, name, placeholder, type, error, icon, disabled = false },
+      {
+         id,
+         labelText,
+         name,
+         placeholder,
+         type,
+         error,
+         icon,
+         disabled = false,
+         ...props
+      },
       ref,
    ) => {
       return (
@@ -32,6 +42,7 @@ const ProfileInput = forwardRef<HTMLInputElement, Props>(
             icon={icon}
             ref={ref}
             error={error}
+            {...props}
          />
       );
    },
