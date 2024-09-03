@@ -35,7 +35,7 @@ const DashNavbar = ({
 
             <p className="hidden transition hover:text-green-400 md:block">
                {isLoading ? (
-                  <span className="inline-block h-6 w-36 animate-pulse rounded-lg bg-dark-500"></span>
+                  <span className="inline-block h-6 w-36 animate-pulse rounded-lg bg-white dark:bg-dark-500"></span>
                ) : (
                   `Hello ${data?.username} 👋`
                )}
