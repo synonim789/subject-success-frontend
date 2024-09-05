@@ -1,4 +1,4 @@
-import { Checkbox } from 'react-aria-components';
+import { Button, Checkbox } from 'react-aria-components';
 import toast from 'react-hot-toast';
 import { CiEdit, CiTrash } from 'react-icons/ci';
 import { FaCheck } from 'react-icons/fa';
@@ -86,17 +86,21 @@ const Task = ({ task }: Props) => {
                <CiTrash size={23} />
             </button>
             <ModalComponent
-               buttonClassName="text-blue-400 transition hover:text-blue-500"
-               buttonChildren={<CiEdit size={23} />}
-               children={
-                  <EditTaskModalContent
-                     taskId={task._id}
-                     taskName={task.title}
-                     taskDate={task.date}
-                  />
+               button={
+                  <Button
+                     className="text-blue-400 transition hover:text-blue-500"
+                     aria-label="edit task"
+                  >
+                     <CiEdit size={23} />
+                  </Button>
                }
-               label="edit task"
-            />
+            >
+               <EditTaskModalContent
+                  taskId={task._id}
+                  taskName={task.title}
+                  taskDate={task.date}
+               />
+            </ModalComponent>
          </div>
       </div>
    );

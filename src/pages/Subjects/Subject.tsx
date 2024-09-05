@@ -67,19 +67,24 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                      </OverlayArrow>
                      <Dialog className="flex w-full flex-col p-2 text-left">
                         <ModalComponent
-                           buttonClassName="w-full rounded-lg p-2 font-bold text-blue-400 hover:bg-gray-200 dark:hover:bg-dark-300"
-                           buttonChildren="Edit"
-                           children={
-                              <EditSubjectModalContent
-                                 subjectName={name}
-                                 subjectType={type}
-                                 subjectCompleted={completed}
-                                 subjectGrade={grade}
-                                 subjectId={id}
-                              />
+                           button={
+                              <Button
+                                 className="w-full rounded-lg p-2 font-bold text-blue-400 hover:bg-gray-200 dark:hover:bg-dark-300"
+                                 aria-label="edit modal"
+                              >
+                                 Edit
+                              </Button>
                            }
-                           label="edit modal"
-                        />
+                        >
+                           <EditSubjectModalContent
+                              subjectName={name}
+                              subjectType={type}
+                              subjectCompleted={completed}
+                              subjectGrade={grade}
+                              subjectId={id}
+                           />
+                        </ModalComponent>
+
                         <button
                            className="w-full rounded-lg p-2 font-bold text-red-400 hover:bg-gray-200 dark:hover:bg-dark-300"
                            onClick={handleDelete}
@@ -96,11 +101,17 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                <SubjectTask key={task._id} task={task} />
             ))}
             <ModalComponent
-               buttonClassName="w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-gray-200 dark:hover:bg-dark-700 mb-7"
-               buttonChildren="Add Task +"
-               children={<AddTaskModalContent subjectId={id} />}
-               label="add task"
-            />
+               button={
+                  <Button
+                     className="mb-7 w-full rounded-lg border border-dashed border-gray-600 p-3 text-left text-lg transition hover:bg-gray-200 dark:hover:bg-dark-700"
+                     aria-label="add task"
+                  >
+                     Add Task+
+                  </Button>
+               }
+            >
+               <AddTaskModalContent subjectId={id} />
+            </ModalComponent>
          </div>
          <div className="absolute bottom-3 left-3">
             {type === 'completion' ? (

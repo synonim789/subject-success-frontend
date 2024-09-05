@@ -1,6 +1,5 @@
 import { ReactNode } from 'react';
 import {
-   Button,
    Dialog,
    DialogTrigger,
    Modal,
@@ -10,29 +9,16 @@ import { MdOutlineCancel } from 'react-icons/md';
 import { ModalContext } from '../context/ModalContext';
 
 type Props = {
-   buttonClassName: string;
-   buttonChildren: string | ReactNode;
    children: ReactNode;
-   label: string;
+
    disabled?: boolean;
+   button: ReactNode;
 };
 
-const ModalComponent = ({
-   buttonChildren,
-   buttonClassName,
-   children,
-   label,
-   disabled = false,
-}: Props) => {
+const ModalComponent = ({ children, button }: Props) => {
    return (
       <DialogTrigger>
-         <Button
-            className={buttonClassName}
-            aria-label={label}
-            isDisabled={disabled}
-         >
-            {buttonChildren}
-         </Button>
+         {button}
          <ModalOverlay className="fixed left-0 top-0 isolate z-20 flex h-full w-full items-center justify-center bg-black/15 p-4 text-center backdrop-blur-lg">
             <Modal>
                <Dialog className="relative w-full rounded-md bg-white p-6 shadow-lg  dark:bg-dark-900 dark:text-white/90">
