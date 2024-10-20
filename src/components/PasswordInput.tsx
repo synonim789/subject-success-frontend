@@ -5,10 +5,11 @@ import Input from './Input';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
    error?: FieldError;
+   labelText: string
 }
 
 export const PasswordInput = forwardRef<HTMLInputElement, Props>(
-   ({ error, placeholder, id, ...props }, ref) => {
+   ({ error, placeholder, id, labelText, ...props }, ref) => {
       const [showPassword, setShowPassword] = useState<boolean>(false);
 
       return (
@@ -16,7 +17,7 @@ export const PasswordInput = forwardRef<HTMLInputElement, Props>(
             <Input
                type={showPassword ? 'text' : 'password'}
                ref={ref}
-               labelText="Password"
+               labelText={labelText}
                id={id}
                placeholder={placeholder || '**********'}
                autoComplete="current-password"

@@ -65,11 +65,13 @@ const ResetPasswordForm = ({ otp }: Props) => {
             placeholder="Enter your new password"
             id="password"
             {...register('password')}
+            labelText="Password"
             error={errors.password}
          />
          <PasswordInput
             placeholder="Re-enter password"
             id="confirmPassword"
+            labelText="Confirm Password"
             {...register('confirmPassword')}
             error={errors.confirmPassword}
          />
