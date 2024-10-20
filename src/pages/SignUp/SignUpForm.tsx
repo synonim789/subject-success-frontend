@@ -75,6 +75,7 @@ const SignUpForm = () => {
                error={errors.username}
             />
             <PasswordInput
+            labelText='Password'
                type="password"
                className="border"
                placeholder="**********"
