@@ -62,6 +62,7 @@ const LoginForm = () => {
                {...register('email')}
             />
             <PasswordInput
+               labelText="Password"
                id="password"
                {...register('password')}
                error={errors.password}
