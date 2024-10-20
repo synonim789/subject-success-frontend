@@ -5,16 +5,17 @@ import ProfileInput from './ProfileInput';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
    error?: FieldError;
+   labelText: string;
 }
 
 const ProfilePasswordInput = forwardRef<HTMLInputElement, Props>(
-   ({ id, error, ...props }, ref) => {
+   ({ id, error, labelText, ...props }, ref) => {
       const [showPassword, setShowPassword] = useState<boolean>(false);
 
       return (
          <ProfileInput
             type={showPassword ? 'text' : 'password'}
-            labelText="Password"
+            labelText={labelText}
             ref={ref}
             id={id}
             error={error}

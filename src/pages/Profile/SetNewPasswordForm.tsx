@@ -45,6 +45,7 @@ const SetNewPasswordForm = () => {
          onSubmit={handleSubmit(submitHandler)}
       >
          <ProfilePasswordInput
+            labelText="Password"
             id="password"
             placeholder="Enter Password"
             {...register('password')}
@@ -52,6 +53,7 @@ const SetNewPasswordForm = () => {
             error={errors.password}
          />
          <ProfilePasswordInput
+            labelText="Confirm Password"
             autoComplete="new-password"
             id="confirmPassword"
             placeholder="Re-enter Password"
