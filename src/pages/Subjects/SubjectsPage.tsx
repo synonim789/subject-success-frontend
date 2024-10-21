@@ -7,7 +7,7 @@ import Subjects from './Subjects';
 const SubjectsPage = () => {
    const { data } = useGetSubjectsQuery();
    return (
-      <div>
+      <div className="w-full">
          <div className="mb-10 flex justify-end">
             <ModalComponent
                button={

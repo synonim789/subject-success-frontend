@@ -9,7 +9,7 @@ const Subjects = () => {
    if (isLoading) {
       return (
          <AiOutlineLoading3Quarters
-            className="animate-spin dark:text-white"
+            className="mx-auto animate-spin dark:text-white"
             size={40}
          />
       );
