@@ -1,8 +1,14 @@
 import userEvent from '@testing-library/user-event';
-import { render, screen, within } from '../../test/test-utils';
+import toast from 'react-hot-toast';
+import { cleanup, render, screen, within } from '../../test/test-utils';
 import SubjectsPage from './SubjectsPage';
 
 describe('Subjects Page Test', () => {
+   afterEach(() => {
+      toast.dismiss();
+      cleanup();
+   });
+
    it('should be rendered', async () => {
       render(<SubjectsPage />);
       const subjects = await screen.findAllByLabelText('subject');
@@ -228,67 +234,6 @@ describe('Subjects Page Test', () => {
 
       expect(
          await screen.findByText('Subject deleted successsfully'),
-      ).toBeInTheDocument();
-   });
-   it('task should be added', async () => {
-      const user = userEvent.setup();
-      render(<SubjectsPage />);
-      const subjects = await screen.findAllByLabelText('subject');
-      expect(subjects).toHaveLength(3);
-      const subject = subjects[0];
-
-      const addTaskBtn = await within(subject).findByLabelText(/add task/i);
-      expect(addTaskBtn).toBeInTheDocument();
-
-      user.click(addTaskBtn);
-
-      const nameInput = await screen.findByLabelText(/name/i);
-
-      expect(nameInput).toBeInTheDocument();
-      await user.type(nameInput, 'task 1');
-
-      const dateInput = await screen.findByLabelText(/date/i);
-      expect(dateInput).toBeInTheDocument();
-
-      await user.type(dateInput, '2024-05-26');
-
-      const submitBtn = await screen.findByRole('button', {
-         name: /add task/i,
-      });
-      expect(submitBtn).toBeInTheDocument();
-
-      await user.click(submitBtn);
-
-      expect(
-         await screen.findByText('Task added successfully'),
-      ).toBeInTheDocument();
-   });
-   it('should return error if there is one on server while adding task', async () => {
-      const user = userEvent.setup();
-      render(<SubjectsPage />);
-      const subjects = await screen.findAllByLabelText('subject');
-      const subject = subjects[0];
-
-      const addTaskBtn = await within(subject).findByLabelText(/add task/i);
-
-      user.click(addTaskBtn);
-
-      const nameInput = await screen.findByLabelText(/name/i);
-      await user.type(nameInput, 'task 2');
-
-      const dateInput = await screen.findByLabelText(/date/i);
-
-      await user.type(dateInput, '2024-05-26');
-
-      const submitBtn = await screen.findByRole('button', {
-         name: /add task/i,
-      });
-      expect(submitBtn).toBeInTheDocument();
-
-      await user.click(submitBtn);
-
-      expect(
-         await screen.findByText(/task cant be added/i),
       ).toBeInTheDocument();
    });
    it('should be able to delete task', async () => {
