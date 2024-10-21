@@ -7,6 +7,14 @@ describe('Dash Layout Test', () => {
       const user = userEvent.setup();
       render(<DashLayout />);
 
+      const openSidebarButton = await screen.findByRole('button', {
+         name: /Toggle Sidebar/i,
+      });
+
+      expect(openSidebarButton).toBeInTheDocument();
+
+      await user.click(openSidebarButton);
+
       const logoutButton = await screen.findByRole('button', {
          name: /logout/i,
       });
@@ -20,6 +28,12 @@ describe('Dash Layout Test', () => {
    it('should be able to close and open sidebar', async () => {
       const user = userEvent.setup();
       render(<DashLayout />);
+
+      const openSidebarButton = await screen.findByLabelText(/toggle sidebar/i);
+      expect(openSidebarButton).toBeInTheDocument();
+
+      await user.click(openSidebarButton);
+
       const title = await screen.findByRole('link', {
          name: /subject success/i,
       });
