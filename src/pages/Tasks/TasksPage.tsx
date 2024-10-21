@@ -1,4 +1,5 @@
 import { Button } from 'react-aria-components';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { useGetAllTaskQuery } from '../../app/api/taskApiSlice';
 import Header from '../../components/Header';
 import ModalComponent from '../../components/Modal';
@@ -6,9 +7,23 @@ import DeleteAllTaskModalContent from './DeleteAllTaskModalContent';
 import Task from './Task';
 
 const TasksPage = () => {
-   const { data: tasks } = useGetAllTaskQuery();
-   if (!tasks) {
-      return <p>No Task found</p>;
+   const { data: tasks, isLoading } = useGetAllTaskQuery();
+
+   if (isLoading) {
+      return (
+         <AiOutlineLoading3Quarters
+            className="mx-auto animate-spin dark:text-white"
+            size={40}
+         />
+      );
+   }
+
+   if (!tasks || tasks.length === 0) {
+      return (
+         <p className="text-center text-4xl font-bold text-gray-400">
+            No Task found
+         </p>
+      );
    }
 
    return (
