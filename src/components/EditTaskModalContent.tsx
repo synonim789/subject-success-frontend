@@ -64,6 +64,7 @@ const EditTaskModalContent = ({ taskId, taskName, taskDate }: Props) => {
                   id="date"
                   labelText="Date"
                   placeholder="dd/mm/yyyy"
+                  className="w-full"
                   {...register('date')}
                   error={errors.date}
                />
