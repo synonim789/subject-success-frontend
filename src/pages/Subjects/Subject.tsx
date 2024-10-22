@@ -60,7 +60,7 @@ const Subject = ({ name, completed, grade, tasks, id, type }: Props) => {
                            width={12}
                            height={12}
                            viewBox="0 0 12 12"
-                           className="block rotate-180 fill-white dark:fill-dark-700"
+                           className="block rotate-180 fill-gray-100 dark:fill-dark-700"
                         >
                            <path d="M0 0 L6 6 L12 0" />
                         </svg>
